@@ -13,6 +13,7 @@ public class View extends JPanel {
 	private void showImage(Graphics g) {
 		Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Zelda-Light-World.jpg"));
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+		repaint();
 	}
 
 	@Override
