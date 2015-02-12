@@ -14,6 +14,7 @@ public class View extends JPanel {
 	private AreaViewport areaViewport;
 	private StatsViewport statsViewport;
 
+	
 
 	public View(AreaViewport areaViewport, StatsViewport statsViewport) {
 		super();
@@ -22,9 +23,28 @@ public class View extends JPanel {
 	}
 
 	private void showImage(Graphics g) {
-		Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Zelda-Light-World.jpg"));
-		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-		repaint();
+		int top;
+		int bottom;
+		int left;
+		int right;
+		int widthpos = 0;
+		int heightpos = 0;
+		Image img;
+		for(int i = 0; i != 2; ++i){
+			for(int j = 0; j != 2; ++j){
+				int type = areaViewport.getMap().getATile(i,j).getTerrain().getType();
+				if(type == 0){
+					img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/water.jpg"));
+				}else{
+					img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/grass.jpg"));
+				}
+				g.drawImage(img,widthpos, heightpos, 20, 20, null);
+				repaint();
+				widthpos += 20;
+			}
+			heightpos += 20;
+			widthpos = 0;
+		}
 	}
 
 	@Override
