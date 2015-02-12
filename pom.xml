@@ -7,13 +7,21 @@
   <description>The RPG Game we are making for OOP with Dave</description>
   <build>
     <sourceDirectory>src</sourceDirectory>
+     <resources>
+      <resource>
+        <directory>src</directory>
+        <excludes>
+          <exclude>**/*.java</exclude>
+        </excludes>
+      </resource>
+    </resources>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.1</version>
         <configuration>
-          <source/>
-          <target/>
+          <source>1.7</source>
+          <target>1.7</target>
         </configuration>
       </plugin>
       <plugin>
@@ -21,8 +29,7 @@
 		  <configuration>
 		    <archive>
 		      <manifest>
-		      	<!-- We don't have a main class yet... -->
-				<!--mainClass>com.rapidgenomics.RAPiDGenomicsPipelineGUI</mainClass-->
+				<mainClass>com.oopsididitagain.gui.Main</mainClass>
 		      </manifest>
 		    </archive>
 		    <descriptorRefs>
