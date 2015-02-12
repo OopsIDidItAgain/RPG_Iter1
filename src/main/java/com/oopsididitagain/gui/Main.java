@@ -22,8 +22,9 @@ public class Main extends JFrame {
 	
 	private void initialize() {
 		this.setLayout(new MigLayout("", "[grow, fill]", "[grow, fill]"));
-		
-		JPanel mainPanel = new View();
+		AreaViewport areaViewport = new AreaViewport();
+		StatsViewport statsViewport = new StatsViewport();
+		JPanel mainPanel = new View(areaViewport,statsViewport);
 		this.add(mainPanel);
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
