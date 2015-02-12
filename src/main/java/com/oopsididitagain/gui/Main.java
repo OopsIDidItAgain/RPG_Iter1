@@ -28,13 +28,18 @@ public class Main extends JFrame {
 		Entity avatar = new Entity();
 		Position p = new Position(0,0);
 		avatar.setPos(p);
-		Tile [][] t = new Tile[2][2];
-		Terrain l = new Terrain(0);
-		Terrain m = new Terrain(1);
-		t[0][0] = new Tile(l);
-		t[0][1] = new Tile(m);
-		t[1][0] = new Tile(l);
-		t[1][1] = new Tile(m);
+		Tile [][] t = new Tile[60][60];
+		Terrain one = Terrain.createTerrain(Terrain.GRASS);
+		Terrain two = Terrain.createTerrain(Terrain.MOUNTAIN);
+		Terrain three  = Terrain.createTerrain(Terrain.WATER);
+		for(int i = 0; i != 60; ++i){
+			for(int j = 0; j!= 60; ++j){
+				t[i][j] = new Tile(one);
+				t[i][++j] = new Tile(two);
+				t[i][++j] = new Tile(three);
+			}
+		}
+		
 		
 		GameMap gameMap = new GameMap(t);
 		AreaViewport areaViewport = new AreaViewport(gameMap,avatar);
