@@ -6,7 +6,7 @@ import java.awt.Toolkit;
 
 import javax.swing.JPanel;
 
-public class GamePanel extends JPanel {
+public class View extends JPanel {
 
 	private static final long serialVersionUID = 8740227504423945127L;
 	

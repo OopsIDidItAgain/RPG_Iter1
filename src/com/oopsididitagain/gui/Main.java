@@ -23,7 +23,7 @@ public class Main extends JFrame {
 	private void initialize() {
 		this.setLayout(new MigLayout("", "[grow, fill]", "[grow, fill]"));
 		
-		JPanel mainPanel = new GamePanel();
+		JPanel mainPanel = new View();
 		this.add(mainPanel);
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
