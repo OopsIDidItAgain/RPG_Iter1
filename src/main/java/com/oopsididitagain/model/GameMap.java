@@ -17,7 +17,6 @@ public class GameMap {
 	}
 	
 	public Tile getATile(int x, int y){
-		
 		return tiles[x][y];
 	}
 }
