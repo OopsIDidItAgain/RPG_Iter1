@@ -6,7 +6,7 @@
   <name>OOPsIDidItAgain</name>
   <description>The RPG Game we are making for OOP with Dave</description>
   <build>
-    <sourceDirectory>src</sourceDirectory>
+    <sourceDirectory>src/main/java</sourceDirectory>
      <resources>
       <resource>
         <directory>src</directory>
