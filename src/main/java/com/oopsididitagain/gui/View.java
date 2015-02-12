@@ -23,6 +23,8 @@ public class View extends JPanel {
 	}
 
 	private void showImage(Graphics g) {
+		int width;
+		int hieght;
 		int top;
 		int bottom;
 		int left;
@@ -30,21 +32,19 @@ public class View extends JPanel {
 		int widthpos = 0;
 		int heightpos = 0;
 		Image img;
-		for(int i = 0; i != 2; ++i){
-			for(int j = 0; j != 2; ++j){
-				int type = areaViewport.getMap().getATile(i,j).getTerrain().getType();
-				if(type == 0){
-					img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/water.jpg"));
-				}else{
-					img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/grass.jpg"));
-				}
-				g.drawImage(img,widthpos, heightpos, 20, 20, null);
+		int h = getHeight() / 10;
+		int w = getWidth() / 10;
+		for(int i = 0; i != 10; ++i){
+			for(int j = 0; j != 10; ++j){
+				img = areaViewport.getMap().getATile(i,j).getTerrain().getImage();
+				g.drawImage(img,widthpos, heightpos, h, w, null);
 				repaint();
-				widthpos += 20;
+				widthpos += w;
 			}
-			heightpos += 20;
 			widthpos = 0;
+			heightpos += h;
 		}
+
 	}
 
 	@Override
