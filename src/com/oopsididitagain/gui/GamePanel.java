@@ -1,4 +1,4 @@
-package com.oopsididitagain;
+package com.oopsididitagain.gui;
 
 import java.awt.Graphics;
 import java.awt.Image;

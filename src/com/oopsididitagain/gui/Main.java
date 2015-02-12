@@ -1,4 +1,4 @@
-package com.oopsididitagain;
+package com.oopsididitagain.gui;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
