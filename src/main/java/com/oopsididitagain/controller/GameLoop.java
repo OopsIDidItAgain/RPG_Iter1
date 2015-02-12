@@ -4,6 +4,8 @@ import com.oopsididitagain.controller.states.ExitGameState;
 import com.oopsididitagain.controller.states.GameState;
 import com.oopsididitagain.controller.states.StartGameState;
 import com.oopsididitagain.gui.View;
+import com.oopsididitagain.io.KeyCode;
+import com.oopsididitagain.io.KeyboardInput;
 
 public class GameLoop {
 

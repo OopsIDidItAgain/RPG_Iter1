@@ -1,4 +1,4 @@
-package com.oopsididitagain.controller;
+package com.oopsididitagain.io;
 
 public class KeyCode {
 	// KEYBOARD INPUTS CODES FOR CONTROLLER
