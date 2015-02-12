@@ -1,10 +1,11 @@
 package com.oopsididitagain.controller;
 
 import com.oopsididitagain.controller.states.GameState;
+import com.oopsididitagain.controller.states.PauseGameState;
 
-public class PlayGameController extends Controller {
+public class PlayGameController extends Controller{
 
-	static PlayGameController instance;
+	private static PlayGameController instance;
 	
 	private PlayGameController() {
 		
@@ -17,16 +18,36 @@ public class PlayGameController extends Controller {
 		return instance;
 	}
 	
-	
 	@Override
-	public void update(GameState state) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void handleInput() {
-		// TODO Auto-generated method stub
+	public void handleInputAndUpdate(GameState state, int input) {
+		// TODO: send messages to avatar
+		switch(input) {
+			case KeyCode.NORTH:
+				break;
+			case KeyCode.SOUTH:
+				break;
+			case KeyCode.EAST:
+				break;
+			case KeyCode.WEST:
+				break;
+			case KeyCode.NORTH_EAST:
+				break;
+			case KeyCode.NORTH_WEST:
+				break;
+			case KeyCode.SOUTH_EAST:
+				break;
+			case KeyCode.SOUTH_WEST:
+				break;
+			case KeyCode.USE:
+				break;
+			case KeyCode.PAUSE:
+				state = PauseGameState.getInstance();
+				break;
+			case KeyCode.EXIT:
+				break;
+			default:
+				break;
+		}
 		
 	}
 
