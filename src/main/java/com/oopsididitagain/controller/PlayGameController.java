@@ -1,5 +1,6 @@
 package com.oopsididitagain.controller;
 
+import com.oopsididitagain.controller.states.ExitGameState;
 import com.oopsididitagain.controller.states.GameState;
 import com.oopsididitagain.controller.states.PauseGameState;
 
@@ -44,6 +45,7 @@ public class PlayGameController extends Controller{
 				state = PauseGameState.getInstance();
 				break;
 			case KeyCode.EXIT:
+				state = ExitGameState.getInstance();
 				break;
 			default:
 				break;

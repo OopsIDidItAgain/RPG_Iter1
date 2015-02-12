@@ -5,4 +5,5 @@ import com.oopsididitagain.controller.Controller;
 public abstract class GameState {
 	
 	public abstract Controller getController();
+
 }

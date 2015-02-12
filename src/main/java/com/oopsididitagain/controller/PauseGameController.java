@@ -1,5 +1,6 @@
 package com.oopsididitagain.controller;
 
+import com.oopsididitagain.controller.states.ExitGameState;
 import com.oopsididitagain.controller.states.GameState;
 
 public class PauseGameController extends Controller {
@@ -9,7 +10,7 @@ public class PauseGameController extends Controller {
 	private PauseGameController() {
 		
 	}
-	
+
 	public static Controller getInstance() {
 		if ( instance == null ){
 			instance = new PauseGameController();
@@ -19,7 +20,7 @@ public class PauseGameController extends Controller {
 
 	@Override
 	public void handleInputAndUpdate(GameState state, int input) {
-		// TODO Auto-generated method stub
+		// TODO handle inputs for pause game state
 		switch(input) {
 			case KeyCode.NORTH:
 				break;
@@ -44,6 +45,7 @@ public class PauseGameController extends Controller {
 				// state = PlayGameState.getInstance();
 				break;
 			case KeyCode.EXIT:
+				state = ExitGameState.getInstance();
 				break;
 			default:
 				break;
