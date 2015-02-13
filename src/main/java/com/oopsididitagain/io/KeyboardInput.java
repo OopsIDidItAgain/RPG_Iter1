@@ -14,8 +14,6 @@ public class KeyboardInput implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		System.out.println("KeyCode: " + e.getKeyCode());
-		
 		int temp = e.getKeyCode() - 96;
 		if (temp > 0 && temp <= 9) {
 			input = temp;
@@ -54,12 +52,10 @@ public class KeyboardInput implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		System.out.println("KeyCode: RELEASED " + e.getKeyCode());
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		System.out.println("KeyCode: " + e.getKeyCode());
 	}
 	
 	
