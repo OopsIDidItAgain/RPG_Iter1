@@ -8,7 +8,7 @@ public class KeyboardInput implements KeyListener {
 
 	public int getInput() {
 		int temp = input;
-		input = 0;
+		input = -5;
 		return temp;
 	}
 
