@@ -16,7 +16,7 @@ public class GameMap {
 		this.tiles = tiles;
 	}
 	
-	public Tile getATile(int x, int y){
+	public Tile getTileAt(int x, int y){
 		return tiles[x][y];
 	}
 }

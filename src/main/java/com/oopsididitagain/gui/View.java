@@ -37,8 +37,8 @@ public class View extends JPanel {
 		int w = getWidth() / 10;
 		for(int i = 0; i != 10; ++i){
 			for(int j = 0; j != 10; ++j){
-				img = areaViewport.getMap().getATile(i,j).getTerrain().getImage();
-				List<Image> images = areaViewport.getMap().getATile(i, j).getImages();
+				img = areaViewport.getMap().getTileAt(i,j).getTerrain().getImage();
+				List<Image> images = areaViewport.getMap().getTileAt(i, j).getImages();
 				for (int k = 0; k < images.size(); ++k) {
 					Image image = images.get(k);
 					if (k != 0)
