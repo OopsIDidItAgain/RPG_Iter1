@@ -18,10 +18,9 @@ public class Tile {
 	public Tile(Terrain terrain) {
 		super();
 		this.terrain = terrain;
+		items = new ArrayList<Item>();
 	}
 
-	
-	
 	public void setDecal(Decal decal) {
 		this.decal = decal;
 	}
@@ -59,13 +58,13 @@ public class Tile {
 		List<Image> images = new ArrayList<Image>();
 		images.add(terrain.getImage());
 		
-		if (entity != null) images.add(entity.getImage());
 		if (items != null && items.size() > 0) {
 			for (Item item: items) {
 				images.add(item.getImage());
 			}
 		}
 		//if (decal != null) images.add(decal.getImage());
+		if (entity != null) images.add(entity.getImage());
 		return images;
 	}
 

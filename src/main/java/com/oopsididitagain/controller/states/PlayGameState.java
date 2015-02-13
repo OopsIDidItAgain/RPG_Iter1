@@ -6,10 +6,13 @@ import java.util.List;
 import com.oopsididitagain.controller.Controller;
 import com.oopsididitagain.controller.PlayGameController;
 import com.oopsididitagain.io.KeyCode;
+import com.oopsididitagain.model.Cape;
 import com.oopsididitagain.model.Entity;
 import com.oopsididitagain.model.GameMap;
 import com.oopsididitagain.model.GameObject;
 import com.oopsididitagain.model.Position;
+import com.oopsididitagain.model.Potion;
+import com.oopsididitagain.model.Sword;
 import com.oopsididitagain.model.Terrain;
 import com.oopsididitagain.model.Tile;
 
@@ -27,17 +30,9 @@ public class PlayGameState extends GameState {
 				getClass().getResource("/avatar.png")));
 		Position p = new Position(0, 0);
 		avatar.setPosition(p);
-		// Tile [][] t = new Tile[60][60];
 		Terrain one = Terrain.createTerrain(Terrain.GRASS);
 		Terrain two = Terrain.createTerrain(Terrain.MOUNTAIN);
 		Terrain three = Terrain.createTerrain(Terrain.WATER);
-		// for(int i = 0; i != 60; ++i){
-		// for(int j = 0; j!= 60; ++j){
-		// t[i][j] = new Tile(one);
-		// t[i][++j] = new Tile(two);
-		// t[i][++j] = new Tile(three);
-		// }
-		// }
 		Tile[][] t = {
 				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
 						new Tile(three), new Tile(two), new Tile(two),
@@ -69,10 +64,13 @@ public class PlayGameState extends GameState {
 				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
 						new Tile(two), new Tile(two), new Tile(two),
 						new Tile(two), new Tile(two), new Tile(two) },
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
+				{ new Tile(one), new Tile(one), new Tile(one), new Tile(one),
 						new Tile(two), new Tile(two), new Tile(two),
 						new Tile(two), new Tile(two), new Tile(two) }, };
 		t[0][0].setEntity(avatar);
+		t[1][0].getItems().add(new Sword());
+		t[7][0].getItems().add(new Cape());
+		t[3][3].getItems().add(new Potion());
 
 		map = new GameMap(t, 11, 10);
 	}

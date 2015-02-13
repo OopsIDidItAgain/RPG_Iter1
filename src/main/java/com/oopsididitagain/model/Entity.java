@@ -2,8 +2,6 @@ package com.oopsididitagain.model;
 
 import java.util.HashMap;
 
-import com.oopsididitagain.io.KeyCode;
-
 public class Entity extends GameObject {
 	private static final long serialVersionUID = 6897867058695115274L;
     private Inventory inventory;
@@ -12,13 +10,6 @@ public class Entity extends GameObject {
     	inventory = new Inventory();
     }
     
-	public void move(int keyCode) {
-
-		//switch(keyCode) {
-		//	case KeyCode.NORTH:
-		//}
-	}
-	
 	public void populateInventory() {
 		inventory.addItem(new Sword());
 		inventory.addItem(new Cape());

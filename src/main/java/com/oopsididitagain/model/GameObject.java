@@ -5,9 +5,9 @@ import java.io.Serializable;
 
 public abstract class GameObject implements Serializable {
 	private static final long serialVersionUID = 1745256945975212222L;
-	private Position position;
-	private Image image;
-    private String name;
+	protected Position position;
+	protected Image image;
+    protected String name;
 
     public Position getPosition() {
         return position;

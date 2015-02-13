@@ -1,8 +1,5 @@
 package com.oopsididitagain.controller;
 
-import java.awt.event.KeyListener;
-import java.util.concurrent.TimeUnit;
-
 import com.oopsididitagain.controller.states.ExitGameState;
 import com.oopsididitagain.controller.states.GameState;
 import com.oopsididitagain.controller.states.PlayGameState;
