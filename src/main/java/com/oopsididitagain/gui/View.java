@@ -2,12 +2,14 @@ package com.oopsididitagain.gui;
 
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.util.List;
 
 import javax.swing.JPanel;
 
 import com.oopsididitagain.controller.states.GameState;
+import com.oopsididitagain.controller.states.PlayGameState;
+import com.oopsididitagain.model.Entity;
+import com.oopsididitagain.model.GameMap;
 
 public class View extends JPanel {
 
@@ -23,6 +25,18 @@ public class View extends JPanel {
 		this.statsViewport = statsViewport;
 	}
 
+	public View() {
+		super();
+	}
+
+	public void setAreaViewport(AreaViewport areaViewport) {
+		this.areaViewport = areaViewport;
+	}
+	
+	public void setStatsViewport(StatsViewport statsViewport) {
+		this.statsViewport = statsViewport;
+	}
+	
 	private void showImage(Graphics g) {
 		int width;
 		int height;
@@ -57,12 +71,24 @@ public class View extends JPanel {
 
 	@Override
 	public void paintComponent(Graphics g) {
+		System.out.println("paint component");
 		super.paintComponent(g);
 		showImage(g);
 	}
 
 	public void render(GameState state) {
-		// define render method for view
+		if (state instanceof PlayGameState) {
+			GameMap map = ((PlayGameState) state).getGameMap();
+			Entity avatar = ((PlayGameState) state).getAvatar();
+			this.areaViewport = new AreaViewport(map, avatar);
+			this.revalidate();
+			this.repaint();
+		} else {
+			System.out.println("hello");
+		}
+	}
+	
+	public void render(PlayGameState state) {
 		
 	}
 

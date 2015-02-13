@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.oopsididitagain.controller.Controller;
 import com.oopsididitagain.controller.PlayGameController;
+import com.oopsididitagain.gui.AreaViewport;
+import com.oopsididitagain.gui.StatsViewport;
 import com.oopsididitagain.io.KeyCode;
 import com.oopsididitagain.model.Entity;
 import com.oopsididitagain.model.GameMap;
@@ -39,11 +41,18 @@ public class PlayGameState extends GameState {
 		}
 		t[0][0].setEntity(avatar);
 		
-		map = new GameMap(t);
-		Tile tile = map.getTileAt(avatar.getPosition());
-		tile.setEntity(null);
-
+		
+		map = new GameMap(t,60,60);
 	}
+	
+	public GameMap getGameMap() {
+		return map;
+	}
+	
+	public Entity getAvatar(){
+		return avatar;
+	}
+	
 	
 	public void moveAvatar(int keyCode) {
 		int x = avatar.getPosition().getX();

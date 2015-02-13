@@ -1,24 +1,20 @@
 package com.oopsididitagain.gui;
 
-import java.awt.Toolkit;
-
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import net.miginfocom.swing.MigLayout;
 
-import com.oopsididitagain.model.Entity;
-import com.oopsididitagain.model.GameMap;
-import com.oopsididitagain.model.Position;
-import com.oopsididitagain.model.Terrain;
-import com.oopsididitagain.model.Tile;
+import com.oopsididitagain.controller.GameLoop;
 
 public class Main extends JFrame {
 
 	private static final long serialVersionUID = -4222070071039252746L;
 	
+	private static GameLoop loop;
+	
 	public static void main(String[] args) {
+		loop = GameLoop.getInstance();
 	    SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -26,39 +22,28 @@ public class Main extends JFrame {
 				main.initialize();
 			}
 	    });
+
+		loop.playGame();
 	}
 	
 	private void initialize() {
 		this.setLayout(new MigLayout("", "[grow, fill]", "[grow, fill]"));
 		
-		Entity avatar = new Entity();
-		avatar.setImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/avatar.png")));
-		Position p = new Position(59,59);
-		avatar.setPos(p);
-		Tile [][] t = new Tile[60][60];
-		Terrain one = Terrain.createTerrain(Terrain.GRASS);
-		Terrain two = Terrain.createTerrain(Terrain.MOUNTAIN);
-		Terrain three  = Terrain.createTerrain(Terrain.WATER);
-		for(int i = 0; i != 60; ++i){
-			for(int j = 0; j!= 60; ++j){
-				t[i][j] = new Tile(one);
-				t[i][++j] = new Tile(two);
-				t[i][++j] = new Tile(three);
-			}
-		}
-		t[59][59].setEntity(avatar);
+		this.add(loop.getView());
 		
-		
-		GameMap gameMap = new GameMap(t,60,60);
-		AreaViewport areaViewport = new AreaViewport(gameMap,avatar);
-		
-		StatsViewport statsViewport = new StatsViewport();
-		JPanel mainPanel = new View(areaViewport,statsViewport);
-		this.add(mainPanel);
+		//JPanel mainPanel = new View(areaViewport,statsViewport);
+		//this.add(mainPanel);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(600, 600);
 		this.setLocationRelativeTo(null); // places frame into center of screen
 		this.setVisible(true);
+//		Thread thread = new Thread(new Runnable(){
+//			@Override
+//			public void run() {
+//			}
+//		});
+//		thread.start();
+		
 	}
 	
 }
