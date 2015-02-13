@@ -25,20 +25,20 @@ public class View extends JPanel {
 
 	private void showImage(Graphics g) {
 		int width;
-		int hieght;
-		int top;
-		int bottom;
-		int left;
-		int right;
+		int height;
+		int top = areaViewport.getTop();
+		int bottom = areaViewport.getBottom();
+		int left = areaViewport.getLeft();
+		int right = areaViewport.getRight();
 		int widthpos = 0;
 		int heightpos = 0;
 		Image img;
 		int h = getHeight() / 10;
 		int w = getWidth() / 10;
-		for(int i = 0; i != 10; ++i){
-			for(int j = 0; j != 10; ++j){
+		for(int i = top; i != bottom; ++i){
+			for(int j = left; j != right; ++j){
 				img = areaViewport.getMap().getTileAt(i,j).getTerrain().getImage();
-				List<Image> images = areaViewport.getMap().getTileAt(i, j).getImages();
+				List<Image> images = areaViewport.getMap().getTileAt(i, j).getImages(); 
 				for (int k = 0; k < images.size(); ++k) {
 					Image image = images.get(k);
 					if (k != 0)

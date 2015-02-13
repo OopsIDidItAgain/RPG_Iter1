@@ -49,7 +49,7 @@ public class Main extends JFrame {
 		t[0][0].setEntity(avatar);
 		
 		
-		GameMap gameMap = new GameMap(t);
+		GameMap gameMap = new GameMap(t,60,60);
 		AreaViewport areaViewport = new AreaViewport(gameMap,avatar);
 		
 		

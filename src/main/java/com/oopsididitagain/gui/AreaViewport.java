@@ -32,20 +32,57 @@ public class AreaViewport extends Viewport{
 		this.avatar = avatar;
 	}
 
-/*
-
-	public int getxCoord1(){
+	public int getLeft(){
 		int x = avatar.getPos().getX();
+		int w = map.getWidth();
+		if(x<5){
+			return 0;
+		}else if(x > (w - 5)){
+			return w -10;
+		}else{
+			return x-5;
+		}
 		
 	}
-	public int getxCoord2(){
-		
+	public int getRight(){
+		int x = avatar.getPos().getX();
+		int w = map.getWidth();
+		if(x<5){
+			return 10;
+		}else if(x > (w - 5)){
+			return w;
+		}else{
+			return x+5;
+		}
 	}	
-	public int getyCoord(){
+	public int getTop(){
+		int y = avatar.getPos().getY();
+		int h = map.getHeight();
+		if(y<5){
+			return 0;
+		}else if(y > (h - 5)){
+			return h - 10;
+		}else{
+			return y-5;
+		}
 		
-	}	
+	}
+	public int getBottom(){
+		int y = avatar.getPos().getY();
+		int h = map.getHeight();
+		if(y<5){
+			return 10;
+		}else if(y > (h - 5)){
+			return h;
+		}else{
+			return y+5;
+		}
+		
+		
+	}
+		
 
-*/
+
 	
 	
 
