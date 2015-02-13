@@ -3,8 +3,6 @@ package com.oopsididitagain.model;
 import java.awt.Image;
 import java.io.Serializable;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
 public abstract class GameObject implements Serializable {
 	private static final long serialVersionUID = 1745256945975212222L;
 	protected Position position;
@@ -37,9 +35,9 @@ public abstract class GameObject implements Serializable {
     
     @Override
     public String toString() {
-    	return new ToStringBuilder(this)
-		    .append("name", name)
-		    .append("position", position)
-		    .build();
+    	StringBuilder sb = new StringBuilder();
+		sb.append(name + "\n");
+		sb.append(position);
+		return sb.toString();
     }
 }

@@ -1,9 +1,9 @@
 package com.oopsididitagain.gui;
 
+import java.awt.BorderLayout;
+
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
-
-import net.miginfocom.swing.MigLayout;
 
 import com.oopsididitagain.controller.GameLoop;
 
@@ -27,9 +27,9 @@ public class Main extends JFrame {
 	}
 	
 	private void initialize() {
-		this.setLayout(new MigLayout("", "[grow, fill]", "[grow, fill]"));
+		this.setLayout(new BorderLayout());
 		
-		this.add(loop.getView());
+		this.add(loop.getView(), BorderLayout.CENTER);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(600, 600);
 		this.setLocationRelativeTo(null); // places frame into center of screen
