@@ -23,77 +23,122 @@ public class PlayGameState extends GameState {
 	private GameMap map;
 	private List<GameObject> gameObjects;
 	private Entity avatar;
-	
+
 	private PlayGameState() {
 		// TODO: get model game things
 		avatar = new Entity();
-		avatar.setImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/avatar.png")));
-		Position p = new Position(0,0);
+		avatar.setImage(Toolkit.getDefaultToolkit().getImage(
+				getClass().getResource("/avatar.png")));
+		Position p = new Position(0, 0);
 		avatar.setPosition(p);
-//		Tile [][] t = new Tile[60][60];
+		// Tile [][] t = new Tile[60][60];
 		Terrain one = Terrain.createTerrain(Terrain.GRASS);
 		Terrain two = Terrain.createTerrain(Terrain.MOUNTAIN);
-		Terrain three  = Terrain.createTerrain(Terrain.WATER);
-//		for(int i = 0; i != 60; ++i){
-//			for(int j = 0; j!= 60; ++j){
-//				t[i][j] = new Tile(one);
-//				t[i][++j] = new Tile(two);
-//				t[i][++j] = new Tile(three);
-//			}
-//		}
+		Terrain three = Terrain.createTerrain(Terrain.WATER);
+		// for(int i = 0; i != 60; ++i){
+		// for(int j = 0; j!= 60; ++j){
+		// t[i][j] = new Tile(one);
+		// t[i][++j] = new Tile(two);
+		// t[i][++j] = new Tile(three);
+		// }
+		// }
 		Tile[][] t = {
-				{new Tile(one),new Tile(two),new Tile(three),new Tile(one),new Tile(three),new Tile(two),new Tile(two),new Tile(two),new Tile(two),new Tile(two)},
-				{new Tile(one),new Tile(two),new Tile(three),new Tile(one),new Tile(three),new Tile(two),new Tile(two),new Tile(two),new Tile(two),new Tile(two)},
-				{new Tile(one),new Tile(two),new Tile(three),new Tile(one),new Tile(three),new Tile(two),new Tile(two),new Tile(two),new Tile(two),new Tile(two)},
-				{new Tile(one),new Tile(one),new Tile(one),new Tile(one),new Tile(three),new Tile(two),new Tile(two),new Tile(two),new Tile(two),new Tile(two)},
-				{new Tile(two),new Tile(two),new Tile(three),new Tile(one),new Tile(three),new Tile(two),new Tile(two),new Tile(two),new Tile(two),new Tile(two)},
-				{new Tile(one),new Tile(two),new Tile(three),new Tile(one),new Tile(three),new Tile(two),new Tile(two),new Tile(two),new Tile(two),new Tile(two)},
-				{new Tile(one),new Tile(two),new Tile(three),new Tile(one),new Tile(three),new Tile(two),new Tile(two),new Tile(two),new Tile(two),new Tile(two)},
-				{new Tile(one),new Tile(two),new Tile(three),new Tile(one),new Tile(three),new Tile(two),new Tile(two),new Tile(two),new Tile(two),new Tile(two)},
-				{new Tile(one),new Tile(two),new Tile(three),new Tile(one),new Tile(two),new Tile(two),new Tile(two),new Tile(two),new Tile(two),new Tile(two)},
-				{new Tile(one),new Tile(two),new Tile(three),new Tile(one),new Tile(two),new Tile(two),new Tile(two),new Tile(two),new Tile(two),new Tile(two)},
-				{new Tile(one),new Tile(two),new Tile(three),new Tile(one),new Tile(two),new Tile(two),new Tile(two),new Tile(two),new Tile(two),new Tile(two)},
-				};
+				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
+						new Tile(three), new Tile(two), new Tile(two),
+						new Tile(two), new Tile(two), new Tile(two) },
+				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
+						new Tile(three), new Tile(two), new Tile(two),
+						new Tile(two), new Tile(two), new Tile(two) },
+				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
+						new Tile(three), new Tile(two), new Tile(two),
+						new Tile(two), new Tile(two), new Tile(two) },
+				{ new Tile(one), new Tile(one), new Tile(one), new Tile(one),
+						new Tile(three), new Tile(two), new Tile(two),
+						new Tile(two), new Tile(two), new Tile(two) },
+				{ new Tile(two), new Tile(two), new Tile(three), new Tile(one),
+						new Tile(three), new Tile(two), new Tile(two),
+						new Tile(two), new Tile(two), new Tile(two) },
+				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
+						new Tile(three), new Tile(two), new Tile(two),
+						new Tile(two), new Tile(two), new Tile(two) },
+				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
+						new Tile(three), new Tile(two), new Tile(two),
+						new Tile(two), new Tile(two), new Tile(two) },
+				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
+						new Tile(three), new Tile(two), new Tile(two),
+						new Tile(two), new Tile(two), new Tile(two) },
+				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
+						new Tile(two), new Tile(two), new Tile(two),
+						new Tile(two), new Tile(two), new Tile(two) },
+				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
+						new Tile(two), new Tile(two), new Tile(two),
+						new Tile(two), new Tile(two), new Tile(two) },
+				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
+						new Tile(two), new Tile(two), new Tile(two),
+						new Tile(two), new Tile(two), new Tile(two) }, };
 		t[0][0].setEntity(avatar);
-		
-		
-		map = new GameMap(t,11,10);
+
+		map = new GameMap(t, 11, 10);
 	}
-	
+
 	public GameMap getGameMap() {
 		return map;
 	}
-	
-	public Entity getAvatar(){
+
+	public Entity getAvatar() {
 		return avatar;
 	}
-	
-	
+
 	public void moveAvatar(int keyCode) {
 		int x = avatar.getPosition().getX();
 		int y = avatar.getPosition().getY();
+		Position updatedPosition = new Position(x, y);
 		switch (keyCode) {
-			case KeyCode.SOUTH: {
-				Position updatedPosition = new Position(y+1, x);
-				if (!map.checkIfValid(updatedPosition)) break;
-				map.getTileAt(avatar.getPosition()).setEntity(null);
-				avatar.setPosition(updatedPosition);
-				map.getTileAt(updatedPosition).setEntity(avatar);
-			}
+		case KeyCode.NORTH:
+			updatedPosition = new Position(y - 1, x);
+			break;
+		case KeyCode.SOUTH:
+			updatedPosition = new Position(y + 1, x);
+			break;
+		case KeyCode.EAST:
+			updatedPosition = new Position(y, x + 1);
+			break;
+		case KeyCode.WEST:
+			updatedPosition = new Position(y, x - 1);
+			break;
+		case KeyCode.NORTH_EAST:
+			updatedPosition = new Position(y - 1, x + 1);
+			break;
+		case KeyCode.NORTH_WEST:
+			updatedPosition = new Position(y - 1, x - 1);
+			break;
+		case KeyCode.SOUTH_EAST:
+			updatedPosition = new Position(y + 1, x + 1);
+			break;
+		case KeyCode.SOUTH_WEST:
+			updatedPosition = new Position(y + 1, x - 1);
+			break;
+
 		}
-		
+
+		if (map.checkIfValid(updatedPosition)) {
+			map.getTileAt(avatar.getPosition()).setEntity(null);
+			avatar.setPosition(updatedPosition);
+			map.getTileAt(updatedPosition).setEntity(avatar);
+		}
+
 	}
-	
+
 	public static GameState getInstance() {
-		if ( instance == null ) {
+		if (instance == null) {
 			instance = new PlayGameState();
 		}
 		return instance;
 	}
-	
+
 	@Override
 	public Controller getController() {
 		return PlayGameController.getInstance();
 	}
-	
+
 }
