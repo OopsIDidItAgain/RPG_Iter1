@@ -1,11 +1,18 @@
 package com.oopsididitagain.model;
 
 public class GameMap {
-	Tile [][] tiles;
+	private Tile [][] tiles;
+	private int width;
+	private int height;
+	
+	
+	
 
-	public GameMap(Tile[][] tiles) {
+	public GameMap(Tile[][] tiles, int height, int width) {
 		super();
 		this.tiles = tiles;
+		this.width = width;
+		this.height = height; 
 	}
 
 	public Tile[][] getTiles() {
@@ -19,6 +26,7 @@ public class GameMap {
 	public Tile getTileAt(int x, int y){
 		return tiles[x][y];
 	}
+<<<<<<< HEAD
 	
 	public Tile getTileAt(Position pos) {
 		return tiles[pos.getX()][pos.getY()];
@@ -38,4 +46,16 @@ public class GameMap {
 		}*/
 		return true;
 	}
+=======
+
+	public int getWidth() {
+		return width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+	
+	
+>>>>>>> origin/master
 }
