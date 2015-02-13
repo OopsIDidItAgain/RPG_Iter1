@@ -3,6 +3,7 @@ package com.oopsididitagain.gui;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.util.List;
 
 import javax.swing.JPanel;
 
@@ -37,7 +38,14 @@ public class View extends JPanel {
 		for(int i = 0; i != 10; ++i){
 			for(int j = 0; j != 10; ++j){
 				img = areaViewport.getMap().getATile(i,j).getTerrain().getImage();
-				g.drawImage(img,widthpos, heightpos, h, w, null);
+				List<Image> images = areaViewport.getMap().getATile(i, j).getImages();
+				for (int k = 0; k < images.size(); ++k) {
+					Image image = images.get(k);
+					if (k != 0)
+						g.drawImage(image, widthpos+5, heightpos+5, h-10, w-10, null);
+					else
+						g.drawImage(image, widthpos, heightpos, h, w, null);
+				}
 				repaint();
 				widthpos += w;
 			}

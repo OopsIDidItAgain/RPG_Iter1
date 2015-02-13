@@ -20,7 +20,7 @@ public class GameLoop {
 		state = StartGameState.getInstance();
 		// TODO: keyboard and view singleton?
 		input = new KeyboardInput();
-		view = new View();
+		//view = new View();
 	}
 
 	public static GameLoop getInstance() {

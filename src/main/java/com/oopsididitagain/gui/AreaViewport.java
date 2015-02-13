@@ -1,9 +1,6 @@
 package com.oopsididitagain.gui;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Toolkit;
-
-import com.oopsididitagain.model.*;
+import com.oopsididitagain.model.Entity;
+import com.oopsididitagain.model.GameMap;
 
 
 public class AreaViewport extends Viewport{

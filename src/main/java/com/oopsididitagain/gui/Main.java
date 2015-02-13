@@ -1,12 +1,18 @@
 package com.oopsididitagain.gui;
 
-import com.oopsididitagain.model.*;
-import com.oopsididitagain.util.*;
+import java.awt.Toolkit;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import net.miginfocom.swing.MigLayout;
+
+import com.oopsididitagain.model.Entity;
+import com.oopsididitagain.model.GameMap;
+import com.oopsididitagain.model.Position;
+import com.oopsididitagain.model.Terrain;
+import com.oopsididitagain.model.Tile;
 
 public class Main extends JFrame {
 
@@ -26,6 +32,7 @@ public class Main extends JFrame {
 		this.setLayout(new MigLayout("", "[grow, fill]", "[grow, fill]"));
 		
 		Entity avatar = new Entity();
+		avatar.setImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/avatar.png")));
 		Position p = new Position(0,0);
 		avatar.setPos(p);
 		Tile [][] t = new Tile[60][60];
@@ -39,6 +46,7 @@ public class Main extends JFrame {
 				t[i][++j] = new Tile(three);
 			}
 		}
+		t[0][0].setEntity(avatar);
 		
 		
 		GameMap gameMap = new GameMap(t);

@@ -1,6 +1,8 @@
 package com.oopsididitagain.model;
 
-import java.util.*;
+import java.awt.Image;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Tile {
 	private Entity entity;
@@ -50,6 +52,20 @@ public class Tile {
 	}
 	public void setItems(List<Item> items) {
 		this.items = items;
+	}
+
+	public List<Image> getImages() {
+		List<Image> images = new ArrayList<Image>();
+		images.add(terrain.getImage());
+		
+		if (entity != null) images.add(entity.getImage());
+		if (items != null && items.size() > 0) {
+			for (Item item: items) {
+				images.add(item.getImage());
+			}
+		}
+		//if (decal != null) images.add(decal.getImage());
+		return images;
 	}
 
 	
