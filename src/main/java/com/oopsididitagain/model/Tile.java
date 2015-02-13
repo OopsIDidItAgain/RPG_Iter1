@@ -1,45 +1,44 @@
 package com.oopsididitagain.model;
 
-import java.util.*;
+import java.awt.Image;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Tile {
 	private Entity entity;
 	private List<Item> items;
-	private Terrain t;
-	private AreaEffect a;
-	private Decal d;
+	private Terrain terrain;
+	private AreaEffect areaEffect;
+	private Decal decal;
 	
-	
-	public Decal getD() {
-		return d;
+	public Decal getDecal() {
+		return decal;
 	}
 
-
-	public Tile(Terrain t) {
+	public Tile(Terrain terrain) {
 		super();
-		this.t = t;
+		this.terrain = terrain;
 	}
 
 	
-	public void setD(Decal d) {
-		this.d = d;
+	public void setDecal(Decal decal) {
+		this.decal = decal;
 	}
 
-
-	public Terrain getT() {
-		return t;
+	public Terrain getTerrain() {
+		return terrain;
 	}
 
-	public void setT(Terrain t) {
-		this.t = t;
+	public void setTerrain(Terrain terrain) {
+		this.terrain = terrain;
 	}
 
-	public AreaEffect getA() {
-		return a;
+	public AreaEffect getAreaEffect() {
+		return areaEffect;
 	}
 
-	public void setA(AreaEffect a) {
-		this.a = a;
+	public void setAreaEffect(AreaEffect areaEffect) {
+		this.areaEffect = areaEffect;
 	}
 	
 	public Entity getEntity() {
@@ -52,7 +51,21 @@ public class Tile {
 		return items;
 	}
 	public void setItems(List<Item> items) {
-		//this.items = items;
+		this.items = items;
+	}
+
+	public List<Image> getImages() {
+		List<Image> images = new ArrayList<Image>();
+		images.add(terrain.getImage());
+		
+		if (entity != null) images.add(entity.getImage());
+		if (items != null && items.size() > 0) {
+			for (Item item: items) {
+				images.add(item.getImage());
+			}
+		}
+		//if (decal != null) images.add(decal.getImage());
+		return images;
 	}
 
 	
