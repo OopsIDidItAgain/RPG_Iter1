@@ -33,7 +33,7 @@ public class Main extends JFrame {
 		
 		Entity avatar = new Entity();
 		avatar.setImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/avatar.png")));
-		Position p = new Position(0,0);
+		Position p = new Position(59,59);
 		avatar.setPos(p);
 		Tile [][] t = new Tile[60][60];
 		Terrain one = Terrain.createTerrain(Terrain.GRASS);
@@ -46,7 +46,7 @@ public class Main extends JFrame {
 				t[i][++j] = new Tile(three);
 			}
 		}
-		t[0][0].setEntity(avatar);
+		t[59][59].setEntity(avatar);
 		
 		
 		GameMap gameMap = new GameMap(t,60,60);
