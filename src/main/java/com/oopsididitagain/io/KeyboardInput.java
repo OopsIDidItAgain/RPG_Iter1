@@ -1,10 +1,30 @@
 package com.oopsididitagain.io;
 
-public class KeyboardInput {
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+public class KeyboardInput implements KeyListener {
+	int input = KeyCode.SOUTH;
 
 	public int getInput() {
-		// TODO how to handle keyboard inputs
-		return KeyCode.SOUTH;
+		int temp = input;
+		input = KeyCode.SOUTH;
+		return temp;
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		System.out.println("KeyCode: " + e.getKeyCode());
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		System.out.println("KeyCode: " + e.getKeyCode());
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		System.out.println("KeyCode: " + e.getKeyCode());
 	}
 	
 	
