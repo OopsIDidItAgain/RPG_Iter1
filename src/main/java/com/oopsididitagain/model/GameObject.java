@@ -1,6 +1,7 @@
 package com.oopsididitagain.model;
 
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.Serializable;
 
 public abstract class GameObject implements Serializable {
@@ -8,6 +9,12 @@ public abstract class GameObject implements Serializable {
 	protected Position position;
 	protected Image image;
     protected String name;
+    
+    public GameObject(String name, String imageName, Position position) {
+    	this.name = name;
+    	this.image = Toolkit.getDefaultToolkit().createImage(getClass().getResource(imageName));
+    	this.position = position;
+    }
 
     public Position getPosition() {
         return position;
