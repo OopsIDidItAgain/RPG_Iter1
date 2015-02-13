@@ -6,13 +6,10 @@ import java.util.List;
 import com.oopsididitagain.controller.Controller;
 import com.oopsididitagain.controller.PlayGameController;
 import com.oopsididitagain.io.KeyCode;
-import com.oopsididitagain.model.Cape;
 import com.oopsididitagain.model.Entity;
 import com.oopsididitagain.model.GameMap;
 import com.oopsididitagain.model.GameObject;
 import com.oopsididitagain.model.Position;
-import com.oopsididitagain.model.Potion;
-import com.oopsididitagain.model.Sword;
 import com.oopsididitagain.model.Terrain;
 import com.oopsididitagain.model.Tile;
 
@@ -68,9 +65,6 @@ public class PlayGameState extends GameState {
 						new Tile(two), new Tile(two), new Tile(two),
 						new Tile(two), new Tile(two), new Tile(two) }, };
 		t[0][0].setEntity(avatar);
-		t[1][0].getItems().add(new Sword());
-		t[7][0].getItems().add(new Cape());
-		t[3][3].getItems().add(new Potion());
 
 		map = new GameMap(t, 11, 10);
 	}
