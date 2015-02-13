@@ -10,21 +10,79 @@ public class Tile {
 	private Terrain terrain;
 	private AreaEffect areaEffect;
 	private Decal decal;
+	private Tile[] neighbors;
+	private int x;
+	private int y;
 	
 	public Decal getDecal() {
 		return decal;
 	}
 
-	public Tile(Terrain terrain) {
+	public Tile(Terrain terrain, int x, int y) {
 		super();
 		this.terrain = terrain;
+		this.x = x;
+		this.y = y;
+		
+		neighbors = new Tile[9];
+		
 	}
 
+	public void setNeighbors(GameMap map) {
+		/**
+		 * [0] == SOUTHWEST
+		 * [1] == SOUTH
+		 * [2] == SOUTHEAST
+		 * [3] == WEST
+		 * [4] == 
+		 * [5] == EAST
+		 * [6] == NORTHWEST
+		 * [7] == NORTH
+		 * [8] == NORTHEAST
+		 */
+		boolean[] skip = {false, false, false, false, true, false, false, false, false};
+		if(x == 0) {
+			skip[0] = true;
+			skip[3] = true;
+			skip[6] = true;
+		} else if(x == map.getWidth() - 1) {
+			skip[2] = true;
+			skip[5] = true;
+			skip[8] = true;
+		}
+		
+		if(y == 0) {
+			skip[6] = true;
+			skip[7] = true;
+			skip[8] = true;
+		} else if(y == map.getHeight() - 1) {
+			skip[0] = true;
+			skip[1] = true;
+			skip[2] = true;
+		}
+		
+		for(int i = x - 1; i <= x + 1; i++) {
+			for(int j = y - 1; j <= y + 1; j++) {
+				int k = (i - (x - 1)) + 3*((y + 1) - j);
+				if(!skip[k]) {
+					neighbors[k] = map.getTileAt(i, j);
+				}
+			}
+		}
+	}
 	
 	public void setDecal(Decal decal) {
 		this.decal = decal;
 	}
 
+	public int getX() {
+		return x;
+	}
+	
+	public int getY() {
+		return y;
+	}
+	
 	public Terrain getTerrain() {
 		return terrain;
 	}
