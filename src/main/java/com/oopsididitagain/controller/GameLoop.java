@@ -1,6 +1,7 @@
 package com.oopsididitagain.controller;
 
 import java.awt.Component;
+import java.util.concurrent.TimeUnit;
 
 import com.oopsididitagain.controller.states.ExitGameState;
 import com.oopsididitagain.controller.states.GameState;
@@ -37,6 +38,12 @@ public class GameLoop {
 			int command = keyboardInput.getInput();
 			controller.handleInputAndUpdate(state, command);
 			view.render(state);
+			try {
+				TimeUnit.SECONDS.sleep(5);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	

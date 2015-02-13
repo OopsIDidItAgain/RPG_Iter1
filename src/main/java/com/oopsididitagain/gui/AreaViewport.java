@@ -33,7 +33,7 @@ public class AreaViewport extends Viewport{
 	}
 
 	public int getLeft(){
-		int x = avatar.getPos().getX();
+		int x = avatar.getPosition().getX();
 		int w = map.getWidth();
 		if(x<5){
 			return 0;
@@ -45,7 +45,7 @@ public class AreaViewport extends Viewport{
 		
 	}
 	public int getRight(){
-		int x = avatar.getPos().getX();
+		int x = avatar.getPosition().getX();
 		int w = map.getWidth();
 		if(x<5){
 			return 10;
@@ -56,7 +56,7 @@ public class AreaViewport extends Viewport{
 		}
 	}	
 	public int getTop(){
-		int y = avatar.getPos().getY();
+		int y = avatar.getPosition().getY();
 		int h = map.getHeight();
 		if(y<5){
 			return 0;
@@ -68,7 +68,7 @@ public class AreaViewport extends Viewport{
 		
 	}
 	public int getBottom(){
-		int y = avatar.getPos().getY();
+		int y = avatar.getPosition().getY();
 		int h = map.getHeight();
 		if(y<5){
 			return 10;

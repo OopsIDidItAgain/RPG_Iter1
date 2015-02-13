@@ -27,7 +27,7 @@ public class PlayGameState extends GameState {
 		avatar = new Entity();
 		avatar.setImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/avatar.png")));
 		Position p = new Position(0,0);
-		avatar.setPos(p);
+		avatar.setPosition(p);
 		Tile [][] t = new Tile[60][60];
 		Terrain one = Terrain.createTerrain(Terrain.GRASS);
 		Terrain two = Terrain.createTerrain(Terrain.MOUNTAIN);
@@ -59,13 +59,14 @@ public class PlayGameState extends GameState {
 		int y = avatar.getPosition().getY();
 		switch (keyCode) {
 			case KeyCode.SOUTH: {
-				Position updatedPosition = new Position(x, y+1);
+				Position updatedPosition = new Position(x+1, y);
 				if (!map.checkIfValid(updatedPosition)) break;
 				map.getTileAt(avatar.getPosition()).setEntity(null);;
 				avatar.setPosition(updatedPosition);
 				map.getTileAt(updatedPosition).setEntity(avatar);
 			}
 		}
+		
 	}
 	
 	public static GameState getInstance() {

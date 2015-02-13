@@ -5,16 +5,16 @@ import java.io.Serializable;
 
 public abstract class GameObject implements Serializable {
 	private static final long serialVersionUID = 1745256945975212222L;
-	private Position pos;
+	private Position position;
 	private Image image;
     private String name;
 
-    public Position getPos() {
-        return pos;
+    public Position getPosition() {
+        return position;
     }
 
-    public void setPos(Position pos) {
-        this.pos = pos;
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
     public Image getImage() {
