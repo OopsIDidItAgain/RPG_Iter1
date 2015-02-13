@@ -66,6 +66,7 @@ public class PlayGameState extends GameState {
 						new Tile(two), new Tile(two), new Tile(two) }, };
 		t[0][0].setEntity(avatar);
 		
+
 		map = new GameMap(t, 11, 10);
 	}
 
