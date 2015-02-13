@@ -7,6 +7,7 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import com.oopsididitagain.controller.states.GameState;
+import com.oopsididitagain.controller.states.PauseGameState;
 import com.oopsididitagain.controller.states.PlayGameState;
 import com.oopsididitagain.model.Entity;
 import com.oopsididitagain.model.GameMap;
@@ -84,8 +85,10 @@ public class View extends JPanel {
 			this.areaViewport = new AreaViewport(map, avatar);
 			this.revalidate();
 			this.repaint();
+		} else if(state instanceof PauseGameState) {
+			System.out.println("pauseGameStateRender");
 		} else {
-			System.out.println("hello");
+			
 		}
 	}
 	

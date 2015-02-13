@@ -37,7 +37,7 @@ public class GameLoop {
 		while (!state.equals(ExitGameState.getInstance())) {
 			controller = state.getController();
 			int command = keyboardInput.getInput();
-			controller.handleInputAndUpdate(state, command);
+			state = controller.handleInputAndUpdate(state, command);
 			view.render(state);
 			
 		}
