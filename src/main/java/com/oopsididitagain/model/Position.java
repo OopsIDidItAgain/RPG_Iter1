@@ -48,5 +48,14 @@ public class Position implements Serializable {
 	public void setFacing(Direction facing) {
 		this.facing = facing;
 	}
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder("");
+		sb.append(x + "\n");
+		sb.append(y + "\n");
+		sb.append(facing + "\n");
+		return sb.toString();
+	}
 
 }

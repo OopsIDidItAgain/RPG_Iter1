@@ -4,7 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyboardInput implements KeyListener {
-	int input = KeyCode.SOUTH;
+	int input = -5;
 
 	public int getInput() {
 		int temp = input;

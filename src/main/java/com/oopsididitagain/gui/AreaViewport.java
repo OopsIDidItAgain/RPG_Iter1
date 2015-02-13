@@ -76,14 +76,6 @@ public class AreaViewport extends Viewport{
 			return h;
 		}else{
 			return y+5;
-		}
-		
-		
+		}	
 	}
-		
-
-
-	
-	
-
 }

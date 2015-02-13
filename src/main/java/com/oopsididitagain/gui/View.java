@@ -2,6 +2,7 @@ package com.oopsididitagain.gui;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.Collections;
 import java.util.List;
 
 import javax.swing.JPanel;
@@ -23,6 +24,7 @@ public class View extends JPanel {
 
 	public View(AreaViewport areaViewport, StatsViewport statsViewport) {
 		super();
+		setFocusable(true);
 		this.areaViewport = areaViewport;
 		this.statsViewport = statsViewport;
 	}
@@ -63,14 +65,12 @@ public class View extends JPanel {
 					else
 						g.drawImage(image, widthpos, heightpos, h, w, null);
 				}
-				repaint();
 				widthpos += w;
 			}
 			widthpos = 0;
 			heightpos += h;
 		}
 		if(paused) {
-			System.out.println("paused");
 			g.drawString("PAUSE GAME", getHeight()/2, getWidth()/2);
 		}
 
@@ -78,7 +78,6 @@ public class View extends JPanel {
 
 	@Override
 	public void paintComponent(Graphics g) {
-		//System.out.println("paint component");
 		super.paintComponent(g);
 		showImage(g);
 	}

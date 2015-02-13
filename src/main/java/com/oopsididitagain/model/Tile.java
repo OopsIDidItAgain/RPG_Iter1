@@ -18,10 +18,9 @@ public class Tile {
 	public Tile(Terrain terrain) {
 		super();
 		this.terrain = terrain;
+		items = new ArrayList<Item>();
 	}
 
-	
-	
 	public void setDecal(Decal decal) {
 		this.decal = decal;
 	}
@@ -47,10 +46,13 @@ public class Tile {
 	}
 	public void setEntity(Entity entity) {
 		this.entity = entity;
+		detectItemCollision();
 	}
+	
 	public List<Item> getItems() {
 		return items;
 	}
+
 	public void setItems(List<Item> items) {
 		this.items = items;
 	}
@@ -59,15 +61,23 @@ public class Tile {
 		List<Image> images = new ArrayList<Image>();
 		images.add(terrain.getImage());
 		
-		if (entity != null) images.add(entity.getImage());
 		if (items != null && items.size() > 0) {
 			for (Item item: items) {
 				images.add(item.getImage());
 			}
 		}
 		//if (decal != null) images.add(decal.getImage());
+		if (entity != null) images.add(entity.getImage());
 		return images;
 	}
 
-	
+	private void detectItemCollision() {
+		for (int i = items.size() - 1; i >= 0; --i) {
+			Item item = items.get(i);
+			if (item instanceof TakeableItem) {
+				entity.addToInventory((TakeableItem)item);
+				items.remove(i);
+			}
+		}
+	}
 }

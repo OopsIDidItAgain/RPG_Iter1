@@ -9,8 +9,7 @@ public class AreaEffect {
 	 * 3 = instant death
 	 * 4 = level up
 	 */
-	private int rate;
-		//rate at which effects happen in units/second; -1 denotes instant
+	private int rate; //rate at which effects happen in units/second; -1 denotes instant
 	
 	public AreaEffect(int type) {
 		this.type = type;

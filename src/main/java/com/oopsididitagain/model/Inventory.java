@@ -29,5 +29,7 @@ public class Inventory {
         return inventory.get(itemName);
     }
 
-
+    public void deleteItem(String itemName) {
+    	inventory.remove(itemName);
+    }
 }
