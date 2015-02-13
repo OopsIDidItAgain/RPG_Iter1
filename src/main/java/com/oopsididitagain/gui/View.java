@@ -63,7 +63,7 @@ public class View extends JPanel {
 					else
 						g.drawImage(image, widthpos, heightpos, h, w, null);
 				}
-				repaint();
+				//repaint();
 				widthpos += w;
 			}
 			widthpos = 0;
