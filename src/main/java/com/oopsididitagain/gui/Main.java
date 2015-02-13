@@ -31,12 +31,6 @@ public class Main extends JFrame {
 	private void initialize() {
 		this.setLayout(new MigLayout("", "[grow, fill]", "[grow, fill]"));
 		
-<<<<<<< HEAD
-		/*
-		 * This is to set up a dummy map
-		 */
-		
-=======
 		Entity avatar = new Entity();
 		avatar.setImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/avatar.png")));
 		Position p = new Position(59,59);
@@ -56,7 +50,6 @@ public class Main extends JFrame {
 		
 		
 		GameMap gameMap = new GameMap(t,60,60);
->>>>>>> origin/master
 		AreaViewport areaViewport = new AreaViewport(gameMap,avatar);
 		
 		StatsViewport statsViewport = new StatsViewport();
