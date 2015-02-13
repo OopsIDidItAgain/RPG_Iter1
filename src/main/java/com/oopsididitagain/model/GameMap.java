@@ -26,7 +26,6 @@ public class GameMap {
 	public Tile getTileAt(int x, int y){
 		return tiles[x][y];
 	}
-<<<<<<< HEAD
 	
 	public Tile getTileAt(Position pos) {
 		return tiles[pos.getX()][pos.getY()];
@@ -46,7 +45,6 @@ public class GameMap {
 		}*/
 		return true;
 	}
-=======
 
 	public int getWidth() {
 		return width;
@@ -55,7 +53,4 @@ public class GameMap {
 	public int getHeight() {
 		return height;
 	}
-	
-	
->>>>>>> origin/master
 }
