@@ -23,6 +23,7 @@ public class View extends JPanel {
 
 	public View(AreaViewport areaViewport, StatsViewport statsViewport) {
 		super();
+		setFocusable(true);
 		this.areaViewport = areaViewport;
 		this.statsViewport = statsViewport;
 	}
