@@ -21,7 +21,7 @@ public class PauseGameController extends Controller {
 
 	@Override
 	public void handleInputAndUpdate(GameState state, int input) {
-		// TODO handle inputs for pause game state
+		// TODO handle inputs for play game state
 		switch(input) {
 			case KeyCode.NORTH:
 				break;

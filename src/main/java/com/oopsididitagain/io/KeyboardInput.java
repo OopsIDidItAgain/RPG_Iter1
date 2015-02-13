@@ -4,7 +4,7 @@ public class KeyboardInput {
 
 	public int getInput() {
 		// TODO how to handle keyboard inputs
-		return KeyCode.EXIT;
+		return KeyCode.SOUTH;
 	}
 	
 	

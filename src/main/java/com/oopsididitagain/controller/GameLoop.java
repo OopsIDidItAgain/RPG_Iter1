@@ -2,9 +2,8 @@ package com.oopsididitagain.controller;
 
 import com.oopsididitagain.controller.states.ExitGameState;
 import com.oopsididitagain.controller.states.GameState;
-import com.oopsididitagain.controller.states.StartGameState;
+import com.oopsididitagain.controller.states.PlayGameState;
 import com.oopsididitagain.gui.View;
-import com.oopsididitagain.io.KeyCode;
 import com.oopsididitagain.io.KeyboardInput;
 
 public class GameLoop {
@@ -13,13 +12,13 @@ public class GameLoop {
 
 	private static GameState state;
 	private static Controller controller;
-	private static KeyboardInput input;
+	private KeyboardInput keyboardInput;
 	private static View view;
 
 	private GameLoop() {
-		state = StartGameState.getInstance();
+		state = PlayGameState.getInstance();
 		// TODO: keyboard and view singleton?
-		input = new KeyboardInput();
+		this.keyboardInput = new KeyboardInput();
 		//view = new View();
 	}
 
@@ -30,13 +29,16 @@ public class GameLoop {
 		return instance;
 	}
 
-	public static void playGame() {
+	public void playGame() {
 		while (!state.equals(ExitGameState.getInstance())) {
-			int command = KeyCode.EXIT;
-			command = input.getInput();
 			controller = state.getController();
+			int command = keyboardInput.getInput();
 			controller.handleInputAndUpdate(state, command);
-			view.render(state);			
+			view.repaint();
 		}
+	}
+	
+	public static void setView(View view) {
+		GameLoop.view = view;
 	}
 }

@@ -4,6 +4,7 @@ import com.oopsididitagain.controller.states.ExitGameState;
 import com.oopsididitagain.controller.states.GameState;
 import com.oopsididitagain.controller.states.PauseGameState;
 import com.oopsididitagain.io.KeyCode;
+import com.oopsididitagain.model.Entity;
 
 public class PlayGameController extends Controller{
 
@@ -25,19 +26,12 @@ public class PlayGameController extends Controller{
 		// TODO: send messages to avatar
 		switch(input) {
 			case KeyCode.NORTH:
-				break;
 			case KeyCode.SOUTH:
-				break;
 			case KeyCode.EAST:
-				break;
 			case KeyCode.WEST:
-				break;
 			case KeyCode.NORTH_EAST:
-				break;
 			case KeyCode.NORTH_WEST:
-				break;
 			case KeyCode.SOUTH_EAST:
-				break;
 			case KeyCode.SOUTH_WEST:
 				break;
 			case KeyCode.USE:

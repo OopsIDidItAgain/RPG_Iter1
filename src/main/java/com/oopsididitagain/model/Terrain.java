@@ -50,7 +50,7 @@ public class Terrain {
 		return isMovableOnGround;
 	}
 
-	public boolean isMobableInAir() {
+	public boolean isMovableInAir() {
 		return isMobableInAir;
 	}
 
