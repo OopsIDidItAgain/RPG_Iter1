@@ -67,7 +67,6 @@ public class PlayGameState extends GameState {
 
 		for (Item i: items) {
 			Tile tile = map.getTileAt(i.getPosition());
-			System.out.println(tile);
 			tile.getItems().add(i);
 		}
 		
