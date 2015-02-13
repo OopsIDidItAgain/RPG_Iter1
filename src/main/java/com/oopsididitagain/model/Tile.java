@@ -46,10 +46,13 @@ public class Tile {
 	}
 	public void setEntity(Entity entity) {
 		this.entity = entity;
+		detectItemCollision();
 	}
+
 	public List<Item> getItems() {
 		return items;
 	}
+
 	public void setItems(List<Item> items) {
 		this.items = items;
 	}
@@ -68,5 +71,13 @@ public class Tile {
 		return images;
 	}
 
-	
+	private void detectItemCollision() {
+		for (int i = items.size() - 1; i >= 0; --i) {
+			Item item = items.get(i);
+			if (item instanceof TakeableItem) {
+				entity.addToInventory((TakeableItem)item);
+				items.remove(i);
+			}
+		}
+	}
 }

@@ -10,11 +10,10 @@ public class Entity extends GameObject {
     	inventory = new Inventory();
     }
     
-	public void populateInventory() {
-		inventory.addItem(new Sword());
-		inventory.addItem(new Cape());
-		inventory.addItem(new Potion());
-		// System.out.println("Populate ran");
+	public void addToInventory(TakeableItem takeableItem) {
+		this.inventory.addItem(takeableItem);
+		System.out.println(takeableItem);
+		printInventory();
 	}
 	
 	public void printInventory() {
