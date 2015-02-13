@@ -6,13 +6,12 @@ public class TakeableItem extends Item {
 	
 	private boolean isEquippable;
 	
-	public TakeableItem(boolean equippable) {
-		super();
+	public TakeableItem(String name, boolean equippable) {
+		super(name);
 		isEquippable = equippable;
 	}
 	
 	public boolean isEquippable() {
 		return isEquippable;
-	}
-	
+	}	
 }

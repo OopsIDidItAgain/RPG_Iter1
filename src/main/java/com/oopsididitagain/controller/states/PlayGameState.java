@@ -15,6 +15,7 @@ import com.oopsididitagain.model.Potion;
 import com.oopsididitagain.model.Sword;
 import com.oopsididitagain.model.Terrain;
 import com.oopsididitagain.model.Tile;
+import com.oopsididitagain.model.TakeableItem;
 
 public class PlayGameState extends GameState {
 
@@ -68,7 +69,7 @@ public class PlayGameState extends GameState {
 						new Tile(two), new Tile(two), new Tile(two),
 						new Tile(two), new Tile(two), new Tile(two) }, };
 		t[0][0].setEntity(avatar);
-		t[1][0].getItems().add(new Sword());
+		t[1][0].getItems().add(new TakeableItem("Sword", true));
 		t[7][0].getItems().add(new Cape());
 		t[3][3].getItems().add(new Potion());
 
