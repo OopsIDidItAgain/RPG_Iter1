@@ -3,6 +3,8 @@ package com.oopsididitagain.controller.states;
 import java.awt.Toolkit;
 import java.util.List;
 
+import javax.swing.plaf.synth.SynthSeparatorUI;
+
 import com.oopsididitagain.controller.Controller;
 import com.oopsididitagain.controller.PlayGameController;
 import com.oopsididitagain.gui.AreaViewport;
@@ -28,21 +30,34 @@ public class PlayGameState extends GameState {
 		avatar.setImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/avatar.png")));
 		Position p = new Position(0,0);
 		avatar.setPosition(p);
-		Tile [][] t = new Tile[60][60];
+//		Tile [][] t = new Tile[60][60];
 		Terrain one = Terrain.createTerrain(Terrain.GRASS);
 		Terrain two = Terrain.createTerrain(Terrain.MOUNTAIN);
 		Terrain three  = Terrain.createTerrain(Terrain.WATER);
-		for(int i = 0; i != 60; ++i){
-			for(int j = 0; j!= 60; ++j){
-				t[i][j] = new Tile(one);
-				t[i][++j] = new Tile(two);
-				t[i][++j] = new Tile(three);
-			}
-		}
+//		for(int i = 0; i != 60; ++i){
+//			for(int j = 0; j!= 60; ++j){
+//				t[i][j] = new Tile(one);
+//				t[i][++j] = new Tile(two);
+//				t[i][++j] = new Tile(three);
+//			}
+//		}
+		Tile[][] t = {
+				{new Tile(one),new Tile(two),new Tile(three),new Tile(one),new Tile(three),new Tile(two),new Tile(two),new Tile(two),new Tile(two),new Tile(two)},
+				{new Tile(one),new Tile(two),new Tile(three),new Tile(one),new Tile(three),new Tile(two),new Tile(two),new Tile(two),new Tile(two),new Tile(two)},
+				{new Tile(one),new Tile(two),new Tile(three),new Tile(one),new Tile(three),new Tile(two),new Tile(two),new Tile(two),new Tile(two),new Tile(two)},
+				{new Tile(one),new Tile(one),new Tile(one),new Tile(one),new Tile(three),new Tile(two),new Tile(two),new Tile(two),new Tile(two),new Tile(two)},
+				{new Tile(two),new Tile(two),new Tile(three),new Tile(one),new Tile(three),new Tile(two),new Tile(two),new Tile(two),new Tile(two),new Tile(two)},
+				{new Tile(one),new Tile(two),new Tile(three),new Tile(one),new Tile(three),new Tile(two),new Tile(two),new Tile(two),new Tile(two),new Tile(two)},
+				{new Tile(one),new Tile(two),new Tile(three),new Tile(one),new Tile(three),new Tile(two),new Tile(two),new Tile(two),new Tile(two),new Tile(two)},
+				{new Tile(one),new Tile(two),new Tile(three),new Tile(one),new Tile(three),new Tile(two),new Tile(two),new Tile(two),new Tile(two),new Tile(two)},
+				{new Tile(one),new Tile(two),new Tile(three),new Tile(one),new Tile(two),new Tile(two),new Tile(two),new Tile(two),new Tile(two),new Tile(two)},
+				{new Tile(one),new Tile(two),new Tile(three),new Tile(one),new Tile(two),new Tile(two),new Tile(two),new Tile(two),new Tile(two),new Tile(two)},
+				{new Tile(one),new Tile(two),new Tile(three),new Tile(one),new Tile(two),new Tile(two),new Tile(two),new Tile(two),new Tile(two),new Tile(two)},
+				};
 		t[0][0].setEntity(avatar);
 		
 		
-		map = new GameMap(t,60,60);
+		map = new GameMap(t,11,10);
 	}
 	
 	public GameMap getGameMap() {
@@ -59,9 +74,9 @@ public class PlayGameState extends GameState {
 		int y = avatar.getPosition().getY();
 		switch (keyCode) {
 			case KeyCode.SOUTH: {
-				Position updatedPosition = new Position(x+1, y);
+				Position updatedPosition = new Position(y+1, x);
 				if (!map.checkIfValid(updatedPosition)) break;
-				map.getTileAt(avatar.getPosition()).setEntity(null);;
+				map.getTileAt(avatar.getPosition()).setEntity(null);
 				avatar.setPosition(updatedPosition);
 				map.getTileAt(updatedPosition).setEntity(avatar);
 			}

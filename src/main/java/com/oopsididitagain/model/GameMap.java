@@ -23,18 +23,18 @@ public class GameMap {
 		this.tiles = tiles;
 	}
 	
-	public Tile getTileAt(int x, int y){
-		return tiles[x][y];
+	public Tile getTileAt(int y, int x){
+		return tiles[y][x];
 	}
 	
 	public Tile getTileAt(Position pos) {
-		return tiles[pos.getX()][pos.getY()];
+		return tiles[pos.getY()][pos.getX()];
 	}
 	
 	public boolean checkIfValid(Position pos) {
-		if (pos.getX() > tiles.length - 1) return false;
-		if (pos.getY() > tiles[0].length - 1) return false;
-		Tile tile = tiles[pos.getX()][pos.getY()];
+		if (pos.getY() > tiles.length - 1) return false;
+		if (pos.getX() > tiles[0].length - 1) return false;
+		Tile tile = tiles[pos.getY()][pos.getX()];
 		if (tile.getEntity() != null) return false;
 		if (!tile.getTerrain().isMovableOnGround()) return false;
 		if (!tile.getTerrain().isMovableInAir()) return false;

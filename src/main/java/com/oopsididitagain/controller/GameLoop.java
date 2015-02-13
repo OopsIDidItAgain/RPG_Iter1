@@ -39,7 +39,7 @@ public class GameLoop {
 			controller.handleInputAndUpdate(state, command);
 			view.render(state);
 			try {
-				TimeUnit.SECONDS.sleep(5);
+				TimeUnit.MILLISECONDS.sleep(1000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
