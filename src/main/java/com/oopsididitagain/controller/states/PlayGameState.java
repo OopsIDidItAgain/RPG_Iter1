@@ -3,12 +3,8 @@ package com.oopsididitagain.controller.states;
 import java.awt.Toolkit;
 import java.util.List;
 
-import javax.swing.plaf.synth.SynthSeparatorUI;
-
 import com.oopsididitagain.controller.Controller;
 import com.oopsididitagain.controller.PlayGameController;
-import com.oopsididitagain.gui.AreaViewport;
-import com.oopsididitagain.gui.StatsViewport;
 import com.oopsididitagain.io.KeyCode;
 import com.oopsididitagain.model.Entity;
 import com.oopsididitagain.model.GameMap;

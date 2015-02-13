@@ -30,7 +30,7 @@ public class Main extends JFrame {
 		this.setLayout(new MigLayout("", "[grow, fill]", "[grow, fill]"));
 		
 		this.add(loop.getView());
-		loop.getView().requestFocus();
+		loop.getView();
 		
 		//JPanel mainPanel = new View(areaViewport,statsViewport);
 		//this.add(mainPanel);

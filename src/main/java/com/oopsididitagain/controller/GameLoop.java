@@ -22,6 +22,8 @@ public class GameLoop {
 		state = PlayGameState.getInstance();
 		this.keyboardInput = new KeyboardInput();
 		view = new View();
+		view.addKeyListener(keyboardInput);
+		view.requestFocus();
 	}
 
 	public static GameLoop getInstance() {
@@ -37,12 +39,7 @@ public class GameLoop {
 			int command = keyboardInput.getInput();
 			controller.handleInputAndUpdate(state, command);
 			view.render(state);
-			try {
-				TimeUnit.MILLISECONDS.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
 		}
 	}
 	

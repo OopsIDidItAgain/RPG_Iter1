@@ -80,6 +80,8 @@ public class GameMap {
 	public boolean checkIfValid(Position pos) {
 		if (pos.getY() > height - 1) return false;
 		if (pos.getX() > width - 1) return false;
+		if (pos.getY() < 0) return false;
+		if (pos.getX() < 0) return false;
 		Tile tile = tiles[pos.getY()][pos.getX()];
 		if (tile.getEntity() != null) return false;
 		if (!tile.getTerrain().isMovableOnGround()) return false;
