@@ -17,6 +17,7 @@ public class View extends JPanel {
 	private static final long serialVersionUID = 8740227504423945127L;
 	private AreaViewport areaViewport;
 	private StatsViewport statsViewport;
+	private boolean paused;
 
 	
 
@@ -68,6 +69,10 @@ public class View extends JPanel {
 			widthpos = 0;
 			heightpos += h;
 		}
+		if(paused) {
+			System.out.println("paused");
+			g.drawString("PAUSE GAME", getHeight()/2, getWidth()/2);
+		}
 
 	}
 
@@ -80,13 +85,16 @@ public class View extends JPanel {
 
 	public void render(GameState state) {
 		if (state instanceof PlayGameState) {
+			paused = false;
 			GameMap map = ((PlayGameState) state).getGameMap();
 			Entity avatar = ((PlayGameState) state).getAvatar();
 			this.areaViewport = new AreaViewport(map, avatar);
 			this.revalidate();
 			this.repaint();
 		} else if(state instanceof PauseGameState) {
-			System.out.println("pauseGameStateRender");
+			paused = true;
+			this.revalidate();
+			this.repaint();
 		} else {
 			
 		}
