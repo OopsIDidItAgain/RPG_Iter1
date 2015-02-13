@@ -22,7 +22,7 @@ public class PlayGameController extends Controller{
 	}
 	
 	@Override
-	public void handleInputAndUpdate(GameState state, int input) {
+	public GameState handleInputAndUpdate(GameState state, int input) {
 		// TODO: send messages to avatar
 		switch(input) {
 			case KeyCode.NORTH:
@@ -46,6 +46,7 @@ public class PlayGameController extends Controller{
 			default:
 				break;
 		}
+		return state;
 		
 	}
 

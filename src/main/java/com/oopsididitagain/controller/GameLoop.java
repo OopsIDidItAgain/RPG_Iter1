@@ -1,6 +1,6 @@
 package com.oopsididitagain.controller;
 
-import java.awt.Component;
+import java.awt.event.KeyListener;
 import java.util.concurrent.TimeUnit;
 
 import com.oopsididitagain.controller.states.ExitGameState;
@@ -20,9 +20,10 @@ public class GameLoop {
 
 	private GameLoop() {
 		state = PlayGameState.getInstance();
-		// TODO: keyboard and view singleton?
 		this.keyboardInput = new KeyboardInput();
 		view = new View();
+		view.addKeyListener(keyboardInput);
+		view.requestFocus();
 	}
 
 	public static GameLoop getInstance() {
@@ -36,14 +37,9 @@ public class GameLoop {
 		while (!state.equals(ExitGameState.getInstance())) {
 			controller = state.getController();
 			int command = keyboardInput.getInput();
-			controller.handleInputAndUpdate(state, command);
+			state = controller.handleInputAndUpdate(state, command);
 			view.render(state);
-			try {
-				TimeUnit.SECONDS.sleep(5);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
 		}
 	}
 	

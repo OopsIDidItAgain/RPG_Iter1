@@ -11,14 +11,14 @@ public class Position implements Serializable {
 	private int y;
 	private Direction facing;
 
-	public Position(int x, int y, Direction facing) {
+	public Position( int y, int x, Direction facing) {
 		super();
 		this.x = x;
 		this.y = y;
 		this.facing = facing;
 	}
 
-	public Position(int x, int y) {
+	public Position(int y, int x ) {
 		super();
 		this.x = x;
 		this.y = y;

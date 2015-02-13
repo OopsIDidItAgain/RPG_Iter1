@@ -21,10 +21,11 @@ public class Tile {
 	}
 
 	
+	
 	public void setDecal(Decal decal) {
 		this.decal = decal;
 	}
-
+	
 	public Terrain getTerrain() {
 		return terrain;
 	}

@@ -2,6 +2,7 @@ package com.oopsididitagain.controller;
 
 import com.oopsididitagain.controller.states.ExitGameState;
 import com.oopsididitagain.controller.states.GameState;
+import com.oopsididitagain.controller.states.PauseGameState;
 import com.oopsididitagain.io.KeyCode;
 
 public class StartGameController extends Controller {
@@ -20,7 +21,7 @@ public class StartGameController extends Controller {
 	}
 
 	@Override
-	public void handleInputAndUpdate(GameState state, int input) {
+	public GameState handleInputAndUpdate(GameState state, int input) {
 		// TODO handle start game inputs
 		switch (input) {
 		case KeyCode.NORTH:
@@ -42,6 +43,7 @@ public class StartGameController extends Controller {
 		case KeyCode.USE:
 			break;
 		case KeyCode.PAUSE:
+			state = PauseGameState.getInstance();
 			break;
 		case KeyCode.EXIT:
 			state = ExitGameState.getInstance();
@@ -49,6 +51,7 @@ public class StartGameController extends Controller {
 		default:
 			break;
 		}
+		return state;
 	}
 
 }

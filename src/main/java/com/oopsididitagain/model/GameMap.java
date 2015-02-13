@@ -23,18 +23,66 @@ public class GameMap {
 		this.tiles = tiles;
 	}
 	
-	public Tile getTileAt(int x, int y){
-		return tiles[x][y];
+	public Tile getTileAt(int y, int x){
+		return tiles[y][x];
 	}
 	
 	public Tile getTileAt(Position pos) {
-		return tiles[pos.getX()][pos.getY()];
+		return tiles[pos.getY()][pos.getX()];
 	}
 	
+	/*
+	 public void setNeighbors() {
+
+					
+				boolean[] skip = {false, false, false, false, true, false, false, false, false};
+				if(x == 0) {
+					skip[0] = true;
+					skip[3] = true;
+					skip[6] = true;
+				} else if(x == width - 1) {
+					skip[2] = true;
+					skip[5] = true;
+					skip[8] = true;
+				}
+				
+				if(y == 0) {
+					skip[6] = true;
+					skip[7] = true;
+					skip[8] = true;
+				} else if(y == map.getHeight() - 1) {
+					skip[0] = true;
+					skip[1] = true;
+					skip[2] = true;
+				}
+				
+				for(int i = x - 1; i <= x + 1; i++) {
+					for(int j = y - 1; j <= y + 1; j++) {
+						int k = (i - (x - 1)) + 3*((y + 1) - j);
+						if(!skip[k]) {
+							neighbors[k] = map.getTileAt(i, j);
+						}
+					}
+				}
+			}
+		 * [0] == SOUTHWEST
+		 * [1] == SOUTH
+		 * [2] == SOUTHEAST
+		 * [3] == WEST
+		 * [4] == 
+		 * [5] == EAST
+		 * [6] == NORTHWEST
+		 * [7] == NORTH
+		 * [8] == NORTHEAST
+		
+	}*/
+	
 	public boolean checkIfValid(Position pos) {
-		if (pos.getX() > tiles.length - 1) return false;
-		if (pos.getY() > tiles[0].length - 1) return false;
-		Tile tile = tiles[pos.getX()][pos.getY()];
+		if (pos.getY() > height - 1) return false;
+		if (pos.getX() > width - 1) return false;
+		if (pos.getY() < 0) return false;
+		if (pos.getX() < 0) return false;
+		Tile tile = tiles[pos.getY()][pos.getX()];
 		if (tile.getEntity() != null) return false;
 		if (!tile.getTerrain().isMovableOnGround()) return false;
 		if (!tile.getTerrain().isMovableInAir()) return false;
