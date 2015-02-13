@@ -71,7 +71,7 @@ public class View extends JPanel {
 
 	@Override
 	public void paintComponent(Graphics g) {
-		System.out.println("paint component");
+		//System.out.println("paint component");
 		super.paintComponent(g);
 		showImage(g);
 	}
