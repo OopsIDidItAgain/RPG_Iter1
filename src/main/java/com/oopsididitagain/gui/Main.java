@@ -7,7 +7,7 @@ import javax.swing.SwingUtilities;
 
 import com.oopsididitagain.controller.GameLoop;
 
-public class Main extends JFrame {
+public class Main{
 
 	private static final long serialVersionUID = -4222070071039252746L;
 	
@@ -27,6 +27,7 @@ public class Main extends JFrame {
 	}
 	
 	private void initialize() {
+<<<<<<< HEAD
 		this.setLayout(new BorderLayout());
 		
 		this.add(loop.getView(), BorderLayout.CENTER);
@@ -35,6 +36,12 @@ public class Main extends JFrame {
 		this.setLocationRelativeTo(null); // places frame into center of screen
 		this.setTitle("OOPs I Did It Again!");
 		this.setVisible(true);
+=======
+		//this.setLayout(new MigLayout("", "[grow, fill]", "[grow, fill]"));
+		
+		//this.add(loop.getView().getJPanel());
+		
+>>>>>>> Tess-changingtheview
 		
 	}
 	
