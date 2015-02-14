@@ -95,15 +95,15 @@ public class StatBlob {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder("");
-		sb.append(livesLeft + "\n");
-		sb.append(intellect + "\n");
-		sb.append(strength + "\n");
-		sb.append(agility + "\n");
-		sb.append(hardiness + "\n");
-		sb.append(experience + "\n");
-		sb.append(movement + "\n");
-		sb.append(lifeAmount + "\n");
-		sb.append(manaAmount + "\n");
+		sb.append("Lives Left - " + livesLeft + "\n");
+		sb.append("Intellect - " + intellect + "\n");
+		sb.append("Strength - " + strength + "\n");
+		sb.append("Agility - " + agility + "\n");
+		sb.append("Hardiness - " + hardiness + "\n");
+		sb.append("Experience - " + experience + "\n");
+		sb.append("Movement - " + movement + "\n");
+		sb.append("Life Amount - " + lifeAmount + "\n");
+		sb.append("Mana Amount - " + manaAmount + "\n");
 		return sb.toString();
 	}
 }
