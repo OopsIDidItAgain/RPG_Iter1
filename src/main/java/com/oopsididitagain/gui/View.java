@@ -23,6 +23,7 @@ public class View extends JFrame {
 	private static final long serialVersionUID = 8740227504423945127L;
 	private AreaViewport areaViewport;
 	private StatsViewport statsViewport;
+	private PauseMenuViewport pauseMenuViewport;
 	private boolean paused;
 	private JPanel JPanelCards;
 	private JPanel pane;
@@ -37,6 +38,7 @@ public class View extends JFrame {
 		setFocusable(true);
 		this.areaViewport = areaViewport;
 		this.statsViewport = statsViewport;
+		
 	}
 
 	public View() {
@@ -79,7 +81,7 @@ public class View extends JFrame {
 				//this.add(pane);
 				this.areaViewport = new AreaViewport(map, avatar);
 				this.statsViewport = new StatsViewport();
-				this.add(areaViewport, BorderLayout.NORTH);
+				this.add(areaViewport, BorderLayout.CENTER);
 				this.add(statsViewport, BorderLayout.SOUTH);
 				areaViewport.render();
 				statsViewport.render();
@@ -87,9 +89,18 @@ public class View extends JFrame {
 				System.out.print("l");
 			}
 		} else if(state instanceof PauseGameState) {
-			paused = true;
-			this.revalidate();
-			this.repaint();
+			if(state == currentGameState){
+				pauseMenuViewport.render();
+				this.repaint();
+			}
+			else{
+				currentGameState = state;
+				paused = true;
+				this.pauseMenuViewport = new PauseMenuViewport();
+				this.add(pauseMenuViewport, BorderLayout.SOUTH);
+				pauseMenuViewport.render();
+				this.repaint();
+			}
 		} 
 	}
 	
