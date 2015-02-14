@@ -47,6 +47,10 @@ public class InventoryController extends Controller{
 					case KeyCode.INVENTORY:
 						state = PlayGameState.getInstance();
 						break;
+					case KeyCode.EQUIP:
+						int option = ((InventoryGameState)state).getMenuOption();
+						((InventoryGameState)state).equip(option);
+						break;
 					default:
 						break;
 				}

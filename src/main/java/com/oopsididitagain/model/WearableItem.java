@@ -5,6 +5,7 @@ public class WearableItem extends TakeableItem {
 
 	private static final long serialVersionUID = -8654005789531505596L;
 	private int rank;
+	private boolean equipped = false;
 	private StatBlob blob;
 
 	public WearableItem(String name, String imageName, Position position, int rank, StatBlob blob) {
@@ -12,6 +13,17 @@ public class WearableItem extends TakeableItem {
 		this.rank = rank;
 		this.blob = blob;
 	}
+
+	
+	public boolean isEquipped() {
+		return equipped;
+	}
+
+
+	public void setEquipped(boolean equipped) {
+		this.equipped = equipped;
+	}
+
 
 	public int getRank() {
 		return rank;

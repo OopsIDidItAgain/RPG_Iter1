@@ -53,6 +53,12 @@ public class KeyboardInput implements KeyListener {
 		case 'i':
 			input = KeyCode.INVENTORY;
 			break;
+		case 'j':
+			input = KeyCode.EQUIP;
+			break;
+		case 'k':
+			input = KeyCode.DROP;
+			break;
 		}
 	}
 

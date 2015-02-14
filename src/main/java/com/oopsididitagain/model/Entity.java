@@ -19,11 +19,11 @@ public class Entity extends GameObject {
     
 	public void addToInventory(TakeableItem takeableItem) {
 		this.inventory.addItem(takeableItem);
-		/*
+		
 		if (takeableItem instanceof WearableItem) {
 			equip((WearableItem)takeableItem);
 		}
-		*/
+		
 		printInventory();
 	}
 	
@@ -34,11 +34,13 @@ public class Entity extends GameObject {
 	
 	public void equip(WearableItem item) {
 		stats.mergeBlob(item.getBlob());
+		item.setEquipped(true);
 		System.out.println(stats);
 
 	}
 	public void unequip(WearableItem item) {
 		stats.detachBlob(item.getBlob());
+		item.setEquipped(false);
 		System.out.println(stats);
 	}
 	
