@@ -113,7 +113,7 @@ public class View extends JPanel {
 			GameMap map = playGameState.getGameMap();
 			Entity avatar = playGameState.getAvatar();
 			this.areaViewport = new AreaViewport(map, avatar);
-			this.statsViewport = new StatsViewport();
+			this.statsViewport = new StatsViewport(avatar);
 			this.repaint();
 		}
 
