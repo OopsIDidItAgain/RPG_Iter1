@@ -7,7 +7,7 @@ import net.miginfocom.swing.MigLayout;
 
 import com.oopsididitagain.controller.GameLoop;
 
-public class Main extends JFrame {
+public class Main{
 
 	private static final long serialVersionUID = -4222070071039252746L;
 	
@@ -27,14 +27,10 @@ public class Main extends JFrame {
 	}
 	
 	private void initialize() {
-		this.setLayout(new MigLayout("", "[grow, fill]", "[grow, fill]"));
+		//this.setLayout(new MigLayout("", "[grow, fill]", "[grow, fill]"));
 		
-		this.add(loop.getView());
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(600, 600);
-		this.setLocationRelativeTo(null); // places frame into center of screen
-		this.setTitle("OOPs I Did It Again!");
-		this.setVisible(true);
+		//this.add(loop.getView().getJPanel());
+		
 		
 	}
 	

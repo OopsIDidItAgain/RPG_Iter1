@@ -1,9 +1,15 @@
 package com.oopsididitagain.gui;
 
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Container;
 import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.util.List;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import com.oopsididitagain.controller.states.GameState;
@@ -12,12 +18,17 @@ import com.oopsididitagain.controller.states.PlayGameState;
 import com.oopsididitagain.model.Entity;
 import com.oopsididitagain.model.GameMap;
 
-public class View extends JPanel {
+public class View extends JFrame {
 
 	private static final long serialVersionUID = 8740227504423945127L;
 	private AreaViewport areaViewport;
 	private StatsViewport statsViewport;
 	private boolean paused;
+	private JPanel JPanelCards;
+	private JPanel pane;
+	private GameState currentGameState;
+	GridBagConstraints c;
+
 
 	
 
@@ -31,6 +42,17 @@ public class View extends JPanel {
 	public View() {
 		super();
 		setFocusable(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setSize(600, 720);
+		this.setLocationRelativeTo(null); // places frame into center of screen
+		this.setTitle("OOPs I Did It Again!");
+		this.setVisible(true);
+		this.setResizable(false);
+		JPanelCards = new JPanel(new CardLayout());
+
+	}
+	public JPanel getJPanel(){
+		return JPanelCards;
 	}
 
 	public void setAreaViewport(AreaViewport areaViewport) {
@@ -41,64 +63,34 @@ public class View extends JPanel {
 		this.statsViewport = statsViewport;
 	}
 	
-	private void showImage(Graphics g) {
-		int width;
-		int height;
-		int top = areaViewport.getTop();
-		int bottom = areaViewport.getBottom();
-		int left = areaViewport.getLeft();
-		int right = areaViewport.getRight();
-		int widthpos = 0;
-		int heightpos = 0;
-		Image img;
-		int h = getHeight() / 10;
-		int w = getWidth() / 10;
-		for(int i = top; i != bottom; ++i){
-			for(int j = left; j != right; ++j){
-				img = areaViewport.getMap().getTileAt(i,j).getTerrain().getImage();
-				List<Image> images = areaViewport.getMap().getTileAt(i, j).getImages(); 
-				for (int k = 0; k < images.size(); ++k) {
-					Image image = images.get(k);
-					if (k != 0)
-						g.drawImage(image, widthpos+5, heightpos+5, h-10, w-10, null);
-					else
-						g.drawImage(image, widthpos, heightpos, h, w, null);
-				}
-				//repaint();
-				widthpos += w;
-			}
-			widthpos = 0;
-			heightpos += h;
-		}
-		if(paused) {
-			System.out.println("paused");
-			g.drawString("PAUSE GAME", getHeight()/2, getWidth()/2);
-		}
-
-	}
-
-	@Override
-	public void paintComponent(Graphics g) {
-		//System.out.println("paint component");
-		super.paintComponent(g);
-		showImage(g);
-	}
 
 	public void render(GameState state) {
 		if (state instanceof PlayGameState) {
-			paused = false;
-			GameMap map = ((PlayGameState) state).getGameMap();
-			Entity avatar = ((PlayGameState) state).getAvatar();
-			this.areaViewport = new AreaViewport(map, avatar);
-			this.revalidate();
-			this.repaint();
+			if(state == currentGameState){
+				areaViewport.render();
+				pane.repaint();
+			}
+			else{
+				currentGameState = state;
+				paused = false;
+				GameMap map = ((PlayGameState) state).getGameMap();
+				Entity avatar = ((PlayGameState) state).getAvatar();
+				pane = new JPanel(new GridBagLayout());
+				//this.add(pane);
+				this.areaViewport = new AreaViewport(map, avatar);
+				this.statsViewport = new StatsViewport();
+				this.add(areaViewport, BorderLayout.NORTH);
+				this.add(statsViewport, BorderLayout.SOUTH);
+				areaViewport.render();
+				statsViewport.render();
+				pane.repaint();
+				System.out.print("l");
+			}
 		} else if(state instanceof PauseGameState) {
 			paused = true;
 			this.revalidate();
 			this.repaint();
-		} else {
-			
-		}
+		} 
 	}
 	
 	public void render(PlayGameState state) {
