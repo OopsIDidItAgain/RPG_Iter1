@@ -60,5 +60,10 @@ public class Entity extends GameObject {
 	public void visit(TakeableItem takeableitem){
 		System.out.println("takeable");
 	}
+
+	public void visit(ObstacleItem obstacleItem) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
