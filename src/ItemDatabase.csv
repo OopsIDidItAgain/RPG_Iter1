@@ -1,0 +1,4 @@
+NAME,IMAGE,X,Y,TYPE
+Sword,sword.jpg,0,1,Wearable
+Cape,cape.png,2,2,Wearable
+Potion,potion.jpg,0,2,Takeable

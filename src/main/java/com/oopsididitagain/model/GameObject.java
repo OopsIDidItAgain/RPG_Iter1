@@ -1,15 +1,20 @@
 package com.oopsididitagain.model;
 
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.Serializable;
-
-import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public abstract class GameObject implements Serializable {
 	private static final long serialVersionUID = 1745256945975212222L;
 	protected Position position;
 	protected Image image;
     protected String name;
+    
+    public GameObject(String name, String imageName, Position position) {
+    	this.name = name;
+    	this.image = Toolkit.getDefaultToolkit().createImage(getClass().getResource(imageName));
+    	this.position = position;
+    }
 
     public Position getPosition() {
         return position;
@@ -37,9 +42,9 @@ public abstract class GameObject implements Serializable {
     
     @Override
     public String toString() {
-    	return new ToStringBuilder(this)
-		    .append("name", name)
-		    .append("position", position)
-		    .build();
+    	StringBuilder sb = new StringBuilder();
+		sb.append(name + "\n");
+		sb.append(position);
+		return sb.toString();
     }
 }

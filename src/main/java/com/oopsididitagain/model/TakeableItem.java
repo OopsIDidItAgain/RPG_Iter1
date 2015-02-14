@@ -6,8 +6,8 @@ public class TakeableItem extends Item {
 	
 	private boolean isEquippable;
 	
-	public TakeableItem(boolean equippable) {
-		super();
+	public TakeableItem(String name, String imageName, Position position, boolean equippable) {
+		super(name, imageName, position);
 		isEquippable = equippable;
 	}
 	

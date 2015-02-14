@@ -1,6 +1,5 @@
 package com.oopsididitagain.controller.states;
 
-import java.awt.Toolkit;
 import java.util.List;
 
 import com.oopsididitagain.controller.Controller;
@@ -9,9 +8,11 @@ import com.oopsididitagain.io.KeyCode;
 import com.oopsididitagain.model.Entity;
 import com.oopsididitagain.model.GameMap;
 import com.oopsididitagain.model.GameObject;
+import com.oopsididitagain.model.Item;
 import com.oopsididitagain.model.Position;
 import com.oopsididitagain.model.Terrain;
 import com.oopsididitagain.model.Tile;
+import com.oopsididitagain.util.CSVTool;
 
 public class PlayGameState extends GameState {
 
@@ -21,12 +22,7 @@ public class PlayGameState extends GameState {
 	private Entity avatar;
 
 	private PlayGameState() {
-		// TODO: get model game things
-		avatar = new Entity();
-		avatar.setImage(Toolkit.getDefaultToolkit().getImage(
-				getClass().getResource("/avatar.png")));
-		Position p = new Position(0, 0);
-		avatar.setPosition(p);
+		avatar = new Entity("Mario", "/avatar.png", new Position(0, 0));
 		Terrain one = Terrain.createTerrain(Terrain.GRASS);
 		Terrain two = Terrain.createTerrain(Terrain.MOUNTAIN);
 		Terrain three = Terrain.createTerrain(Terrain.WATER);
@@ -65,8 +61,16 @@ public class PlayGameState extends GameState {
 						new Tile(two), new Tile(two), new Tile(two),
 						new Tile(two), new Tile(two), new Tile(two) }, };
 		t[0][0].setEntity(avatar);
-
+		List<Item> items = CSVTool.readItemDatabase();
+		
 		map = new GameMap(t, 11, 10);
+
+		for (Item i: items) {
+			Tile tile = map.getTileAt(i.getPosition());
+			tile.getItems().add(i);
+		}
+		
+
 	}
 
 	public GameMap getGameMap() {

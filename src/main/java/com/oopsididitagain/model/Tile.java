@@ -48,7 +48,7 @@ public class Tile {
 		this.entity = entity;
 		detectItemCollision();
 	}
-
+	
 	public List<Item> getItems() {
 		return items;
 	}
