@@ -1,7 +1,7 @@
 package com.oopsididitagain.model;
 
 public abstract class Occupation {
-	private StatBlob stats;
+	protected StatBlob stats;
 
 	public abstract void doAbility(GameObject target);
 
