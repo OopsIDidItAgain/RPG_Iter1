@@ -7,7 +7,6 @@ import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
-import java.util.Collections;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -64,48 +63,6 @@ public class View extends JFrame {
 		this.statsViewport = statsViewport;
 	}
 	
-<<<<<<< HEAD
-	private void showImage(Graphics g) {
-		int width;
-		int height;
-		int top = areaViewport.getTop();
-		int bottom = areaViewport.getBottom();
-		int left = areaViewport.getLeft();
-		int right = areaViewport.getRight();
-		int widthpos = 0;
-		int heightpos = 0;
-		Image img;
-		int h = getHeight() / 10;
-		int w = getWidth() / 10;
-		for(int i = top; i != bottom; ++i){
-			for(int j = left; j != right; ++j){
-				img = areaViewport.getMap().getTileAt(i,j).getTerrain().getImage();
-				List<Image> images = areaViewport.getMap().getTileAt(i, j).getImages(); 
-				for (int k = 0; k < images.size(); ++k) {
-					Image image = images.get(k);
-					if (k != 0)
-						g.drawImage(image, widthpos+5, heightpos+5, h-10, w-10, null);
-					else
-						g.drawImage(image, widthpos, heightpos, h, w, null);
-				}
-				widthpos += w;
-			}
-			widthpos = 0;
-			heightpos += h;
-		}
-		if(paused) {
-			g.drawString("PAUSE GAME", getHeight()/2, getWidth()/2);
-		}
-
-	}
-
-	@Override
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		showImage(g);
-	}
-=======
->>>>>>> Tess-changingtheview
 
 	public void render(GameState state) {
 		if (state instanceof PlayGameState) {
