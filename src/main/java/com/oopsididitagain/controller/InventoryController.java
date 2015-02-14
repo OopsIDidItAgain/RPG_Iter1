@@ -38,8 +38,6 @@ public class InventoryController extends Controller{
 						break;
 					case KeyCode.SOUTH_WEST:
 						break;
-					case KeyCode.USE:
-						break;
 					case KeyCode.PAUSE:
 						break;
 					case KeyCode.EXIT:
@@ -47,6 +45,7 @@ public class InventoryController extends Controller{
 					case KeyCode.INVENTORY:
 						state = PlayGameState.getInstance();
 						break;
+					case KeyCode.USE:
 					case KeyCode.EQUIP:
 						int option = ((InventoryGameState)state).getMenuOption();
 						((InventoryGameState)state).equip(option);
