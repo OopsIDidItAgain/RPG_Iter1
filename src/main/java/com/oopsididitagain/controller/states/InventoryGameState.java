@@ -7,6 +7,7 @@ import com.oopsididitagain.controller.Controller;
 import com.oopsididitagain.controller.InventoryController;
 import com.oopsididitagain.gui.View;
 import com.oopsididitagain.menu.InventoryMenu;
+import com.oopsididitagain.model.Entity;
 import com.oopsididitagain.model.GameMap;
 import com.oopsididitagain.model.Inventory;
 import com.oopsididitagain.model.Item;
