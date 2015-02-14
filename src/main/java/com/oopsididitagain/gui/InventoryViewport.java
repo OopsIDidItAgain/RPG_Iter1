@@ -41,8 +41,13 @@ public class InventoryViewport extends Viewport{
         RoundRectangle2D roundedRectangle1 = new RoundRectangle2D.Float(140, 150, 320, 280, 20, 20);
         g2.fill(roundedRectangle1);
         g2.setPaint(Color.green);
-        String s = "OPTION: "+ option;
-        g.drawString(s, 130, 120);
+        
+        int x = 130, y = 90;
+        String[] s = {	"OPTION: "+ option,
+        				"Press 'j' or your 'use' key to select/unselect item", 
+        				"Press 'i' to close inventory"	};
+        for (int i = 0; i < 3; i++) 
+        	g2.drawString(s[i], x, y += g2.getFontMetrics().getHeight());	 
         
        // Inventory inventory = avatar.getInventory();
         
