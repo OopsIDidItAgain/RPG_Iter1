@@ -5,16 +5,17 @@ import java.util.HashMap;
 public class Entity extends GameObject {
 	private static final long serialVersionUID = 6897867058695115274L;
     private Inventory inventory;
-
+    private Occupation occupation;
     private Armory armory;
     private StatCollection stats;
-
     
-    public Entity(String name, String imageName, Position position) {
+    
+    public Entity(String name, String imageName, Position position, Occupation occupationName) {
     	super (name, imageName, position);
     	stats = new StatCollection();
     	inventory = new Inventory();
     	armory = new Armory();
+    	occupation = occupationName;
     }
     
 	public void addToInventory(TakeableItem takeableItem) {

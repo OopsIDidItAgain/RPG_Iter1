@@ -4,7 +4,7 @@ public class StatBlob {
 	
 	public final static StatBlob SNEAK_DEFAULT = new StatBlob(1, 10, 50, 20, 20, 0, 50, 100, 100);
 	public final static StatBlob SMASHER_DEFAULT = new StatBlob(1, 50, 20, 10, 40, 0, 25, 100, 100);
-	public final static StatBlob SUMMONER = new StatBlob(1, 15, 20, 50, 10, 0, 25, 100, 100);
+	public final static StatBlob SUMMONER_DEFAULT = new StatBlob(1, 15, 20, 50, 10, 0, 25, 100, 100);
 	
 	//primary stats
 	private Stat livesLeft;
