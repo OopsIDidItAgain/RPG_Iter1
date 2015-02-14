@@ -22,8 +22,6 @@ public class AreaViewport extends Viewport{
 		super();
 		this.map = map;
 		this.avatar = avatar;
-		this.setBackground(new Color(100,0,0));
-		this.setPreferredSize(new Dimension(600, 540));
 		//JPanel area = new 
 	}
 	
@@ -91,7 +89,7 @@ public class AreaViewport extends Viewport{
 			return y+5;
 		}	
 	}
-	private void showImage(Graphics g) {
+	public void displayMap(Graphics g) {
 		int width;
 		int height;
 		int top = getTop();
@@ -129,14 +127,5 @@ public class AreaViewport extends Viewport{
 
 	}
 
-	@Override
-	public void paintComponent(Graphics g) {
-		//System.out.println("paint component");
-		super.paintComponent(g);
-		showImage(g);
-	}
-	public void render(){
-		repaint();
-		revalidate();
-	}
+
 }

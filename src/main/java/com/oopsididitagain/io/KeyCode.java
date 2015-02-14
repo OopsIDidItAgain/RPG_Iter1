@@ -13,4 +13,6 @@ public class KeyCode {
 	public static final int USE = 5;
 	public static final int PAUSE = 0;
 	public static final int EXIT = -1;
+	public static final int DOWN = 10;
+	public static final int UP = 11;
 }

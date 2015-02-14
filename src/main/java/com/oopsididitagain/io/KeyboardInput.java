@@ -47,6 +47,12 @@ public class KeyboardInput implements KeyListener {
 		case 'p':
 			input = KeyCode.PAUSE;
 			break;
+		case KeyEvent.VK_UP:
+			input = KeyCode.UP;
+			break;
+		case KeyEvent.VK_DOWN:
+			input = KeyCode.DOWN;
+			break;
 		}
 	}
 

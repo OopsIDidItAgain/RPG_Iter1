@@ -28,7 +28,8 @@ public class Entity extends GameObject {
 
 	public Inventory getInventory() {
 		return inventory;
-
+	}
+	
 	public void equip(WearableItem item) {
 		stats.mergeBlob(item.getBlob());
 		System.out.println(stats);

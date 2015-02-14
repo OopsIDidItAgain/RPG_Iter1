@@ -127,6 +127,9 @@ public class PlayGameState extends GameState {
 		}
 		return instance;
 	}
+	public String toString(){
+		return "PlayGameState";
+	}
 
 	@Override
 	public Controller getController() {
