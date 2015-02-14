@@ -74,9 +74,9 @@ public class AreaViewport extends Viewport{
 		if(y<5){
 			return 0;
 		}else if(y > (h - 5)){
-			return h - 9;
+			return h - 10;
 		}else{
-			return y-4;
+			return y-5;
 		}
 		
 	}
@@ -84,7 +84,7 @@ public class AreaViewport extends Viewport{
 		int y = avatar.getPosition().getY();
 		int h = map.getHeight();
 		if(y<5){
-			return 9;
+			return 10;
 		}else if(y > (h - 5)){
 			return h;
 		}else{
@@ -120,6 +120,12 @@ public class AreaViewport extends Viewport{
 			widthpos = 0;
 			heightpos += h;
 		}
+		/*
+		if(paused) {
+			System.out.println("paused");
+			g.drawString("PAUSE GAME", getHeight()/2, getWidth()/2);
+		}
+		*/
 
 	}
 
