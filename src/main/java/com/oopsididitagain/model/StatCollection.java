@@ -35,6 +35,10 @@ public class StatCollection {
 		armorRating = new Stat(blob.getHardiness()); // we need to account for armor rating
 	}
 
+	public StatBlob getBlob() {
+		return blob;
+	}
+	
 	public double getLevel() {
 		return level.getValue();
 	}

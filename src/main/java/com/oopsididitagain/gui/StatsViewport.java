@@ -5,15 +5,25 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import com.oopsididitagain.model.Entity;
 import com.oopsididitagain.model.GameMap;
 
 public class StatsViewport extends Viewport{
 	Entity avatar;
+	Image happyface;
+	Image sadface;
 	
 	public StatsViewport() {
 		super();
@@ -21,7 +31,9 @@ public class StatsViewport extends Viewport{
 	
 	public StatsViewport(Entity avatar) {
 		super();
-		this.avatar = avatar;
+		this.avatar	= avatar;
+		happyface 	= Toolkit.getDefaultToolkit().createImage(getClass().getResource("/happy_face.png"));
+		sadface 	= Toolkit.getDefaultToolkit().createImage(getClass().getResource("/dead_face.png"));
 	}
 	
 	public void displayStats(Graphics g){
@@ -38,24 +50,19 @@ public class StatsViewport extends Viewport{
 		 g2.fill(new Ellipse2D.Double(220,540,138,138));
 		 
 		 // our guy's face bar
-		 g2.setPaint(Color.MAGENTA);
-		 g2.fill(new Rectangle2D.Double(450,540,160,150));
-		 		 
-		 
+		 if (avatar.getStats().getBlob().getLivesLeft() != 0)
+			g2.drawImage(happyface, 450, 540, 150, 140, null);
+		 else
+			g2.drawImage(sadface, 450,540,150,140, null);
+
 		 String stats = avatar.getStats().toString();
 		 int x = 10, y = 537; // location of text
 		 
 		 g2.setPaint(Color.black);
 		 g2.setFont(new Font("Default", Font.BOLD, 12));
-		 for (String line : stats.split("\n")) {
+		 for (String line : stats.split("\n"))
 		        g2.drawString(line, x, y += g2.getFontMetrics().getHeight());
 		        // graphics2d doesn't handle "\n" as new lines, so we have to split it
-				
-		        /*if (y > 610) { // new line
-		        	x = 145;
-		        	y = 540;
-		        }*/
-		 }
 		 
 		 
 	}
