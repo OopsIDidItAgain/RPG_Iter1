@@ -50,4 +50,15 @@ public class Entity extends GameObject {
 		for (String name: hash.keySet())
             System.out.println(name);
 	}
+	public void visit(WearableItem wearableItem){
+		if(wearableItem.isEquipped()){
+			this.unequip(wearableItem);
+			}else{
+			this.equip(wearableItem);
+		}
+	}
+	public void visit(TakeableItem takeableitem){
+		System.out.println("takeable");
+	}
+	
 }

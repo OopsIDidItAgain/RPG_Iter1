@@ -41,4 +41,8 @@ public class WearableItem extends TakeableItem {
 		this.blob = blob;
 	}
 	
+	public void accept(Entity visitor) {
+		visitor.visit(this);	
+	}
+	
 }

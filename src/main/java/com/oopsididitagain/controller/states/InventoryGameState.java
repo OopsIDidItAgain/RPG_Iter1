@@ -69,13 +69,7 @@ public class InventoryGameState extends GameState{
 		Object [] inv = item.toArray();
 		Item i = (Item)inv[option];
 		System.out.println("hi");
-		if (i instanceof WearableItem) {
-			if(((WearableItem) i).isEquipped()){
-				avatar.unequip((WearableItem)i);
-			}else{
-				avatar.equip((WearableItem)i);
-			}
-		}
+		i.accept(avatar);
 	}
 	
 	
