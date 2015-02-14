@@ -1,21 +1,15 @@
 package com.oopsididitagain.gui;
 
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Container;
 import java.awt.Graphics;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Image;
-import java.util.List;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import com.oopsididitagain.controller.states.ExitGameState;
 import com.oopsididitagain.controller.states.GameState;
 import com.oopsididitagain.controller.states.InventoryGameState;
 import com.oopsididitagain.controller.states.PauseGameState;
 import com.oopsididitagain.controller.states.PlayGameState;
+import com.oopsididitagain.controller.states.StartGameState;
 import com.oopsididitagain.menu.InventoryMenu;
 import com.oopsididitagain.menu.PauseMenu;
 import com.oopsididitagain.model.Entity;
@@ -32,10 +26,6 @@ public class View extends JPanel {
 	private String currentGameState = "";
 	private InventoryViewport InventoryViewport;
 
-
-
-	
-
 	public View(AreaViewport areaViewport, StatsViewport statsViewport) {
 		super();
 		setFocusable(true);
@@ -46,85 +36,92 @@ public class View extends JPanel {
 	public View() {
 		super();
 		setFocusable(true);
-	
 
 	}
 
 	public void setAreaViewport(AreaViewport areaViewport) {
 		this.areaViewport = areaViewport;
 	}
-	
+
 	public void setStatsViewport(StatsViewport statsViewport) {
 		this.statsViewport = statsViewport;
 	}
-	
 
 	public void render(GameState state) {
-		if (state instanceof PlayGameState) {
-			if(state.toString() == currentGameState){
-				this.repaint();
-			}
-			else{
-				currentGameState = state.toString();
-				paused = false;
-				GameMap map = ((PlayGameState) state).getGameMap();
-				Entity avatar = ((PlayGameState) state).getAvatar();
-				this.areaViewport = new AreaViewport(map, avatar);
-				this.statsViewport = new StatsViewport(avatar);
-				this.repaint();
-			}
-		} 
-		else if(state instanceof PauseGameState) {
-			if(state.toString() == currentGameState){
-				this.repaint();
-			}
-			else{
-				currentGameState = state.toString();
-				paused = true;
-				PauseMenu pm = ((PauseGameState) state).getPauseMenu();
-				this.pauseViewPort = new PauseViewPort(pm);
-				this.repaint();
-			}
-		}
-		else if(state instanceof InventoryGameState) {
-			if(state.toString() == currentGameState){
-				this.repaint();
-			}
-			else{
-				currentGameState = state.toString();
-				paused = true;
-				InventoryMenu im = ((InventoryGameState) state).getInventoryMenu();
-				Inventory inventory = ((InventoryGameState) state).getInventory(); 
-				this.InventoryViewport = new InventoryViewport(im,inventory);
-				this.repaint();
-			}
-		}
-		}
-
+		state.accept(this);
+	}
 
 	@Override
 	public void paintComponent(Graphics g) {
-		if(currentGameState == "PlayGameState"){
+		if (currentGameState == "PlayGameState") {
 			super.paintComponent(g);
 			areaViewport.displayMap(g);
 			statsViewport.displayStats(g);
-			
-		}else if(currentGameState == "PauseGameState"){
+
+		} else if (currentGameState == "PauseGameState") {
 			super.paintComponent(g);
 			areaViewport.displayMap(g);
 			statsViewport.displayStats(g);
 			PauseViewPort.displayPauseMenu(g);
-		}else if(currentGameState == "InventoryGameState"){
+		} else if (currentGameState == "InventoryGameState") {
 			super.paintComponent(g);
 			areaViewport.displayMap(g);
 			statsViewport.displayStats(g);
 			InventoryViewport.displayInventoryMenu(g);
 		}
-		
-	}
-	
-	
-	
 
+	}
+
+	public void visit(ExitGameState exitGameState) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void visit(InventoryGameState inventoryGameState) {
+		if (inventoryGameState.toString() == currentGameState) {
+			this.repaint();
+		} else {
+			currentGameState = inventoryGameState.toString();
+			paused = true;
+			InventoryMenu im = inventoryGameState.getInventoryMenu();
+			Inventory inventory = inventoryGameState.getInventory();
+			this.InventoryViewport = new InventoryViewport(im, inventory);
+			this.repaint();
+		}
+
+	}
+
+	public void visit(PauseGameState pauseGameState) {
+		if (pauseGameState.toString() == currentGameState) {
+			this.repaint();
+		} else {
+			currentGameState = pauseGameState.toString();
+			paused = true;
+			PauseMenu pm = pauseGameState.getPauseMenu();
+			this.pauseViewPort = new PauseViewPort(pm);
+			this.repaint();
+		}
+
+	}
+
+	public void visit(PlayGameState playGameState) {
+		if (playGameState.toString() == currentGameState) {
+			this.repaint();
+		} else {
+			currentGameState = playGameState.toString();
+			paused = false;
+			GameMap map = playGameState.getGameMap();
+			Entity avatar = playGameState.getAvatar();
+			this.areaViewport = new AreaViewport(map, avatar);
+			this.statsViewport = new StatsViewport(avatar);
+			this.repaint();
+		}
+
+	}
+
+	public void visit(StartGameState startGameState) {
+		// TODO Auto-generated method stub
+
+	}
 
 }
