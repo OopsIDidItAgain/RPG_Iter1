@@ -11,6 +11,7 @@ public class InventoryGameState extends GameState{
 
 	private static InventoryGameState instance;
 	private static InventoryMenu inventoryMenu;
+	private static Entity avatar;
 	private Inventory inventory;
 	private GameMap map;
 	
@@ -19,8 +20,10 @@ public class InventoryGameState extends GameState{
 		// TODO: get menu and pause game things
 		GameState state =  PlayGameState.getInstance();
 		this.map = ((PlayGameState) state).getGameMap();
-		this.inventory = ((PlayGameState) state).getAvatar().getInventory();
+		this.avatar = ((PlayGameState) state).getAvatar();
+		this.inventory = avatar.getInventory();
 		this.inventoryMenu = new InventoryMenu();
+	
 	}
 	
 	public InventoryMenu getInventoryMenu() {
@@ -49,6 +52,13 @@ public class InventoryGameState extends GameState{
 	public String toString(){
 		return "InventoryGameState";
 	}
+	/*
+	public void unequip(Item i){
+		avatar.getStats().mergeBlob(item.getBlob());
+		System.out.println(stats);
+	}
+	*/
+	
 	@Override
 	public Controller getController() {
 		return InventoryController.getInstance();

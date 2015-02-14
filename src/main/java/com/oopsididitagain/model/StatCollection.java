@@ -43,6 +43,10 @@ public class StatCollection {
 		this.blob.merge(blob);
 		deriveStats();
 	}
+	public void detachBlob(StatBlob blob) {
+		this.blob.detach(blob);
+		deriveStats();
+	}
 
 	public double getMana() {
 		return manaCapacity.getValue();

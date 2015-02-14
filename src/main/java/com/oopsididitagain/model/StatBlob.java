@@ -79,6 +79,19 @@ public class StatBlob {
 		this.manaAmount.add(other.manaAmount);
 	}
 	
+	public void detach(StatBlob other) {
+		this.livesLeft.subtract(other.livesLeft);
+		this.intellect.subtract(other.intellect);
+		this.strength.subtract(other.strength);
+		this.agility.subtract(other.agility);
+		this.hardiness.subtract(other.hardiness);
+		this.experience.subtract(other.experience);
+		this.movement.subtract(other.movement);
+		this.lifeAmount.subtract(other.lifeAmount);
+		this.manaAmount.subtract(other.manaAmount);
+	}
+	
+	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder("");
