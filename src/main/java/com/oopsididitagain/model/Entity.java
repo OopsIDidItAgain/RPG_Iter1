@@ -19,11 +19,6 @@ public class Entity extends GameObject {
     
 	public void addToInventory(TakeableItem takeableItem) {
 		this.inventory.addItem(takeableItem);
-		
-		if (takeableItem instanceof WearableItem) {
-			equip((WearableItem)takeableItem);
-		}
-		
 		printInventory();
 	}
 	
