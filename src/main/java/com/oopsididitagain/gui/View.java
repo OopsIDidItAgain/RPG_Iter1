@@ -70,7 +70,7 @@ public class View extends JPanel {
 				GameMap map = ((PlayGameState) state).getGameMap();
 				Entity avatar = ((PlayGameState) state).getAvatar();
 				this.areaViewport = new AreaViewport(map, avatar);
-				this.statsViewport = new StatsViewport();
+				this.statsViewport = new StatsViewport(avatar);
 				this.repaint();
 			}
 		} 
