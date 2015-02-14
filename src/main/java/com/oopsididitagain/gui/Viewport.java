@@ -1,5 +1,8 @@
 package com.oopsididitagain.gui;
 
-public abstract class Viewport {
+import javax.swing.JPanel;
+
+public abstract class Viewport extends JPanel {
+
 
 }
