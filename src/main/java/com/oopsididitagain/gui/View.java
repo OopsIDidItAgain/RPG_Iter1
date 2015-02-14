@@ -23,6 +23,7 @@ public class View extends JFrame {
 	private static final long serialVersionUID = 8740227504423945127L;
 	private AreaViewport areaViewport;
 	private StatsViewport statsViewport;
+	private PauseViewPort pauseViewPort;
 	private boolean paused;
 	private JPanel JPanelCards;
 	private JPanel pane;
@@ -43,7 +44,7 @@ public class View extends JFrame {
 		super();
 		setFocusable(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(600, 720);
+		this.setSize(600, 700);
 		this.setLocationRelativeTo(null); // places frame into center of screen
 		this.setTitle("OOPs I Did It Again!");
 		this.setVisible(true);
@@ -87,9 +88,18 @@ public class View extends JFrame {
 				System.out.print("l");
 			}
 		} else if(state instanceof PauseGameState) {
-			paused = true;
-			this.revalidate();
-			this.repaint();
+			if(state == currentGameState){
+				pauseViewPort.render();
+				pane.repaint();
+			}
+			else{
+				currentGameState = state;
+				paused = true;
+				this.pauseViewPort = new PauseViewPort();
+				this.add(pauseViewPort, BorderLayout.SOUTH);
+				pauseViewPort.render();
+				pane.repaint();
+			}
 		} 
 	}
 	

@@ -11,7 +11,7 @@ public class StatsViewport extends Viewport{
 	public StatsViewport() {
 		super();
 		this.setBackground(new Color(100,0,0));
-		this.setPreferredSize(new Dimension(600, 200));
+		this.setPreferredSize(new Dimension(600, 150));
 	}
 	
 	public void render(){
