@@ -2,7 +2,7 @@ package com.oopsididitagain.menu;
 
 import com.oopsididitagain.io.KeyCode;
 
-public class PauseMenu{
+public class PauseMenu extends Menu{
 	private static final int MENU_OPTION_1_SAVE = 1;
 	private static final int MENU_OPTION_2_EXIT = 2;
 	private static final int MENU_OPTION_3_UNPAUSE = 3;

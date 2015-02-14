@@ -32,4 +32,10 @@ public class Inventory {
     public void deleteItem(String itemName) {
     	inventory.remove(itemName);
     }
+
+	public int getSize() {
+		return inventory.size();
+	}
+
+    
 }

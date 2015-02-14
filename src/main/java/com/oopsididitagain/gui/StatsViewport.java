@@ -18,7 +18,7 @@ public class StatsViewport extends Viewport{
 	public void displayStats(Graphics g){
 		 Graphics2D g2 = (Graphics2D) g;
 		 g2.setPaint(Color.red);
-		 g2.fill(new Rectangle2D.Double(0,540, 600, 140));
+		 g2.fill(new Rectangle2D.Double(0,540, 600, 160));
 
 	}
 	
