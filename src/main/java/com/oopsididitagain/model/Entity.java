@@ -37,7 +37,15 @@ public class Entity extends GameObject {
 		System.out.println(stats);
 
 	}
+	public void unequip(WearableItem item) {
+		stats.detachBlob(item.getBlob());
+		System.out.println(stats);
+	}
 	
+	public StatCollection getStats() {
+		return stats;
+	}
+
 	public void printInventory() {
 	    HashMap<String , Item> hash = inventory.getInventory();
 		
