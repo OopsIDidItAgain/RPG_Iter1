@@ -16,6 +16,10 @@ public class PauseMenuViewport extends JPanel{
 		this.setBackground(new Color(0,0,100));
 		this.setPreferredSize(new Dimension(600, 600));
 	}
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		//g.drawString("hi", 300, 300);
+	}
 	public void render(){
 		repaint();
 		revalidate();
