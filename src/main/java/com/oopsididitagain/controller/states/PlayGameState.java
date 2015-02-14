@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.oopsididitagain.controller.Controller;
 import com.oopsididitagain.controller.PlayGameController;
+import com.oopsididitagain.gui.View;
 import com.oopsididitagain.io.KeyCode;
 import com.oopsididitagain.model.Entity;
 import com.oopsididitagain.model.GameMap;
@@ -131,6 +132,11 @@ public class PlayGameState extends GameState {
 		return "PlayGameState";
 	}
 
+	@Override
+	public void accept(View visitor) {
+		visitor.visit(this);
+	}
+	
 	@Override
 	public Controller getController() {
 		return PlayGameController.getInstance();

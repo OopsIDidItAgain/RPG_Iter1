@@ -2,6 +2,7 @@ package com.oopsididitagain.controller.states;
 
 import com.oopsididitagain.controller.Controller;
 import com.oopsididitagain.controller.PauseGameController;
+import com.oopsididitagain.gui.View;
 //import com.oopsididitagain.controller.PauseGameState;
 import com.oopsididitagain.menu.PauseMenu;
 
@@ -35,6 +36,11 @@ public class PauseGameState extends GameState {
 	@Override
 	public Controller getController() {
 		return PauseGameController.getInstance();
+	}
+
+	@Override
+	public void accept(View visitor) {
+		visitor.visit(this);
 	}
 
 }

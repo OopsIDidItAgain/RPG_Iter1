@@ -2,8 +2,8 @@ package com.oopsididitagain.controller.states;
 
 import com.oopsididitagain.controller.Controller;
 import com.oopsididitagain.controller.InventoryController;
+import com.oopsididitagain.gui.View;
 import com.oopsididitagain.menu.InventoryMenu;
-import com.oopsididitagain.model.Entity;
 import com.oopsididitagain.model.GameMap;
 import com.oopsididitagain.model.Inventory;
 
@@ -52,6 +52,11 @@ public class InventoryGameState extends GameState{
 	@Override
 	public Controller getController() {
 		return InventoryController.getInstance();
+	}
+
+	@Override
+	public void accept(View visitor) {
+		visitor.visit(this);
 	}
 
 }
