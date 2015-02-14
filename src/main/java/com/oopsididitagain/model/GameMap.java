@@ -86,10 +86,7 @@ public class GameMap {
 		if (tile.getEntity() != null) return false;
 		if (!tile.getTerrain().isMovableOnGround()) return false;
 		if (!tile.getTerrain().isMovableInAir()) return false;
-		/*
-		 * List<Item> items = tile.getItems();
-		 * for (Item item: items) {
-			if (item.)
+		/*for (Item item: tile.getItems()) {
 		}*/
 		return true;
 	}
