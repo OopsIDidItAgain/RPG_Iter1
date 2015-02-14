@@ -13,9 +13,15 @@ public class Armory {
 	public Item getBoots() 	{ return boots;  }
 	public Item getArmor() 	{ return armor;  }
 	
-	public void equipHelmet(Item helmet) {
+	public void equipItem(Item item) {
 		if (helmet.getName().equals("helmet"))
 			this.helmet = helmet;
+		else if (helmet.getName().equals("weapons"))
+			this.weapon = weapon;
+		else if (helmet.getName().equals("boots"))
+			this.boots = boots;
+		else if (helmet.getName().equals("armor"))
+			this.armor = armor;
 	}
 	
 	public void equipWeapon(Item weapon) {

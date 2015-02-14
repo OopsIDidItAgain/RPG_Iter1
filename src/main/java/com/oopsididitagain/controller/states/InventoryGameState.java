@@ -20,7 +20,7 @@ public class InventoryGameState extends GameState{
 		GameState state =  PlayGameState.getInstance();
 		this.map = ((PlayGameState) state).getGameMap();
 		this.inventory = ((PlayGameState) state).getAvatar().getInventory();
-		this.inventoryMenu = new InventoryMenu(inventory.getSize());
+		this.inventoryMenu = new InventoryMenu();
 	}
 	
 	public InventoryMenu getInventoryMenu() {
@@ -36,7 +36,8 @@ public class InventoryGameState extends GameState{
 	}
 
 	public void changeMenuOption(int keyCode){
-		inventoryMenu.changeMenuOption(keyCode);
+		int s = inventory.getSize();
+		inventoryMenu.changeMenuOption(keyCode,s);
 	};
 	
 	public static GameState getInstance() {

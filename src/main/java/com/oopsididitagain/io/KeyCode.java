@@ -14,5 +14,7 @@ public class KeyCode {
 	public static final int PAUSE = 0;
 	public static final int EXIT = -1;
 	public static final int ENTER = -35;
+	public static final int EQUIP = 26;//j
+	public static final int DROP = 27;//k
 	public static final int INVENTORY = 25;
 }
