@@ -2,8 +2,6 @@ package com.oopsididitagain.model;
 
 import java.io.Serializable;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
 import com.oopsididitagain.util.Direction;
 
 public class Position implements Serializable {
@@ -53,10 +51,11 @@ public class Position implements Serializable {
 	
 	@Override
 	public String toString() {
-		return new ToStringBuilder(this)
-			.append("x", x)
-			.append("y", y)
-			.append("facing", facing).build();
+		StringBuilder sb = new StringBuilder("");
+		sb.append(x + "\n");
+		sb.append(y + "\n");
+		sb.append(facing + "\n");
+		return sb.toString();
 	}
 
 }
