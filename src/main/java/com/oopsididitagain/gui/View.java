@@ -13,11 +13,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import com.oopsididitagain.controller.states.GameState;
+import com.oopsididitagain.controller.states.InventoryGameState;
 import com.oopsididitagain.controller.states.PauseGameState;
 import com.oopsididitagain.controller.states.PlayGameState;
+import com.oopsididitagain.menu.InventoryMenu;
 import com.oopsididitagain.menu.PauseMenu;
 import com.oopsididitagain.model.Entity;
 import com.oopsididitagain.model.GameMap;
+import com.oopsididitagain.model.Inventory;
 
 public class View extends JPanel {
 
@@ -27,6 +30,7 @@ public class View extends JPanel {
 	private PauseViewPort pauseViewPort;
 	private boolean paused;
 	private String currentGameState = "";
+	private InventoryViewport InventoryViewport;
 
 
 
@@ -59,7 +63,6 @@ public class View extends JPanel {
 		if (state instanceof PlayGameState) {
 			if(state.toString() == currentGameState){
 				this.repaint();
-				System.out.println("h");
 			}
 			else{
 				currentGameState = state.toString();
@@ -69,7 +72,6 @@ public class View extends JPanel {
 				this.areaViewport = new AreaViewport(map, avatar);
 				this.statsViewport = new StatsViewport();
 				this.repaint();
-				System.out.println("l");
 			}
 		} 
 		else if(state instanceof PauseGameState) {
@@ -81,6 +83,19 @@ public class View extends JPanel {
 				paused = true;
 				PauseMenu pm = ((PauseGameState) state).getPauseMenu();
 				this.pauseViewPort = new PauseViewPort(pm);
+				this.repaint();
+			}
+		}
+		else if(state instanceof InventoryGameState) {
+			if(state.toString() == currentGameState){
+				this.repaint();
+			}
+			else{
+				currentGameState = state.toString();
+				paused = true;
+				InventoryMenu im = ((InventoryGameState) state).getInventoryMenu();
+				Inventory inventory = ((InventoryGameState) state).getInventory(); 
+				this.InventoryViewport = new InventoryViewport(im,inventory);
 				this.repaint();
 			}
 		}
@@ -99,6 +114,11 @@ public class View extends JPanel {
 			areaViewport.displayMap(g);
 			statsViewport.displayStats(g);
 			PauseViewPort.displayPauseMenu(g);
+		}else if(currentGameState == "InventoryGameState"){
+			super.paintComponent(g);
+			areaViewport.displayMap(g);
+			statsViewport.displayStats(g);
+			InventoryViewport.displayInventoryMenu(g);
 		}
 		
 	}

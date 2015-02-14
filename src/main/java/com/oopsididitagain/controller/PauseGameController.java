@@ -4,7 +4,6 @@ import com.oopsididitagain.controller.states.ExitGameState;
 import com.oopsididitagain.controller.states.GameState;
 import com.oopsididitagain.controller.states.PlayGameState;
 import com.oopsididitagain.io.KeyCode;
-import com.oopsididitagain.menu.PauseMenu;
 import com.oopsididitagain.controller.states.PauseGameState;
 
 public class PauseGameController extends Controller {
@@ -32,8 +31,6 @@ public class PauseGameController extends Controller {
 			case KeyCode.SOUTH:
 				((PauseGameState)state).changeMenuOption(input);
 				break;
-				// do unpause or do nothing
-				
 			case KeyCode.EAST:
 				break;
 			case KeyCode.WEST:
@@ -55,10 +52,8 @@ public class PauseGameController extends Controller {
 			case KeyCode.EXIT:
 				state = ExitGameState.getInstance();
 				break;
-			case KeyCode.UP:
+			case KeyCode.ENTER:
 				break;
-			case KeyCode.DOWN:
-				break; 
 			// TODO perform the menu option
 			default:
 				break;
