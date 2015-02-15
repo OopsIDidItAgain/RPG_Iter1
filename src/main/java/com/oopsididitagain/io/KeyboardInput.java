@@ -44,6 +44,9 @@ public class KeyboardInput implements KeyListener {
 		case 'a': 
 			input = KeyCode.WEST;
 			break;
+		case 's':
+			input = KeyCode.USE;
+			break;
 		case 'p':
 			input = KeyCode.PAUSE;
 			break;
