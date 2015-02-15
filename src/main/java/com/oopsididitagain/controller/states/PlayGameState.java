@@ -16,6 +16,7 @@ import com.oopsididitagain.model.Sneak;
 import com.oopsididitagain.model.Terrain;
 import com.oopsididitagain.model.Tile;
 import com.oopsididitagain.util.CSVTool;
+import com.oopsididitagain.util.Direction;
 
 public class PlayGameState extends GameState {
 
@@ -60,31 +61,39 @@ public class PlayGameState extends GameState {
 		switch (keyCode) {
 		case KeyCode.NORTH:
 			updatedPosition = new Position(y - 1, x);
+			avatar.setFacing(Direction.NORTH);
 			break;
 		case KeyCode.SOUTH:
 			updatedPosition = new Position(y + 1, x);
+			avatar.setFacing(Direction.SOUTH);
 			break;
 		case KeyCode.EAST:
 			updatedPosition = new Position(y, x + 1);
+			avatar.setFacing(Direction.EAST);
 			break;
 		case KeyCode.WEST:
 			updatedPosition = new Position(y, x - 1);
+			avatar.setFacing(Direction.WEST);
 			break;
 		case KeyCode.NORTH_EAST:
 			updatedPosition = new Position(y - 1, x + 1);
+			avatar.setFacing(Direction.NORTHEAST);
 			break;
 		case KeyCode.NORTH_WEST:
 			updatedPosition = new Position(y - 1, x - 1);
+			avatar.setFacing(Direction.NORTHWEST);
 			break;
 		case KeyCode.SOUTH_EAST:
 			updatedPosition = new Position(y + 1, x + 1);
+			avatar.setFacing(Direction.SOUTHEAST);
 			break;
 		case KeyCode.SOUTH_WEST:
 			updatedPosition = new Position(y + 1, x - 1);
+			avatar.setFacing(Direction.SOUTHWEST);
 			break;
 
 		}
-
+		
 		if (map.checkIfValid(updatedPosition)) {
 			map.getTileAt(avatar.getPosition()).setEntity(null);
 			avatar.setPosition(updatedPosition);
