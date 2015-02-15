@@ -2,9 +2,9 @@ package com.oopsididitagain.model;
 
 public class StatBlob {
 	
-	public final static StatBlob SNEAK_DEFAULT = new StatBlob(3, 10, 50, 20, 20, 0, 50, 100, 100);
-	public final static StatBlob SMASHER_DEFAULT = new StatBlob(3, 50, 20, 10, 40, 0, 25, 100, 100);
-	public final static StatBlob SUMMONER_DEFAULT = new StatBlob(3, 15, 20, 50, 10, 0, 25, 100, 100);
+	public final static StatBlob SNEAK_DEFAULT = new StatBlob(3, 10, 50, 20, 20, 0, 50, 100, 25);
+	public final static StatBlob SMASHER_DEFAULT = new StatBlob(3, 50, 20, 10, 40, 0, 25, 100, 25);
+	public final static StatBlob SUMMONER_DEFAULT = new StatBlob(3, 15, 20, 50, 10, 0, 25, 100, 25);
 	
 	//primary stats
 	private Stat livesLeft;
@@ -106,20 +106,20 @@ public class StatBlob {
 	}
 	
 	public void merge(StatBlob other) {
-		this.livesLeft.add(other.livesLeft);
+		
+			this.livesLeft.add(other.livesLeft);
+		
+		if (this.lifeAmount.getValue() + other.lifeAmount.getValue() > 0) // aka you don't die
+			this.lifeAmount.add(other.lifeAmount);
+			// exceptions are handled in StatCollection class's mergeBlob() method
+		this.lifeAmount.add(other.lifeAmount);
 		this.intellect.add(other.intellect);
 		this.strength.add(other.strength);
 		this.agility.add(other.agility);
 		this.hardiness.add(other.hardiness);
 		this.experience.add(other.experience);
 		this.movement.add(other.movement);
-		this.lifeAmount.add(other.lifeAmount);
 		this.manaAmount.add(other.manaAmount);
-		
-		if(lifeAmount.getValue() <= 0) {
-			livesLeft.subtract(1);
-			lifeAmount.setValue(100);
-		}
 	}
 	
 	public void detach(StatBlob other) {

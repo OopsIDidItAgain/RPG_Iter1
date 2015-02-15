@@ -50,13 +50,15 @@ public class StatCollection {
 	public void mergeBlob(StatBlob blob) {
 		this.blob.merge(blob);
 		
+		// has to be handled here because it contains both primary and derived stats
 		if(this.blob.getLifeAmount() <= 0) {
-			this.blob.getLivesLeftStat().subtract(1);
-			this.blob.getLifeAmountStat().setValue(lifeCapacity.getValue());
+			if(this.blob.getLivesLeft() > 0)
+				this.blob.getLivesLeftStat().subtract(1);
+			this.blob.getLifeAmountStat().setValue(this.blob.getLivesLeft() == 0 ? 0 : lifeCapacity.getValue());
 		} else if(this.blob.getLifeAmount() > lifeCapacity.getValue()) {
 			this.blob.getLifeAmountStat().setValue(lifeCapacity.getValue());
 		}
-		
+				
 		deriveStats();
 	}
 	public void detachBlob(StatBlob blob) {
@@ -80,7 +82,7 @@ public class StatCollection {
 		return armorRating.getValue();
 	}
 
-	public double getLifeCapactiy() {
+	public double getLifeCapacity() {
 		return lifeCapacity.getValue();
 	}
 	
@@ -117,6 +119,36 @@ public class StatCollection {
 					"\nDefensive Rating: " + defensiveRating.toInt() +
 					"\nArmor Rating: " + armorRating.toInt());
 		
+		return sb.toString();
+	}
+	
+	public String primaryViewport() {
+		StringBuilder sb = new StringBuilder("");
+		
+		sb.append(	"PRIMARY STATS"+
+					"\nLives Left: "+(int)blob.getLivesLeft()+
+					"\nIntellect: "	+(int)blob.getIntellect()+
+					"\nStrength: "	+(int)blob.getStrength()+
+					"\nAgility: "	+(int)blob.getAgility()+
+					"\nHardiness: "	+(int)blob.getExperience()+
+					"\nMovement: "	+(int)blob.getMovement()+
+					"\nLife: "		+(int)blob.getLifeAmount()+
+									"/"+(int)getLifeCapacity()+
+					"\nMana: "		+(int)blob.getManaAmount()+
+									"/"+(int)getMana());
+		
+		return sb.toString();
+		
+	}
+	
+	public String derivedViewport() {
+		StringBuilder sb = new StringBuilder("");
+		
+		sb.append(	"SECONDARY STATS"+
+					"\nLevel: "				+(int)getLevel()+
+					"\nOffensive Rating: "	+(int)getOffensiveRating()+
+					"\nDefensiveRating: "	+(int)getDefensiveRating()+
+					"\nArmor Rating: "		+(int)getArmorRating());
 		return sb.toString();
 	}
 

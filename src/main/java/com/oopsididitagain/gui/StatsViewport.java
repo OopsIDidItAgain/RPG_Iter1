@@ -53,9 +53,12 @@ public class StatsViewport extends Viewport{
 
 		 
 		 // actually printing out primary and derived stats
-		 String pStats = avatar.getStats().primaryStats();
-		 String dStats = avatar.getStats().derivedStats();
-		 
+		 // String pStats = avatar.getStats().primaryStats();
+		 // String dStats = avatar.getStats().derivedStats();
+
+		 String pStats = avatar.getStats().primaryViewport();
+		 String dStats = avatar.getStats().derivedViewport();
+
 		 int x = 10, y = 537; // location of text
 		 
 		 g2.setPaint(Color.black);
