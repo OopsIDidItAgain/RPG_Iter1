@@ -2,7 +2,7 @@ package com.oopsididitagain.model;
 
 public class StatCollection {
 	//Armory of Entity in order to use it's equipped weapons and armor to calculate some stats
-	//Armory armory;
+	Armory armory;
 
 	private StatBlob blob;
 	
@@ -14,14 +14,13 @@ public class StatCollection {
 	private Stat defensiveRating;
 	private Stat armorRating;
 	
-	public StatCollection(/*Armory armory, */StatBlob blob) {
-		//primary
+	public StatCollection(Armory armory, StatBlob blob) {
 		this.blob = blob;
 		deriveStats();
 	}
 	
-	public StatCollection(/*Armory armory*/) {
-		//this.armory = armory;
+	public StatCollection(Armory armory) {
+		this.armory = armory;
 		this.blob = new StatBlob(0, 0, 0, 0, 0, 0, 0, 0, 0);
 	}
 	
@@ -30,9 +29,9 @@ public class StatCollection {
 		level = new Stat(this.blob.getExperience() * .1);
 		lifeCapacity = new Stat(.01 * this.blob.getHardiness());
 		manaCapacity = new Stat(25.0 + this.blob.getIntellect() * this.level.getValue());
-		offensiveRating = new Stat((blob.getStrength() * this.level.getValue())); // we need to account for offensive rating
+		offensiveRating = new Stat((blob.getStrength() + armory.getEquippedWeaponRank())* this.level.getValue()); 
 		defensiveRating = new Stat(blob.getAgility() * this.level.getValue());
-		armorRating = new Stat(blob.getHardiness()); // we need to account for armor rating
+		armorRating = new Stat(blob.getHardiness() * armory.getEquippedArmorRank()); 
 	}
 
 	public StatBlob getBlob() {
@@ -74,7 +73,17 @@ public class StatCollection {
 	
 	@Override
 	public String toString() {
-		return blob.toString();
+		StringBuilder sb = new StringBuilder("");
+		sb.append("PRIMARY STATS\n");
+		sb.append(blob.toString() + "\n");
+		sb.append("DERIVED STATS\n");
+		sb.append("Level: " + level + "\n");
+		sb.append("Life Capacity: " + lifeCapacity + "\n");
+		sb.append("Mana Capacity: " + manaCapacity + "\n");
+		sb.append("Offensive Rating: " + offensiveRating + "\n");
+		sb.append("Defensive Rating: " + defensiveRating + "\n");
+		sb.append("Armor Rating: " + armorRating + "\n");
+		return sb.toString();
 	}
 
 }

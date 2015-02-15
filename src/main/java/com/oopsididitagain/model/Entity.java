@@ -12,9 +12,9 @@ public class Entity extends GameObject {
 
     public Entity(String name, String imageName, Position position) {
     	super (name, imageName, position);
-    	stats = new StatCollection();
     	inventory = new Inventory();
     	armory = new Armory();
+    	stats = new StatCollection(armory);
     }
     
     public Entity(String name, String imageName, Position position, Occupation occupation) {
@@ -24,9 +24,7 @@ public class Entity extends GameObject {
     
 	public void addToInventory(TakeableItem takeableItem) {
 		this.inventory.addItem(takeableItem);
-		printInventory();
 	}
-	
 
 	public Inventory getInventory() {
 		return inventory;

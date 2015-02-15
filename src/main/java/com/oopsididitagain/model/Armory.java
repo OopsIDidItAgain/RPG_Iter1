@@ -77,7 +77,15 @@ public class Armory {
 		return temp;
 	}
 	
-	public int getEquippedWeaponRank() { return weapon.getRank(); }
-	public int getEquippedArmorRank() { return (armor.getRank() + boots.getRank() + helmet.getRank()); }
+	public int getEquippedWeaponRank() { 
+		return (weapon == null) ? 0 : weapon.getRank();
+	}
+
+	public int getEquippedArmorRank() { 
+		int armorRank = (armor == null) ? 0 : armor.getRank();
+		int bootsRank = (boots == null) ? 0 : boots.getRank();
+		int helmetRank = (helmet == null) ? 0 : helmet.getRank();
+		return armorRank + bootsRank + helmetRank;
+	}
 
 }
