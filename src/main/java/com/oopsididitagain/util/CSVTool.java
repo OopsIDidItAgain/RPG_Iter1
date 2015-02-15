@@ -26,22 +26,21 @@ public class CSVTool {
 			String[] splitLine = line.split(",");
 			int width = Integer.parseInt(splitLine[0]);
 			int height = Integer.parseInt(splitLine[1]);
+			System.out.println(width);
+		
 			mapArray = new String[height][width];
-			for(int i = 0; i != height; ++i){
-				line = input.readLine();
-				splitLine = line.split(",");
+			int i = 0;
+			while ((line = input.readLine()) != null) {
+				String [] split = line.split(",");
 				for(int j = 0; j!= width; ++j){
-					splitLine[j] = mapArray[i][j];
+					mapArray[i][j] = split[j];
 				}
+				++i;
 			}
-			for(int i = 0; i != height; ++i){
-				for(int j = 0; j!= width; ++j){
-					System.out.print(mapArray[i][j]);
-				}
-				System.out.println();
-			}
+			return mapArray;
 		
 		}catch (IOException ex) {
+			System.out.println("You're map failed to load");
 			ex.printStackTrace();
 		}
 		

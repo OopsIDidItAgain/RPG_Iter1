@@ -27,36 +27,6 @@ public class PlayGameState extends GameState {
 
 	private PlayGameState() {
 		super();
-		//GameState state =  AvatarCreationGameState.getInstance();
-		//this.avatar = AvatarCreationGameState.getAvatar();
-		this.avatar = new Entity("Avatar", "/avatar.png", new Position(0, 0));
-		Terrain one = Terrain.createTerrain(Terrain.GRASS);
-		Terrain two = Terrain.createTerrain(Terrain.MOUNTAIN);
-		Terrain three = Terrain.createTerrain(Terrain.WATER);
-		Tile[][] t = {
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one), new Tile(three), new Tile(two), new Tile(three), new Tile(three), new Tile(three), new Tile(three), new Tile(three), new Tile(three), new Tile(three) },
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one), new Tile(three), new Tile(two), new Tile(three), new Tile(one), new Tile(one), new Tile(three), new Tile(three), new Tile(one), new Tile(three) },
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one), new Tile(three), new Tile(two), new Tile(two), new Tile(one), new Tile(one), new Tile(three), new Tile(three), new Tile(one), new Tile(three) },
-				{ new Tile(one), new Tile(one), new Tile(one), new Tile(one), new Tile(three), new Tile(two), new Tile(two), new Tile(two), new Tile(one), new Tile(three), new Tile(three), new Tile(one), new Tile(three) },
-				{ new Tile(two), new Tile(two), new Tile(three), new Tile(one), new Tile(three), new Tile(two), new Tile(two), new Tile(one), new Tile(two), new Tile(two), new Tile(three), new Tile(one), new Tile(three) },
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one), new Tile(one), new Tile(one), new Tile(one), new Tile(two), new Tile(two), new Tile(two), new Tile(three), new Tile(one), new Tile(three) },
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one), new Tile(three), new Tile(two), new Tile(one), new Tile(two), new Tile(two), new Tile(two), new Tile(three), new Tile(one), new Tile(three) },
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one), new Tile(three), new Tile(two), new Tile(one), new Tile(two), new Tile(one), new Tile(one), new Tile(one), new Tile(one), new Tile(three) },
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one), new Tile(two), new Tile(two), new Tile(one), new Tile(two), new Tile(one), new Tile(two), new Tile(three), new Tile(one), new Tile(three) },
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one), new Tile(two), new Tile(two), new Tile(one), new Tile(one), new Tile(one), new Tile(two), new Tile(three), new Tile(one), new Tile(three) },
-				{ new Tile(one), new Tile(one), new Tile(one), new Tile(one), new Tile(two), new Tile(two), new Tile(two), new Tile(two), new Tile(two), new Tile(two), new Tile(three), new Tile(three), new Tile(three) }, };
-		t[0][0].setEntity(avatar);
-		List<Item> items = CSVTool.readItemDatabase();
-		
-		t[10][3].setAreaEffect(new AreaEffect(3, 0));
-
-		map = new GameMap(t, t.length, t[0].length);
-
-		for (Item i: items) {
-			Tile tile = map.getTileAt(i.getPosition());
-			tile.getItems().add(i);
-		}
-		
 	}
 
 	public GameMap getGameMap() {
@@ -120,7 +90,9 @@ public class PlayGameState extends GameState {
 			avatar.setPosition(updatedPosition);
 			map.getTileAt(updatedPosition).setEntity(avatar);
 		}
-		
+	}
+	
+	public void affectAvatar() {
 		map.getTileAt(avatar.getPosition()).getAreaEffect().affect(avatar);
 		System.out.println(avatar.getStats().getBlob().toString());
 	}

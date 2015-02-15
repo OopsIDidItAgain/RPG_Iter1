@@ -30,6 +30,8 @@ public class PlayGameController extends Controller{
 	@Override
 	public GameState handleInputAndUpdate(GameState state, int input) {
 		// TODO: send messages to avatar
+		((PlayGameState)state).affectAvatar();
+		
 		switch(input) {
 			case KeyCode.NORTH:
 			case KeyCode.SOUTH:
