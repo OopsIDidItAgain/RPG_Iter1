@@ -6,6 +6,7 @@ import com.oopsididitagain.controller.AvatarCreationController;
 import com.oopsididitagain.controller.Controller;
 import com.oopsididitagain.gui.View;
 import com.oopsididitagain.menu.AvatarCreationMenu;
+import com.oopsididitagain.model.AreaEffect;
 import com.oopsididitagain.model.Entity;
 import com.oopsididitagain.model.GameMap;
 import com.oopsididitagain.model.Item;
@@ -25,68 +26,48 @@ public class AvatarCreationGameState extends GameState{
 	
 	private AvatarCreationGameState() {
 		// TODO: get menu and pause game things
-		this.avatar = new Entity("Mario", "/avatar.png", new Position(0, 0));
-		this.avatarCreationMenu = new AvatarCreationMenu();
+		avatarCreationMenu = new AvatarCreationMenu();
 		
 	}
-	
-	private void CreateMap(){
+
+	private void createMap() {
 		Terrain one = Terrain.createTerrain(Terrain.GRASS);
 		Terrain two = Terrain.createTerrain(Terrain.MOUNTAIN);
 		Terrain three = Terrain.createTerrain(Terrain.WATER);
-		Tile[][] t = {
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
-						new Tile(three), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) },
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
-						new Tile(three), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) },
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
-						new Tile(three), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) },
-				{ new Tile(one), new Tile(one), new Tile(one), new Tile(one),
-						new Tile(three), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) },
-				{ new Tile(two), new Tile(two), new Tile(three), new Tile(one),
-						new Tile(three), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) },
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
-						new Tile(three), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) },
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
-						new Tile(three), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) },
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
-						new Tile(three), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) },
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
-						new Tile(two), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) },
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
-						new Tile(two), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) },
-				{ new Tile(one), new Tile(one), new Tile(one), new Tile(one),
-						new Tile(two), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) }, };
-	 	
+
+		int width;
+		int height;
+		String[][] maparr = CSVTool.readMap("/mapDatabase.csv");
+		height = maparr.length;
+		width = maparr[0].length;
+
+		Tile[][] t = new Tile[height][width];
+
+		for (int i = 0; i != height; ++i) {
+			for (int j = 0; j != width; ++j) {
+				String terrain = maparr[i][j];
+				if (terrain.equals("g")) {
+					t[i][j] = new Tile(one);
+				} else if (terrain.equals("m")) {
+					t[i][j] = new Tile(two);
+				} else if (terrain.equals("w")) {
+					t[i][j] = new Tile(three);
+				}
+
+			}
+		}
+
 		t[0][0].setEntity(avatar);
+		t[9][3].setAreaEffect(new AreaEffect(1,0)); 
 		List<Item> items = CSVTool.readItemDatabase();
-		
-		map = new GameMap(t, 11, 10);
-		for (Item i: items) {
+
+		map = new GameMap(t, height, width);
+		for (Item i : items) {
+			//System.out.print(i.toString());
 			Tile tile = map.getTileAt(i.getPosition());
 			tile.getItems().add(i);
 		}
 	}
-
-
-
-
-
-
-
-
-
 
 
 	public AvatarCreationMenu getAvatarCreationMenu() {
@@ -105,8 +86,14 @@ public class AvatarCreationGameState extends GameState{
 	public GameState doSelectOption(){
 		GameState state  = this;
 		int currentOption = avatarCreationMenu.getCurrentOption();
-		if(currentOption == AvatarCreationMenu.CONFIRM)
+		if(currentOption == AvatarCreationMenu.CONFIRM){
+			avatar = new Entity("Mario", "/avatar.png",new Position(0,0));
+			createMap();
 			state = PlayGameState.getInstance();
+			((PlayGameState)state).setMap(map);
+			((PlayGameState)state).setAvatar(avatar);
+		}
+		
 		return state;
 	}
 	
