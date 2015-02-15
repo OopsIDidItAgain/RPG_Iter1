@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.oopsididitagain.model.Item;
+import com.oopsididitagain.model.OneShotItem;
 import com.oopsididitagain.model.Position;
 import com.oopsididitagain.model.StatBlob;
 import com.oopsididitagain.model.TakeableItem;
@@ -129,7 +130,19 @@ public class CSVTool {
 						break;
 					}
 					case "OneShotItem": {
-						//item = new TakeableItem(false);
+						int livesLeft = Integer.parseInt(splitLine[6]);
+						int strength = Integer.parseInt(splitLine[7]);
+						int agility = Integer.parseInt(splitLine[8]);
+						int intellect = Integer.parseInt(splitLine[9]);
+						int hardiness = Integer.parseInt(splitLine[10]);
+						int experience = Integer.parseInt(splitLine[11]);
+						int movement = Integer.parseInt(splitLine[12]);
+						int lifeAmount = Integer.parseInt(splitLine[13]);
+						int manaAmount = Integer.parseInt(splitLine[14]);
+						StatBlob blob = new StatBlob(livesLeft, strength, agility, 
+								intellect, hardiness, experience, movement, 
+								lifeAmount, manaAmount);
+						item = new OneShotItem(name, imageName, position, blob);
 						break;
 					}
 					default: break;
