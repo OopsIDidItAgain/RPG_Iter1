@@ -1,12 +1,19 @@
 package com.oopsididitagain.controller.states;
 
+import java.util.List;
+
 import com.oopsididitagain.controller.AvatarCreationController;
 import com.oopsididitagain.controller.Controller;
 import com.oopsididitagain.gui.View;
 import com.oopsididitagain.menu.AvatarCreationMenu;
 import com.oopsididitagain.model.Entity;
+import com.oopsididitagain.model.GameMap;
+import com.oopsididitagain.model.Item;
 import com.oopsididitagain.model.Position;
 import com.oopsididitagain.model.Sneak;
+import com.oopsididitagain.model.Terrain;
+import com.oopsididitagain.model.Tile;
+import com.oopsididitagain.util.CSVTool;
 
 public class AvatarCreationGameState extends GameState{
 	
@@ -14,7 +21,7 @@ public class AvatarCreationGameState extends GameState{
 	private static AvatarCreationGameState instance;
 	private static AvatarCreationMenu avatarCreationMenu;
 	private static Entity avatar;
-	
+	private static GameMap map;
 	
 	private AvatarCreationGameState() {
 		// TODO: get menu and pause game things
@@ -23,6 +30,54 @@ public class AvatarCreationGameState extends GameState{
 		
 	}
 	
+	private void CreateMap(){
+		Terrain one = Terrain.createTerrain(Terrain.GRASS);
+		Terrain two = Terrain.createTerrain(Terrain.MOUNTAIN);
+		Terrain three = Terrain.createTerrain(Terrain.WATER);
+		Tile[][] t = {
+				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
+						new Tile(three), new Tile(two), new Tile(two),
+						new Tile(two), new Tile(two), new Tile(two) },
+				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
+						new Tile(three), new Tile(two), new Tile(two),
+						new Tile(two), new Tile(two), new Tile(two) },
+				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
+						new Tile(three), new Tile(two), new Tile(two),
+						new Tile(two), new Tile(two), new Tile(two) },
+				{ new Tile(one), new Tile(one), new Tile(one), new Tile(one),
+						new Tile(three), new Tile(two), new Tile(two),
+						new Tile(two), new Tile(two), new Tile(two) },
+				{ new Tile(two), new Tile(two), new Tile(three), new Tile(one),
+						new Tile(three), new Tile(two), new Tile(two),
+						new Tile(two), new Tile(two), new Tile(two) },
+				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
+						new Tile(three), new Tile(two), new Tile(two),
+						new Tile(two), new Tile(two), new Tile(two) },
+				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
+						new Tile(three), new Tile(two), new Tile(two),
+						new Tile(two), new Tile(two), new Tile(two) },
+				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
+						new Tile(three), new Tile(two), new Tile(two),
+						new Tile(two), new Tile(two), new Tile(two) },
+				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
+						new Tile(two), new Tile(two), new Tile(two),
+						new Tile(two), new Tile(two), new Tile(two) },
+				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
+						new Tile(two), new Tile(two), new Tile(two),
+						new Tile(two), new Tile(two), new Tile(two) },
+				{ new Tile(one), new Tile(one), new Tile(one), new Tile(one),
+						new Tile(two), new Tile(two), new Tile(two),
+						new Tile(two), new Tile(two), new Tile(two) }, };
+	 	
+		t[0][0].setEntity(avatar);
+		List<Item> items = CSVTool.readItemDatabase();
+		
+		map = new GameMap(t, 11, 10);
+		for (Item i: items) {
+			Tile tile = map.getTileAt(i.getPosition());
+			tile.getItems().add(i);
+		}
+	}
 
 
 

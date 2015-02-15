@@ -78,7 +78,6 @@ public class PlayGameState extends GameState {
 			tile.getItems().add(i);
 		}
 		
-
 	}
 
 	public GameMap getGameMap() {
@@ -87,6 +86,22 @@ public class PlayGameState extends GameState {
 
 	public Entity getAvatar() {
 		return avatar;
+	}
+	
+	public void setMap(GameMap map) {
+		this.map = map;
+	}
+	
+	public List<GameObject> getGameObjects() {
+		return gameObjects;
+	}
+
+	public void setGameObjects(List<GameObject> gameObjects) {
+		this.gameObjects = gameObjects;
+	}
+
+	public void setAvatar(Entity avatar) {
+		this.avatar = avatar;
 	}
 
 	public void moveAvatar(int keyCode) {
