@@ -29,7 +29,7 @@ public class PlayGameState extends GameState {
 		super();
 		//GameState state =  AvatarCreationGameState.getInstance();
 		//this.avatar = AvatarCreationGameState.getAvatar();
-		this.avatar = new Entity("Avatar", "/avatar.png", new Position(0, 0));
+		this.avatar = AvatarCreationGameState.getAvatar();
 		Terrain one = Terrain.createTerrain(Terrain.GRASS);
 		Terrain two = Terrain.createTerrain(Terrain.MOUNTAIN);
 		Terrain three = Terrain.createTerrain(Terrain.WATER);
@@ -120,7 +120,9 @@ public class PlayGameState extends GameState {
 			avatar.setPosition(updatedPosition);
 			map.getTileAt(updatedPosition).setEntity(avatar);
 		}
-		
+	}
+	
+	public void affectAvatar() {
 		map.getTileAt(avatar.getPosition()).getAreaEffect().affect(avatar);
 		System.out.println(avatar.getStats().getBlob().toString());
 	}
