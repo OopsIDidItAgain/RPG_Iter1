@@ -1,17 +1,22 @@
 package com.oopsididitagain.model;
 
+import com.oopsididitagain.util.WearableItemType;
+
 public class WearableItem extends TakeableItem {
 
 
 	private static final long serialVersionUID = -8654005789531505596L;
 	private int rank;
 	private boolean equipped = false;
+	private WearableItemType type;
 	private StatBlob blob;
 
-	public WearableItem(String name, String imageName, Position position, int rank, StatBlob blob) {
+	public WearableItem(String name, String imageName, Position position, int rank, 
+			StatBlob blob, WearableItemType type) {
 		super(name, imageName, position);
 		this.rank = rank;
 		this.blob = blob;
+		this.type = type;
 	}
 
 	
@@ -43,6 +48,11 @@ public class WearableItem extends TakeableItem {
 	
 	public void accept(Entity visitor) {
 		visitor.visit(this);	
+	}
+
+
+	public WearableItemType getType() {
+		return type;
 	}
 	
 }

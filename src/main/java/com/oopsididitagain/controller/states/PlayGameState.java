@@ -11,6 +11,7 @@ import com.oopsididitagain.model.GameMap;
 import com.oopsididitagain.model.GameObject;
 import com.oopsididitagain.model.Item;
 import com.oopsididitagain.model.Position;
+import com.oopsididitagain.model.Sneak;
 import com.oopsididitagain.model.Terrain;
 import com.oopsididitagain.model.Tile;
 import com.oopsididitagain.util.CSVTool;
@@ -23,7 +24,7 @@ public class PlayGameState extends GameState {
 	private Entity avatar;
 
 	private PlayGameState() {
-		avatar = new Entity("Mario", "/avatar.png", new Position(0, 0));
+		avatar = new Entity("Mario", "/avatar.png", new Position(0, 0), new Sneak());
 		Terrain one = Terrain.createTerrain(Terrain.GRASS);
 		Terrain two = Terrain.createTerrain(Terrain.MOUNTAIN);
 		Terrain three = Terrain.createTerrain(Terrain.WATER);

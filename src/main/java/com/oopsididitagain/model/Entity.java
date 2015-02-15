@@ -33,13 +33,21 @@ public class Entity extends GameObject {
 	}
 	
 	public void equip(WearableItem item) {
+		WearableItem conflict = armory.equip(item);
+		if (conflict != null) {
+			stats.detachBlob(conflict.getBlob());
+			conflict.setEquipped(false);
+		}
 		stats.mergeBlob(item.getBlob());
 		item.setEquipped(true);
 		System.out.println(stats);
-
 	}
 	public void unequip(WearableItem item) {
-		stats.detachBlob(item.getBlob());
+		WearableItem removed = armory.unequip(item);
+
+		/* Double checks the armory to make sure the removed item is actually present */
+		if (removed == null) return;
+		stats.detachBlob(removed.getBlob());
 		item.setEquipped(false);
 		System.out.println(stats);
 	}
