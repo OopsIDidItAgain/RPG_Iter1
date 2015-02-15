@@ -22,6 +22,7 @@ public class StatCollection {
 	public StatCollection(Armory armory) {
 		this.armory = armory;
 		this.blob = new StatBlob(0, 0, 0, 0, 0, 0, 0, 0, 0);
+		deriveStats();
 	}
 	
 	private void deriveStats() {

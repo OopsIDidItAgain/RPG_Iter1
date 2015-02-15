@@ -2,7 +2,6 @@ package com.oopsididitagain.model;
 import com.oopsididitagain.gui.InventoryViewport;
 import com.oopsididitagain.gui.View;
 
-/* Should this be an interface maybe? Takeable? */
 public class TakeableItem extends Item {
 	private static final long serialVersionUID = -7151959478242233966L;
 	
@@ -21,4 +20,18 @@ public class TakeableItem extends Item {
 		inventoryViewport.visit(this);	
 	}
 
+<<<<<<< HEAD
+	@Override
+	public void removeItem(Entity visitor) {
+		visitor.removeItem(this);
+		
+	}
+
+	
+
+	
+	
+	
+=======
+>>>>>>> 5f3d838be588648a1aac7e9e10e4920a93f12286
 }

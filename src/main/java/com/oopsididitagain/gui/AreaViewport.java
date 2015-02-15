@@ -5,10 +5,14 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.util.List;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import com.oopsididitagain.model.Entity;
 import com.oopsididitagain.model.GameMap;
+import com.oopsididitagain.model.Decal;
 
 
 public class AreaViewport extends Viewport{
@@ -117,7 +121,21 @@ public class AreaViewport extends Viewport{
 			}
 			widthpos = 0;
 			heightpos += h;
+			
+					
+			
 		}
+		
+		// printing lives left as hearts
+		int livesLeft = avatar.getStats().getBlob().getLivesLeft();
+		if (livesLeft > 0) {	
+			int y = 20, x = 560;
+			for (int i = 0; i < livesLeft; i++) {
+				g.drawImage(Decal.HEART_DECAL.getImage(), x, y, 25, 30, null);
+				x -= 30;
+			}
+		}
+
 		/*
 		if(paused) {
 			System.out.println("paused");

@@ -8,12 +8,47 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.oopsididitagain.model.Item;
+import com.oopsididitagain.model.ObstacleItem;
+import com.oopsididitagain.model.OneShotItem;
 import com.oopsididitagain.model.Position;
 import com.oopsididitagain.model.StatBlob;
 import com.oopsididitagain.model.TakeableItem;
 import com.oopsididitagain.model.WearableItem;
 
 public class CSVTool {
+	
+	public static String[][] readMap(String map){
+		String [][] mapArray;
+		try {
+			InputStream in = CSVTool.class.getResourceAsStream(map);
+			BufferedReader input = new BufferedReader(new InputStreamReader(in));
+			String line = input.readLine();
+			line = input.readLine();
+			String[] splitLine = line.split(",");
+			int width = Integer.parseInt(splitLine[0]);
+			int height = Integer.parseInt(splitLine[1]);
+			System.out.println(width);
+		
+			mapArray = new String[height][width];
+			int i = 0;
+			while ((line = input.readLine()) != null) {
+				String [] split = line.split(",");
+				for(int j = 0; j!= width; ++j){
+					mapArray[i][j] = split[j];
+				}
+				++i;
+			}
+			return mapArray;
+		
+		}catch (IOException ex) {
+			System.out.println("You're map failed to load");
+			ex.printStackTrace();
+		}
+		
+	System.out.println("You're map failed to load");
+	return null;
+}
+		
 	public static String[][] readImage(String image){
 		String [][] img =  new String [1][4];
 		try {
@@ -87,15 +122,27 @@ public class CSVTool {
 						break;
 					}
 					case "Obstacle": {
-						//item = new TakeableItem(false);
+						item = new ObstacleItem(name, imageName, position);
+						System.out.println(imageName);
 						break;
 					}
-					case "InteractiveItem": {
-						//item = new TakeableItem(false);
+					case "Interactive": {
 						break;
 					}
-					case "OneShotItem": {
-						//item = new TakeableItem(false);
+					case "OneShot": {
+						int livesLeft = Integer.parseInt(splitLine[6]);
+						int strength = Integer.parseInt(splitLine[7]);
+						int agility = Integer.parseInt(splitLine[8]);
+						int intellect = Integer.parseInt(splitLine[9]);
+						int hardiness = Integer.parseInt(splitLine[10]);
+						int experience = Integer.parseInt(splitLine[11]);
+						int movement = Integer.parseInt(splitLine[12]);
+						int lifeAmount = Integer.parseInt(splitLine[13]);
+						int manaAmount = Integer.parseInt(splitLine[14]);
+						StatBlob blob = new StatBlob(livesLeft, strength, agility, 
+								intellect, hardiness, experience, movement, 
+								lifeAmount, manaAmount);
+						item = new OneShotItem(name, imageName, position, blob);
 						break;
 					}
 					default: break;

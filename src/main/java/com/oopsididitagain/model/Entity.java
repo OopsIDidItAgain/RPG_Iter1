@@ -87,6 +87,7 @@ public class Entity extends GameObject {
 			this.equip(wearableItem);
 		}
 	}
+
 	public void visit(TakeableItem takeableitem){
 		System.out.println("takeable");
 	}
@@ -102,6 +103,10 @@ public class Entity extends GameObject {
 	public void visit(ObstacleItem obstacleItem) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void visit(OneShotItem item) {
+		stats.mergeBlob(item.getBlob());
 	}
 
 

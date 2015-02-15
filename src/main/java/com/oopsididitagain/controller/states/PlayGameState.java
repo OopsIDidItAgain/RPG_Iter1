@@ -16,6 +16,7 @@ import com.oopsididitagain.model.Sneak;
 import com.oopsididitagain.model.Terrain;
 import com.oopsididitagain.model.Tile;
 import com.oopsididitagain.util.CSVTool;
+import com.oopsididitagain.util.Direction;
 
 public class PlayGameState extends GameState {
 
@@ -27,58 +28,6 @@ public class PlayGameState extends GameState {
 
 	private PlayGameState() {
 		super();
-		GameState state =  AvatarCreationGameState.getInstance();
-		this.avatar = AvatarCreationGameState.getAvatar();
-		Terrain one = Terrain.createTerrain(Terrain.GRASS);
-		Terrain two = Terrain.createTerrain(Terrain.MOUNTAIN);
-		Terrain three = Terrain.createTerrain(Terrain.WATER);
-		Tile[][] t = {
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
-						new Tile(three), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) },
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
-						new Tile(three), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) },
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
-						new Tile(three), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) },
-				{ new Tile(one), new Tile(one), new Tile(one), new Tile(one),
-						new Tile(three), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) },
-				{ new Tile(two), new Tile(two), new Tile(three), new Tile(one),
-						new Tile(three), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) },
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
-						new Tile(three), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) },
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
-						new Tile(three), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) },
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
-						new Tile(three), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) },
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
-						new Tile(two), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) },
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
-						new Tile(two), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) },
-				{ new Tile(one), new Tile(one), new Tile(one), new Tile(one),
-						new Tile(two), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) }, };
-		t[0][0].setEntity(avatar);
-		List<Item> items = CSVTool.readItemDatabase();
-		
-		t[10][3].setAreaEffect(new AreaEffect(3, 0));
-		
-		map = new GameMap(t, 11, 10);
-
-		for (Item i: items) {
-			Tile tile = map.getTileAt(i.getPosition());
-			tile.getItems().add(i);
-		}
-		
-
 	}
 
 	public GameMap getGameMap() {
@@ -88,6 +37,22 @@ public class PlayGameState extends GameState {
 	public Entity getAvatar() {
 		return avatar;
 	}
+	
+	public void setMap(GameMap map) {
+		this.map = map;
+	}
+	
+	public List<GameObject> getGameObjects() {
+		return gameObjects;
+	}
+
+	public void setGameObjects(List<GameObject> gameObjects) {
+		this.gameObjects = gameObjects;
+	}
+
+	public void setAvatar(Entity avatar) {
+		this.avatar = avatar;
+	}
 
 	public void moveAvatar(int keyCode) {
 		int x = avatar.getPosition().getX();
@@ -96,39 +61,48 @@ public class PlayGameState extends GameState {
 		switch (keyCode) {
 		case KeyCode.NORTH:
 			updatedPosition = new Position(y - 1, x);
+			avatar.setFacing(Direction.NORTH);
 			break;
 		case KeyCode.SOUTH:
 			updatedPosition = new Position(y + 1, x);
+			avatar.setFacing(Direction.SOUTH);
 			break;
 		case KeyCode.EAST:
 			updatedPosition = new Position(y, x + 1);
+			avatar.setFacing(Direction.EAST);
 			break;
 		case KeyCode.WEST:
 			updatedPosition = new Position(y, x - 1);
+			avatar.setFacing(Direction.WEST);
 			break;
 		case KeyCode.NORTH_EAST:
 			updatedPosition = new Position(y - 1, x + 1);
+			avatar.setFacing(Direction.NORTHEAST);
 			break;
 		case KeyCode.NORTH_WEST:
 			updatedPosition = new Position(y - 1, x - 1);
+			avatar.setFacing(Direction.NORTHWEST);
 			break;
 		case KeyCode.SOUTH_EAST:
 			updatedPosition = new Position(y + 1, x + 1);
+			avatar.setFacing(Direction.SOUTHEAST);
 			break;
 		case KeyCode.SOUTH_WEST:
 			updatedPosition = new Position(y + 1, x - 1);
+			avatar.setFacing(Direction.SOUTHWEST);
 			break;
 
 		}
-
+		
 		if (map.checkIfValid(updatedPosition)) {
 			map.getTileAt(avatar.getPosition()).setEntity(null);
 			avatar.setPosition(updatedPosition);
 			map.getTileAt(updatedPosition).setEntity(avatar);
 		}
-		
+	}
+	
+	public void affectAvatar() {
 		map.getTileAt(avatar.getPosition()).getAreaEffect().affect(avatar);
-		System.out.println(avatar.getStats().getBlob().toString());
 	}
 
 	public static GameState getInstance() {
