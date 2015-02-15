@@ -6,7 +6,6 @@ import com.oopsididitagain.controller.Controller;
 import com.oopsididitagain.controller.PlayGameController;
 import com.oopsididitagain.gui.View;
 import com.oopsididitagain.io.KeyCode;
-import com.oopsididitagain.model.AreaEffect;
 import com.oopsididitagain.model.Entity;
 import com.oopsididitagain.model.GameMap;
 import com.oopsididitagain.model.GameObject;
@@ -33,45 +32,23 @@ public class PlayGameState extends GameState {
 		Terrain two = Terrain.createTerrain(Terrain.MOUNTAIN);
 		Terrain three = Terrain.createTerrain(Terrain.WATER);
 		Tile[][] t = {
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
-						new Tile(three), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) },
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
-						new Tile(three), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) },
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
-						new Tile(three), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) },
-				{ new Tile(one), new Tile(one), new Tile(one), new Tile(one),
-						new Tile(three), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) },
-				{ new Tile(two), new Tile(two), new Tile(three), new Tile(one),
-						new Tile(three), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) },
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
-						new Tile(three), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) },
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
-						new Tile(three), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) },
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
-						new Tile(three), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) },
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
-						new Tile(two), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) },
-				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one),
-						new Tile(two), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) },
-				{ new Tile(one), new Tile(one), new Tile(one), new Tile(one),
-						new Tile(two), new Tile(two), new Tile(two),
-						new Tile(two), new Tile(two), new Tile(two) }, };
+				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one), new Tile(three), new Tile(two), new Tile(three), new Tile(three), new Tile(three), new Tile(three), new Tile(three), new Tile(three), new Tile(three) },
+				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one), new Tile(three), new Tile(two), new Tile(three), new Tile(one), new Tile(one), new Tile(three), new Tile(three), new Tile(one), new Tile(three) },
+				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one), new Tile(three), new Tile(two), new Tile(two), new Tile(one), new Tile(one), new Tile(three), new Tile(three), new Tile(one), new Tile(three) },
+				{ new Tile(one), new Tile(one), new Tile(one), new Tile(one), new Tile(three), new Tile(two), new Tile(two), new Tile(two), new Tile(one), new Tile(three), new Tile(three), new Tile(one), new Tile(three) },
+				{ new Tile(two), new Tile(two), new Tile(three), new Tile(one), new Tile(three), new Tile(two), new Tile(two), new Tile(one), new Tile(two), new Tile(two), new Tile(three), new Tile(one), new Tile(three) },
+				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one), new Tile(one), new Tile(one), new Tile(one), new Tile(two), new Tile(two), new Tile(two), new Tile(three), new Tile(one), new Tile(three) },
+				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one), new Tile(three), new Tile(two), new Tile(one), new Tile(two), new Tile(two), new Tile(two), new Tile(three), new Tile(one), new Tile(three) },
+				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one), new Tile(three), new Tile(two), new Tile(one), new Tile(two), new Tile(one), new Tile(one), new Tile(one), new Tile(one), new Tile(three) },
+				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one), new Tile(two), new Tile(two), new Tile(one), new Tile(two), new Tile(one), new Tile(two), new Tile(three), new Tile(one), new Tile(three) },
+				{ new Tile(one), new Tile(two), new Tile(three), new Tile(one), new Tile(two), new Tile(two), new Tile(one), new Tile(one), new Tile(one), new Tile(two), new Tile(three), new Tile(one), new Tile(three) },
+				{ new Tile(one), new Tile(one), new Tile(one), new Tile(one), new Tile(two), new Tile(two), new Tile(two), new Tile(two), new Tile(two), new Tile(two), new Tile(three), new Tile(three), new Tile(three) }, };
 		t[0][0].setEntity(avatar);
 		List<Item> items = CSVTool.readItemDatabase();
 		
 		t[10][3].setAreaEffect(new AreaEffect(3, 0));
-		
-		map = new GameMap(t, 11, 10);
+
+		map = new GameMap(t, t.length, t[0].length);
 
 		for (Item i: items) {
 			Tile tile = map.getTileAt(i.getPosition());

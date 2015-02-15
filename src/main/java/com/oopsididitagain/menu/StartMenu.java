@@ -45,23 +45,8 @@ public class StartMenu extends Menu {
 		return selectedOption;
 	}
 
-	public GameState doSelectOption() {
-		GameState state = StartGameState.getInstance();
-		switch(selectedOption) {
-		case NEW_GAME:
-			state = AvatarCreationGameState.getInstance();
-			break;
-		case LOAD_GAME:
-			state = LoadGameState.getInstance();
-			break;
-		case EXIT_GAME:
-			state = ExitGameState.getInstance();
-			break;
-		default:
-			break;
-		}
-		
-		return state;
+	public int doSelectOption() {
+		return selectedOption;
 	}
 
 }

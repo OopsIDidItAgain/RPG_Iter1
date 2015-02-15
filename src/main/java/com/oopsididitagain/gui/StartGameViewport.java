@@ -16,25 +16,27 @@ public class StartGameViewport {
 	public void displayStartMenu(Graphics g) {
 		int selectedOption = startMenu.getSelectedOption();
 
+		String newgame = "New Game";
+		String loadgame = "Load Game";
+		String exitgame = "ExitGame";
+		
 		switch (selectedOption) {
 		case StartMenu.NEW_GAME:
-			g.drawString("> New Game <", 100, 250);
-			g.drawString("  Load Game", 100, 300);
-			g.drawString("  Exit Game", 100, 350);
+			newgame = "> "+newgame+" <";
 			break;
 		case StartMenu.LOAD_GAME:
-			g.drawString("  New Game", 100, 250);
-			g.drawString("> Load Game <", 100, 300);
-			g.drawString("  Exit Game", 100, 350);
+			loadgame = "> "+loadgame+" <";
 			break;
 		case StartMenu.EXIT_GAME:
-			g.drawString("  New Game", 100, 250);
-			g.drawString("  Load Game", 100, 300);
-			g.drawString("> Exit Game <", 100, 350);
+			exitgame = "> "+exitgame+" <";
 			break;
 		default:
 			break;
 		}
+
+		g.drawString(newgame, 100, 250);
+		g.drawString(loadgame, 100, 300);
+		g.drawString(exitgame, 100, 350);
 	}
 
 }

@@ -94,20 +94,20 @@ public class AvatarCreationGameState extends GameState{
 	}
 	
 
-	public void changeMenuOption(int keyCode){
-		avatarCreationMenu.changeMenuOption(keyCode);
-	};
-	
-	public int getSelectedOption(){
-		return avatarCreationMenu.getSelectedOption();
+	public void changeOptionType(int input) {
+		avatarCreationMenu.changeOptionType(input);
 	}
 	
-	
-	public void setOptionType(int n){
-		avatarCreationMenu.setOptionType(n);
+	public void changeOptionValue(int input){
+		avatarCreationMenu.changeOptionValue(input);
 	}
-	public int getOptionType(){
-		return avatarCreationMenu.getOptionType();
+	
+	public GameState doSelectOption(){
+		GameState state  = this;
+		int currentOption = avatarCreationMenu.getCurrentOption();
+		if(currentOption == AvatarCreationMenu.CONFIRM)
+			state = PlayGameState.getInstance();
+		return state;
 	}
 	
 	public static GameState getInstance() {
@@ -119,65 +119,7 @@ public class AvatarCreationGameState extends GameState{
 	
 	public String toString(){
 		return "AvatarCreationGameState";
-	}
-	public void changeAvatar(int optionType, int change){
-		switch(optionType){
-		case AvatarCreationMenu.OCCUPATION:
-			switch(change){
-				case 0:
-					avatar.changeOccupation(new Sneak());
-					break;
-				case 1:
-					//avatar.changeOccupation(new Summoner());
-					break;
-				case 2:
-					//avatar.changeOccupation(new Smasher());
-					break;
-			}
-			break;
-		case AvatarCreationMenu.GENDER:
-			switch(change){
-			case 0:
-				//avatar.setOccupation();
-				break;
-			case 1:
-				//avatar.setOccupation();
-				break;
-		}
-		break;
-		case AvatarCreationMenu.HAIRCOLOR:
-			switch(change){
-			case 0:
-				//avatar.setOccupation();
-				break;
-			case 1:
-				//avatar.setOccupation();
-				break;
-			case 2:
-				//avatar.setOccupation();
-				break;
-		}
-		break;
-		case AvatarCreationMenu.SHIRTCOLOR:
-			switch(change){
-			case 0:
-				//avatar.setOccupation();
-				break;
-			case 1:
-				//avatar.setOccupation();
-				break;
-			case 2:
-				//avatar.setOccupation();
-				break;
-			case 3:
-				//avatar.setOccupation();
-				break;
-		}
-		break;
-			
-		}
-	}
-	
+	}	
 	
 	@Override
 	public Controller getController() {
@@ -193,5 +135,6 @@ public class AvatarCreationGameState extends GameState{
 	public static Entity getAvatar() {
 		return avatar;
 	}
+
 
 }
