@@ -102,12 +102,10 @@ public class AreaViewport extends Viewport{
 		int right = getRight();
 		int widthpos = 0;
 		int heightpos = 0;
-		Image img;
 		int h = 60;
 		int w = 60;
 		for(int i = top; i != bottom; ++i){
 			for(int j = left; j != right; ++j){
-				img = map.getTileAt(i,j).getTerrain().getImage();
 				List<Image> images = map.getTileAt(i, j).getImages(); 
 				for (int k = 0; k < images.size(); ++k) {
 					Image image = images.get(k);
