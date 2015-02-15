@@ -33,13 +33,17 @@ public class StatsViewport extends Viewport{
 		 g2.setPaint(Color.black);
 		 g2.fill(new Rectangle2D.Double(0,540, 600, 160));
 		 
-		 // statsBox
+		 // primaryStatsBox
 		 g2.setPaint(Color.yellow);
-		 g2.fill(new Rectangle2D.Double(0, 540, 138, 160));
+		 g2.fill(new Rectangle2D.Double(0, 540, 150, 160));
+		 
+		 // derivedStatsBox
+		 g2.setPaint(Color.green);
+		 g2.fill(new Rectangle2D.Double(150,540,150,160));
 		 
 		 // experienceBar
 		 g2.setPaint(Color.CYAN);
-		 g2.fill(new Ellipse2D.Double(220,540,138,138));
+		 g2.fill(new Ellipse2D.Double(305,540,138,138));
 		 
 		 // our guy's face bar
 		 if (avatar.getStats().getBlob().getLivesLeft() != 0)
@@ -47,14 +51,22 @@ public class StatsViewport extends Viewport{
 		 else
 			g2.drawImage(sadface, 450,540,150,140, null);
 
-		 String stats = avatar.getStats().toString();
+		 
+		 // actually printing out primary and derived stats
+		 String pStats = avatar.getStats().primaryStats();
+		 String dStats = avatar.getStats().derivedStats();
+		 
 		 int x = 10, y = 537; // location of text
 		 
 		 g2.setPaint(Color.black);
-		 g2.setFont(new Font("Default", Font.BOLD, 12));
-		 for (String line : stats.split("\n"))
+		 g2.setFont(new Font("Default", Font.BOLD, 11));
+		 for (String line : pStats.split("\n"))
 		        g2.drawString(line, x, y += g2.getFontMetrics().getHeight());
 		        // graphics2d doesn't handle "\n" as new lines, so we have to split it
+		 
+		 x+=150; y = 537;
+		 for (String line : dStats.split("\n"))
+			 g2.drawString(line, x, y+= g2.getFontMetrics().getHeight());
 		 
 		 
 	}

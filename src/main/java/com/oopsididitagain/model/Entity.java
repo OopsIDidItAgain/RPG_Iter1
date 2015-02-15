@@ -85,6 +85,13 @@ public class Entity extends GameObject {
 		this.stats.mergeBlob(occupation.getStats());
 		this.occupation = occupation;
 	}
+
+	public void visit(ObstacleItem obstacleItem) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 	
 }
 

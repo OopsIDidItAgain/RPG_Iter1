@@ -35,6 +35,10 @@ public class StartGameState extends GameState {
 		return StartGameController.getInstance();
 	}
 
+	public String toString(){
+		return "StartGameState";
+	}
+	
 	public void changeMenuOption(int input) {
 		startMenu.changeMenuOption(input);
 	}

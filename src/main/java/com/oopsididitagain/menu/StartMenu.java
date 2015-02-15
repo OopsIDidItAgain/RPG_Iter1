@@ -8,9 +8,9 @@ import com.oopsididitagain.controller.states.StartGameState;
 import com.oopsididitagain.io.KeyCode;
 
 public class StartMenu extends Menu {
-	private final int NEW_GAME = 1;
-	private final int LOAD_GAME = 2;
-	private final int EXIT_GAME = 3;
+	public static final int NEW_GAME = 1;
+	public static final int LOAD_GAME = 2;
+	public static final int EXIT_GAME = 3;
 	private int selectedOption;
 
 	public StartMenu() {

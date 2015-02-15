@@ -4,7 +4,7 @@ public class StatBlob {
 	
 	public final static StatBlob SNEAK_DEFAULT = new StatBlob(1, 10, 50, 20, 20, 0, 50, 100, 100);
 	public final static StatBlob SMASHER_DEFAULT = new StatBlob(1, 50, 20, 10, 40, 0, 25, 100, 100);
-	public final static StatBlob SUMMONER = new StatBlob(1, 15, 20, 50, 10, 0, 25, 100, 100);
+	public final static StatBlob SUMMONER_DEFAULT = new StatBlob(1, 15, 20, 50, 10, 0, 25, 100, 100);
 	
 	//primary stats
 	private Stat livesLeft;
@@ -100,15 +100,15 @@ public class StatBlob {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder("");
-		sb.append("Lives Left - " + livesLeft + "\n");
-		sb.append("Intellect - " + intellect + "\n");
-		sb.append("Strength - " + strength + "\n");
-		sb.append("Agility - " + agility + "\n");
-		sb.append("Hardiness - " + hardiness + "\n");
-		sb.append("Experience - " + experience + "\n");
-		sb.append("Movement - " + movement + "\n");
-		sb.append("Life Amount - " + lifeAmount + "\n");
-		sb.append("Mana Amount - " + manaAmount + "\n");
+		sb.append(	"Lives Left: " + livesLeft.toInt() +
+					"\nIntellect: " + intellect.toInt() +
+					"\nStrength: " + strength.toInt() +
+					"\nAgility: " + agility.toInt() +
+					"\nHardiness: " + hardiness.toInt() +
+					"\nExperience: " + experience.toInt() +
+					"\nMovement: " + movement.toInt() + 
+					"\nLife Amount: " + lifeAmount.toInt() +
+					"\nMana Amount: " + manaAmount.toInt());
 		return sb.toString();
 	}
 }
