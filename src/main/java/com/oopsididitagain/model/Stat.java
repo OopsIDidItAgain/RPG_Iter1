@@ -25,4 +25,6 @@ public class Stat {
 		return Double.toString(value);
 	}
 	
+	public int toInt() { return (int)value; }
+	
 }
