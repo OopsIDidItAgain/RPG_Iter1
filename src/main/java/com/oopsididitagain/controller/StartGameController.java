@@ -3,6 +3,7 @@ package com.oopsididitagain.controller;
 import com.oopsididitagain.controller.states.ExitGameState;
 import com.oopsididitagain.controller.states.GameState;
 import com.oopsididitagain.controller.states.PauseGameState;
+import com.oopsididitagain.controller.states.StartGameState;
 import com.oopsididitagain.io.KeyCode;
 
 public class StartGameController extends Controller {
@@ -25,28 +26,24 @@ public class StartGameController extends Controller {
 		// TODO handle start game inputs
 		switch (input) {
 		case KeyCode.NORTH:
-			break;
 		case KeyCode.SOUTH:
-			break;
 		case KeyCode.EAST:
-			break;
 		case KeyCode.WEST:
+			((StartGameState)state).changeMenuOption(input);
 			break;
 		case KeyCode.NORTH_EAST:
-			break;
 		case KeyCode.NORTH_WEST:
-			break;
 		case KeyCode.SOUTH_EAST:
-			break;
 		case KeyCode.SOUTH_WEST:
 			break;
 		case KeyCode.USE:
+			state = ((StartGameState)state).doSelectOption();
 			break;
 		case KeyCode.PAUSE:
-			state = PauseGameState.getInstance();
+			//state = PauseGameState.getInstance();
 			break;
 		case KeyCode.EXIT:
-			state = ExitGameState.getInstance();
+			//state = ExitGameState.getInstance();
 			break;
 		default:
 			break;

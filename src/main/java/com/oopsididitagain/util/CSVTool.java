@@ -14,7 +14,24 @@ import com.oopsididitagain.model.TakeableItem;
 import com.oopsididitagain.model.WearableItem;
 
 public class CSVTool {
-	
+	public static String[][] readImage(String image){
+		String [][] img =  new String [1][4];
+		try {
+			InputStream in = CSVTool.class.getResourceAsStream(image);
+			BufferedReader input = new BufferedReader(new InputStreamReader(in));
+			for(int i = 0; i!= 1; ++i) {
+				String line = input.readLine(); // skip headers
+				String[] splitLine = line.split(",");
+				for(int j = 0; j!= 4; ++j)
+					img[i][j] = splitLine[j];
+				}
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+		return img;
+}
+
+		
 	public static List<Item> readItemDatabase() {
 		List<Item> items = new ArrayList<Item>();
 		try {

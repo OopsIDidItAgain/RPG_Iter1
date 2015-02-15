@@ -27,6 +27,8 @@ public static void displayPauseMenu(Graphics g){
 	case 3:
 		g.drawRect(400, 300, 10, 10);
 		break;
+	case 5:
+		g.drawRect(400, 300, 100, 100);
 	}
 	
 }

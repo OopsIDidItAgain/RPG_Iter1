@@ -6,15 +6,20 @@ import com.oopsididitagain.controller.states.InventoryGameState;
 import com.oopsididitagain.controller.states.PauseGameState;
 import com.oopsididitagain.controller.states.PlayGameState;
 import com.oopsididitagain.io.KeyCode;
+import com.oopsididitagain.model.Entity;
 
 public class PlayGameController extends Controller{
 
 	private static PlayGameController instance;
+	//private Entity avatar;
 	
-	private PlayGameController() {
-		
+	
+	
+	public PlayGameController() {
+		super();
+		//this.avatar = avatar;
 	}
-	
+
 	public static Controller getInstance() {
 		if ( instance == null ){
 			instance = new PlayGameController();

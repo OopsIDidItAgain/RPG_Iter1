@@ -4,12 +4,14 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+import com.oopsididitagain.controller.states.AvatarCreationGameState;
 import com.oopsididitagain.controller.states.ExitGameState;
 import com.oopsididitagain.controller.states.GameState;
 import com.oopsididitagain.controller.states.InventoryGameState;
 import com.oopsididitagain.controller.states.PauseGameState;
 import com.oopsididitagain.controller.states.PlayGameState;
 import com.oopsididitagain.controller.states.StartGameState;
+import com.oopsididitagain.menu.AvatarCreationMenu;
 import com.oopsididitagain.menu.InventoryMenu;
 import com.oopsididitagain.menu.PauseMenu;
 import com.oopsididitagain.model.Entity;
@@ -19,12 +21,14 @@ import com.oopsididitagain.model.Inventory;
 public class View extends JPanel {
 
 	private static final long serialVersionUID = 8740227504423945127L;
+	private StartGameViewport startGameViewport;
 	private AreaViewport areaViewport;
 	private StatsViewport statsViewport;
 	private PauseViewPort pauseViewPort;
 	private boolean paused;
 	private String currentGameState = "";
 	private InventoryViewport InventoryViewport;
+	private AvatarCreationViewport AvatarCreationViewport;
 
 	public View(AreaViewport areaViewport, StatsViewport statsViewport) {
 		super();
@@ -53,7 +57,10 @@ public class View extends JPanel {
 
 	@Override
 	public void paintComponent(Graphics g) {
-		if (currentGameState == "PlayGameState") {
+		if (currentGameState == "StartGameState") {
+			super.paintComponent(g);
+			startGameViewport.displayStartMenu(g);
+		} else if (currentGameState == "PlayGameState") {
 			super.paintComponent(g);
 			areaViewport.displayMap(g);
 			statsViewport.displayStats(g);
@@ -68,6 +75,9 @@ public class View extends JPanel {
 			areaViewport.displayMap(g);
 			statsViewport.displayStats(g);
 			InventoryViewport.displayInventoryMenu(g);
+		} else if (currentGameState == "AvatarCreationGameState") {
+			super.paintComponent(g);
+			AvatarCreationViewport.displayAvatarCreation(g);
 		}
 
 	}
@@ -86,6 +96,20 @@ public class View extends JPanel {
 			InventoryMenu im = inventoryGameState.getInventoryMenu();
 			Inventory inventory = inventoryGameState.getInventory();
 			this.InventoryViewport = new InventoryViewport(im, inventory);
+			this.repaint();
+		}
+
+	}
+
+	public void visit(AvatarCreationGameState avatarCreateGameState) {
+		if (avatarCreateGameState.toString() == currentGameState) {
+			this.repaint();
+		} else {
+			currentGameState = avatarCreateGameState.toString();
+			paused = true;
+			AvatarCreationMenu am = avatarCreateGameState
+					.getAvatarCreationMenu();
+			this.AvatarCreationViewport = new AvatarCreationViewport(am);
 			this.repaint();
 		}
 
@@ -120,8 +144,14 @@ public class View extends JPanel {
 	}
 
 	public void visit(StartGameState startGameState) {
-		// TODO Auto-generated method stub
-
+		if (startGameState.toString() == currentGameState) {
+			this.repaint();
+		} else {
+			currentGameState = startGameState.toString();
+			paused = false;
+			this.startGameViewport = new StartGameViewport(startGameState.getStartMenu());
+			this.repaint();
+		}
 	}
 
 }

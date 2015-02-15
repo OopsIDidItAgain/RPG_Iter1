@@ -22,9 +22,12 @@ public class PlayGameState extends GameState {
 	private GameMap map;
 	private List<GameObject> gameObjects;
 	private Entity avatar;
+	
 
 	private PlayGameState() {
-		avatar = new Entity("Mario", "/avatar.png", new Position(0, 0), new Sneak());
+		super();
+		GameState state =  AvatarCreationGameState.getInstance();
+		this.avatar = AvatarCreationGameState.getAvatar();
 		Terrain one = Terrain.createTerrain(Terrain.GRASS);
 		Terrain two = Terrain.createTerrain(Terrain.MOUNTAIN);
 		Terrain three = Terrain.createTerrain(Terrain.WATER);

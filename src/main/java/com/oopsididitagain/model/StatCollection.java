@@ -38,6 +38,10 @@ public class StatCollection {
 		return blob;
 	}
 	
+	public void setBlob(StatBlob blob) {
+		this.blob = blob;
+	}
+
 	public double getLevel() {
 		return level.getValue();
 	}

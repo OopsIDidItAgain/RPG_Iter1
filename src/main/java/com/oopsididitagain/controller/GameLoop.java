@@ -1,8 +1,10 @@
 package com.oopsididitagain.controller;
 
+import com.oopsididitagain.controller.states.AvatarCreationGameState;
 import com.oopsididitagain.controller.states.ExitGameState;
 import com.oopsididitagain.controller.states.GameState;
 import com.oopsididitagain.controller.states.PlayGameState;
+import com.oopsididitagain.controller.states.StartGameState;
 import com.oopsididitagain.gui.View;
 import com.oopsididitagain.io.KeyboardInput;
 
@@ -16,7 +18,7 @@ public class GameLoop {
 	private static View view;
 
 	private GameLoop() {
-		state = PlayGameState.getInstance();
+		state = StartGameState.getInstance();
 		this.keyboardInput = new KeyboardInput();
 		view = new View();
 		view.addKeyListener(keyboardInput);
@@ -48,6 +50,7 @@ public class GameLoop {
 	    			state = controller.handleInputAndUpdate(state, command);
 	                if((currTime < nextTime) || (skippedFrames > maxSkippedFrames))
 	                {
+	                	
 	                	view.render(state);
 	                    skippedFrames = 1;
 	                }
