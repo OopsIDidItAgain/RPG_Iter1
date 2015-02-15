@@ -10,8 +10,11 @@ import com.oopsididitagain.model.AreaEffect;
 import com.oopsididitagain.model.Entity;
 import com.oopsididitagain.model.GameMap;
 import com.oopsididitagain.model.Item;
+import com.oopsididitagain.model.Occupation;
 import com.oopsididitagain.model.Position;
+import com.oopsididitagain.model.Smasher;
 import com.oopsididitagain.model.Sneak;
+import com.oopsididitagain.model.Summoner;
 import com.oopsididitagain.model.Terrain;
 import com.oopsididitagain.model.Tile;
 import com.oopsididitagain.util.CSVTool;
@@ -88,6 +91,18 @@ public class AvatarCreationGameState extends GameState{
 		int currentOption = avatarCreationMenu.getCurrentOption();
 		if(currentOption == AvatarCreationMenu.CONFIRM){
 			avatar = new Entity("Mario", "/avatar.png",new Position(0,0));
+			int occupation = avatarCreationMenu.getMenuOptions().get(AvatarCreationMenu.OCCUPATION).getCurrentValue();
+			switch(occupation){
+			case Occupation.SMASHER:
+				avatar.changeOccupation(new Smasher());
+				break;
+			case Occupation.SNEAK:
+				avatar.changeOccupation(new Sneak());
+				break;
+			case Occupation.SUMMONER:
+				avatar.changeOccupation(new Summoner());
+				break;
+			}
 			createMap();
 			state = PlayGameState.getInstance();
 			((PlayGameState)state).setMap(map);
