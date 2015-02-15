@@ -26,13 +26,13 @@ public class Terrain {
 			case WATER: {
 				isMovableOnGround = false;
 				isMovableInAir = true;
-				image = Toolkit.getDefaultToolkit().getImage(Terrain.class.getResource("/mountain.jpg"));
+				image = Toolkit.getDefaultToolkit().getImage(Terrain.class.getResource("/water.jpg"));
 				break;
 			}
 			case MOUNTAIN: {
 				isMovableOnGround = false;
 				isMovableInAir = false;
-				image = Toolkit.getDefaultToolkit().getImage(Terrain.class.getResource("/water.jpg"));
+				image = Toolkit.getDefaultToolkit().getImage(Terrain.class.getResource("/mountain.jpg"));
 				break;
 			}
 			default: return null;
