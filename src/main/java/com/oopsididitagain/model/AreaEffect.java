@@ -10,13 +10,15 @@ public class AreaEffect {
 	 * 4 = level up
 	 */
 	private int rate; //rate at which effects happen in units/second; -1 denotes instant
-	
+	private Decal decal;
 	private StatBlob areaBlob;
 	
 	public AreaEffect(int type, int rate) {
 		this.type = type;
 		this.rate = rate;
 		initializeBlob(type, rate);
+		
+		decal = Decal.AREA_EFFECTS[type];
 	}
 	
 	private void initializeBlob(int type, int rate) {
@@ -31,7 +33,8 @@ public class AreaEffect {
 				areaBlob = new StatBlob(0, 0, 0, 0, 0, 0, 0, -1000000, 0);
 				break;
 			case 4:
-				areaBlob = new StatBlob(0, 0, 0, 0, 0, 10, 0, 0, 0);
+				areaBlob = new StatBlob(0, 0, 0, 0, 0, 10 * 0.005, 0, 0, 0);
+				break;
 			default:
 				areaBlob = new StatBlob(0, 0, 0, 0, 0, 0, 0, 0, 0);
 				break;
@@ -41,4 +44,6 @@ public class AreaEffect {
 	public void affect(Entity entity) {
 		entity.getStats().mergeBlob(areaBlob);
 	}
+	
+	public Decal getDecal() { return decal; }
 }

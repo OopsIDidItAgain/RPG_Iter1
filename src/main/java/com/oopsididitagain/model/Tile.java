@@ -9,21 +9,12 @@ public class Tile {
 	private List<Item> items;
 	private Terrain terrain;
 	private AreaEffect areaEffect;
-	private Decal decal;
-	
-	public Decal getDecal() {
-		return decal;
-	}
 
 	public Tile(Terrain terrain) {
 		super();
 		this.terrain = terrain;
 		items = new ArrayList<Item>();
 		areaEffect = new AreaEffect(0, 0);
-	}
-
-	public void setDecal(Decal decal) {
-		this.decal = decal;
 	}
 	
 	public Terrain getTerrain() {
@@ -67,7 +58,8 @@ public class Tile {
 				images.add(item.getImage());
 			}
 		}
-		//if (decal != null) images.add(decal.getImage());
+		
+		if (areaEffect.getDecal() != null) images.add(areaEffect.getDecal().getImage());
 		if (entity != null) images.add(entity.getImage());
 		return images;
 	}
