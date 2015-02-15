@@ -93,7 +93,7 @@ public class Entity extends GameObject {
 	}
 	
 	public void visit(OneShotItem item) {
-		System.out.println("Found a one-shot item!");
+		stats.mergeBlob(item.getBlob());
 	}
 
 

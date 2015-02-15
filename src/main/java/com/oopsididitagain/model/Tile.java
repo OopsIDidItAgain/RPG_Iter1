@@ -79,6 +79,14 @@ public class Tile {
 				entity.addToInventory((TakeableItem)item);
 				items.remove(i);
 			}
+			if (item instanceof OneShotItem) {
+				System.out.println(items);
+				System.out.println(entity);
+				if (entity != null) {
+					entity.visit((OneShotItem)item);
+					items.remove(i);
+				}
+			}
 		}
 	}
 }

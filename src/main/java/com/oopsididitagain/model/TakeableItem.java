@@ -19,7 +19,4 @@ public class TakeableItem extends Item {
 		inventoryViewport.visit(this);	
 	}
 
-	
-	
-	
 }

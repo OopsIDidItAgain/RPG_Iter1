@@ -125,11 +125,11 @@ public class CSVTool {
 						//item = new TakeableItem(false);
 						break;
 					}
-					case "InteractiveItem": {
+					case "Interactive": {
 						//item = new TakeableItem(false);
 						break;
 					}
-					case "OneShotItem": {
+					case "OneShot": {
 						int livesLeft = Integer.parseInt(splitLine[6]);
 						int strength = Integer.parseInt(splitLine[7]);
 						int agility = Integer.parseInt(splitLine[8]);
