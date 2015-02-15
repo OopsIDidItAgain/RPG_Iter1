@@ -126,7 +126,6 @@ public class StatCollection {
 		StringBuilder sb = new StringBuilder("");
 		
 		sb.append(	"PRIMARY STATS"+
-					"\nLives Left: "+(int)blob.getLivesLeft()+
 					"\nIntellect: "	+(int)blob.getIntellect()+
 					"\nStrength: "	+(int)blob.getStrength()+
 					"\nAgility: "	+(int)blob.getAgility()+
