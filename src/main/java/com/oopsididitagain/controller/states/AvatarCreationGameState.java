@@ -1,18 +1,10 @@
 package com.oopsididitagain.controller.states;
 
-import java.util.Collection;
-import java.util.HashMap;
-
 import com.oopsididitagain.controller.AvatarCreationController;
 import com.oopsididitagain.controller.Controller;
-import com.oopsididitagain.controller.InventoryController;
 import com.oopsididitagain.gui.View;
 import com.oopsididitagain.menu.AvatarCreationMenu;
-import com.oopsididitagain.menu.InventoryMenu;
 import com.oopsididitagain.model.Entity;
-import com.oopsididitagain.model.GameMap;
-import com.oopsididitagain.model.Inventory;
-import com.oopsididitagain.model.Item;
 import com.oopsididitagain.model.Position;
 import com.oopsididitagain.model.Sneak;
 
