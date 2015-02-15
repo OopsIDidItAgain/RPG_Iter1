@@ -31,19 +31,31 @@ public class GameMap {
 		return tiles[pos.getY()][pos.getX()];
 	}
 	
-	public boolean checkIfValid(Position pos) {
+	public boolean checkIfValid(Position pos, boolean isFlying) {
+		boolean isValid = true;
+		
 		if (pos.getY() > height - 1) return false;
 		if (pos.getX() > width - 1) return false;
 		if (pos.getY() < 0) return false;
 		if (pos.getX() < 0) return false;
+		
 		Tile tile = tiles[pos.getY()][pos.getX()];
-		if (tile.getEntity() != null) return false;
-		if (!tile.getTerrain().isMovableOnGround()) return false;
-		if (!tile.getTerrain().isMovableInAir()) return false;
-		for (Item i: tile.getItems()) 
-			if (i instanceof ObstacleItem)
-				return false;
-		return true;
+		if (tile.getEntity() != null) isValid = false;
+		
+		if(!tile.getTerrain().isMovableOnGround()) {
+			isValid = false;
+		}
+		if(tile.getTerrain().isMovableInAir() && isFlying) {
+			isValid = true;
+		}
+		
+		for (Item i: tile.getItems()) {
+			if (i instanceof ObstacleItem) {
+				isValid = false;
+			}
+		}
+		
+		return isValid;
 	}
 
 	public int getWidth() {

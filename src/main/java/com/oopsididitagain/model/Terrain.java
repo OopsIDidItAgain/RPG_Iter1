@@ -5,7 +5,7 @@ import java.awt.Toolkit;
 
 public class Terrain {
 	private final boolean isMovableOnGround;
-	private final boolean isMobableInAir;
+	private final boolean isMovableInAir;
 	private final Image image;
 	
 	public final static int GRASS = 0;
@@ -42,7 +42,7 @@ public class Terrain {
 	
 	private Terrain(boolean isMovableOnGround, boolean isMovableInAir, Image image) {
 		this.isMovableOnGround = isMovableOnGround;
-		this.isMobableInAir = isMovableInAir;
+		this.isMovableInAir = isMovableInAir;
 		this.image = image;
 	}
 
@@ -51,12 +51,15 @@ public class Terrain {
 	}
 
 	public boolean isMovableInAir() {
-		return isMobableInAir;
+		return isMovableInAir;
 	}
 
 	public Image getImage() {
 		return image;
 	}
 	
+	public boolean isWater() {
+		return !isMovableOnGround && isMovableInAir;
+	}
 }
 

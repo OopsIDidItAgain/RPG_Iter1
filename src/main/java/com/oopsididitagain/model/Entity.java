@@ -1,5 +1,6 @@
 package com.oopsididitagain.model;
 
+import java.awt.Toolkit;
 import java.util.HashMap;
 
 public class Entity extends GameObject {
@@ -8,17 +9,18 @@ public class Entity extends GameObject {
     private Occupation occupation;
     private Armory armory;
     private StatCollection stats;
+    private boolean isFlying;
 
-
-    public Entity(String name, String imageName, Position position) {
+    public Entity(String name, String imageName, Position position, boolean isFlying) {
     	super (name, imageName, position);
     	inventory = new Inventory();
     	armory = new Armory();
     	stats = new StatCollection(armory);
+    	this.isFlying = isFlying;
     }
     
     public Entity(String name, String imageName, Position position, Occupation occupation) {
-    	this(name, imageName, position);
+    	this(name, imageName, position, false);
     	changeOccupation(occupation);
     }
     
@@ -78,7 +80,19 @@ public class Entity extends GameObject {
 		System.out.println("removing takeableItem");
 		
 	}
-		
+	
+	public void setFlying(boolean flying) {
+		isFlying = flying;
+		if(isFlying) {
+			image = Toolkit.getDefaultToolkit().createImage(getClass().getResource("/avatar_flying.png"));
+		} else {
+			image = Toolkit.getDefaultToolkit().createImage(getClass().getResource("/avatar.png"));
+		}
+	}
+	
+	public boolean isFlying() {
+		return isFlying;
+	}	
 	
 	public void visit(WearableItem wearableItem){
 		if(wearableItem.isEquipped()){

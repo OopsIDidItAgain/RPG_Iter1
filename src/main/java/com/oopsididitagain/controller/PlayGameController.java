@@ -54,6 +54,8 @@ public class PlayGameController extends Controller{
 			case KeyCode.INVENTORY:
 				state = InventoryGameState.getInstance();
 				break;
+			case KeyCode.FLY:
+				((PlayGameState)state).toggleFlight();
 			default:
 				break;
 		}

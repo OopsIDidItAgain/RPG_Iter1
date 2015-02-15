@@ -94,7 +94,7 @@ public class PlayGameState extends GameState {
 
 		}
 		
-		if (map.checkIfValid(updatedPosition)) {
+		if (map.checkIfValid(updatedPosition, avatar.isFlying())) {
 			map.getTileAt(avatar.getPosition()).setEntity(null);
 			avatar.setPosition(updatedPosition);
 			map.getTileAt(updatedPosition).setEntity(avatar);
@@ -103,6 +103,12 @@ public class PlayGameState extends GameState {
 	
 	public void affectAvatar() {
 		map.getTileAt(avatar.getPosition()).getAreaEffect().affect(avatar);
+	}
+	
+	public void toggleFlight() {
+		if(!map.getTileAt(avatar.getPosition()).getTerrain().isWater()) {
+			avatar.setFlying(!avatar.isFlying());
+		}
 	}
 
 	public static GameState getInstance() {

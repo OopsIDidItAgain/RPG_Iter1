@@ -95,7 +95,7 @@ public class AvatarCreationGameState extends GameState{
 		GameState state  = this;
 		int currentOption = avatarCreationMenu.getCurrentOption();
 		if(currentOption == AvatarCreationMenu.CONFIRM){
-			avatar = new Entity("Mario", "/avatar.png",new Position(0,0));
+			avatar = new Entity("Mario", "/avatar.png", new Position(0,0), false);
 			int occupation = avatarCreationMenu.getMenuOptions().get(AvatarCreationMenu.OCCUPATION).getCurrentValue();
 			switch(occupation){
 			case Occupation.SMASHER:
