@@ -22,10 +22,10 @@ public class AreaEffect {
 	private void initializeBlob(int type, int rate) {
 		switch(type) {
 			case 1:
-				areaBlob = new StatBlob(0, 0, 0, 0, 0, 0, 0, -rate, 0);
+				areaBlob = new StatBlob(0, 0, 0, 0, 0, 0, 0, -rate * 0.005, 0);
 				break;
 			case 2:
-				areaBlob = new StatBlob(0, 0, 0, 0, 0, 0, 0, rate, 0);
+				areaBlob = new StatBlob(0, 0, 0, 0, 0, 0, 0, rate * 0.005, 0);
 				break;
 			case 3:
 				areaBlob = new StatBlob(0, 0, 0, 0, 0, 0, 0, -1000000, 0);

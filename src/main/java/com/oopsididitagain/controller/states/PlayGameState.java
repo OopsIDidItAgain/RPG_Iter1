@@ -69,7 +69,7 @@ public class PlayGameState extends GameState {
 		t[0][0].setEntity(avatar);
 		List<Item> items = CSVTool.readItemDatabase();
 		
-		t[10][3].setAreaEffect(new AreaEffect(3, 0));
+		t[10][3].setAreaEffect(new AreaEffect(1, 5));
 		
 		map = new GameMap(t, 11, 10);
 
@@ -126,7 +126,9 @@ public class PlayGameState extends GameState {
 			avatar.setPosition(updatedPosition);
 			map.getTileAt(updatedPosition).setEntity(avatar);
 		}
-		
+	}
+	
+	public void affectAvatar() {
 		map.getTileAt(avatar.getPosition()).getAreaEffect().affect(avatar);
 		System.out.println(avatar.getStats().getBlob().toString());
 	}
