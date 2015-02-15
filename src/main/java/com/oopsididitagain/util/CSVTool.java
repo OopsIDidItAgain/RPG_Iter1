@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.oopsididitagain.model.Item;
+import com.oopsididitagain.model.ObstacleItem;
 import com.oopsididitagain.model.OneShotItem;
 import com.oopsididitagain.model.Position;
 import com.oopsididitagain.model.StatBlob;
@@ -121,11 +122,11 @@ public class CSVTool {
 						break;
 					}
 					case "Obstacle": {
-						//item = new TakeableItem(false);
+						item = new ObstacleItem(name, imageName, position);
+						System.out.println(imageName);
 						break;
 					}
 					case "Interactive": {
-						//item = new TakeableItem(false);
 						break;
 					}
 					case "OneShot": {
