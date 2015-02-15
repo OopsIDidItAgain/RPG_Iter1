@@ -2,7 +2,6 @@ package com.oopsididitagain.model;
 
 import com.oopsididitagain.gui.InventoryViewport;
 
-
 public class ObstacleItem extends Item {
 
 	public ObstacleItem(String name, String imageName, Position position) {

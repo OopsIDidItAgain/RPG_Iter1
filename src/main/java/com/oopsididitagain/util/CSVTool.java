@@ -14,6 +14,40 @@ import com.oopsididitagain.model.TakeableItem;
 import com.oopsididitagain.model.WearableItem;
 
 public class CSVTool {
+	
+	public static String[][] readMap(String map){
+		String [][] mapArray;
+		try {
+			InputStream in = CSVTool.class.getResourceAsStream(map);
+			BufferedReader input = new BufferedReader(new InputStreamReader(in));
+			String line = input.readLine();
+			line = input.readLine();
+			String[] splitLine = line.split(",");
+			int width = Integer.parseInt(splitLine[0]);
+			int height = Integer.parseInt(splitLine[1]);
+			mapArray = new String[height][width];
+			for(int i = 0; i != height; ++i){
+				line = input.readLine();
+				splitLine = line.split(",");
+				for(int j = 0; j!= width; ++j){
+					splitLine[j] = mapArray[i][j];
+				}
+			}
+			for(int i = 0; i != height; ++i){
+				for(int j = 0; j!= width; ++j){
+					System.out.print(mapArray[i][j]);
+				}
+				System.out.println();
+			}
+		
+		}catch (IOException ex) {
+			ex.printStackTrace();
+		}
+		
+	System.out.println("You're map failed to load");
+	return null;
+}
+		
 	public static String[][] readImage(String image){
 		String [][] img =  new String [1][4];
 		try {

@@ -25,12 +25,12 @@ private static AvatarCreationController instance;
 		int count = 0;
 		switch (input) {
 		case KeyCode.NORTH:
-			break;
 		case KeyCode.SOUTH:
+			((AvatarCreationGameState) state).changeOptionType(input);
 			break;
 		case KeyCode.EAST:
 		case KeyCode.WEST:
-			((AvatarCreationGameState) state).changeMenuOption(input);
+			((AvatarCreationGameState) state).changeOptionValue(input);
 			break;
 		case KeyCode.NORTH_EAST:
 			break;
@@ -41,6 +41,7 @@ private static AvatarCreationController instance;
 		case KeyCode.SOUTH_WEST:
 			break;
 		case KeyCode.USE:
+			state = ((AvatarCreationGameState) state).doSelectOption();
 			break;
 		case KeyCode.PAUSE:
 			break;
@@ -51,11 +52,6 @@ private static AvatarCreationController instance;
 		case KeyCode.EQUIP:
 			break;
 		case KeyCode.ENTER:
-			int option = ((AvatarCreationGameState) state).getSelectedOption();
-			int type = ((AvatarCreationGameState) state).getOptionType();
-			((AvatarCreationGameState) state).setOptionType(count+1);
-			((AvatarCreationGameState) state).changeAvatar(type,option);
-			++count;
 			break;
 		default:
 			break;

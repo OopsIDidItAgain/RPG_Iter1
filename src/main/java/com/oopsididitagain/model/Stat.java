@@ -12,12 +12,24 @@ public class Stat {
 		value += other.getValue();
 	}
 	
+	public void add(long value) {
+		this.value += value;
+	}
+	
 	public void subtract(Stat other) {
 		value -= other.getValue();
 	}
 	
+	public void subtract(long value) {
+		this.value -= value;
+	}
+	
 	public double getValue() {
 		return value;
+	}
+	
+	public void setValue(double value) {
+		this.value = value;
 	}
 	
 	@Override
