@@ -21,4 +21,10 @@ public class TakeableItem extends Item {
 		inventoryViewport.visit(this);	
 	}
 
+	@Override
+	public void removeItem(Entity visitor) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
