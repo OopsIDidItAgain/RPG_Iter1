@@ -14,11 +14,20 @@ public class TakeableItem extends Item {
 	public void accept(Entity visitor) {
 		visitor.visit(this);	
 	}
+	
 
 	@Override
 	public void accept(InventoryViewport inventoryViewport) {
 		inventoryViewport.visit(this);	
 	}
+
+	@Override
+	public void removeItem(Entity visitor) {
+		visitor.removeItem(this);
+		
+	}
+
+	
 
 	
 	

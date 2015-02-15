@@ -71,6 +71,22 @@ public class InventoryGameState extends GameState{
 		System.out.println("hi");
 		i.accept(avatar);
 	}
+	public void drop(int option){
+		
+		HashMap<String , Item> hash = inventory.getInventory();
+		Collection<Item>item = hash.values();
+		Object [] inv = item.toArray();
+		Item i = (Item)inv[option];
+		
+		i.removeItem(avatar);
+		
+		//item.remove(i);
+		inventory.deleteItem(i.getName());		
+			
+		
+			
+		
+	}
 	
 	
 	@Override
