@@ -11,25 +11,34 @@ public class AreaEffect {
 	 */
 	private int rate; //rate at which effects happen in units/second; -1 denotes instant
 	
-	public AreaEffect(int type) {
+	private StatBlob areaBlob;
+	
+	public AreaEffect(int type, int rate) {
 		this.type = type;
+		this.rate = rate;
+		initializeBlob(type, rate);
+	}
+	
+	private void initializeBlob(int type, int rate) {
 		switch(type) {
-			case 0:
-				rate = 0;
-				break;
 			case 1:
-			case 2:
-				rate = 5;
-			case 3:
-			case 4:
-				rate = -1;
+				areaBlob = new StatBlob(0, 0, 0, 0, 0, 0, 0, -rate, 0);
 				break;
+			case 2:
+				areaBlob = new StatBlob(0, 0, 0, 0, 0, 0, 0, rate, 0);
+				break;
+			case 3:
+				areaBlob = new StatBlob(-1, 0, 0, 0, 0, 0, 0, 0, 0);
+				break;
+			case 4:
+				areaBlob = new StatBlob(0, 0, 0, 0, 0, 10, 0, 0, 0);
 			default:
+				areaBlob = new StatBlob(0, 0, 0, 0, 0, 0, 0, 0, 0);
 				break;
 		}
 	}
 	
 	public void affect(Entity entity) {
-		
+		entity.getStats().mergeBlob(areaBlob);
 	}
 }

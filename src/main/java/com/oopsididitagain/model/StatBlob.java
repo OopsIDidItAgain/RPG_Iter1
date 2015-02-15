@@ -77,6 +77,11 @@ public class StatBlob {
 		this.movement.add(other.movement);
 		this.lifeAmount.add(other.lifeAmount);
 		this.manaAmount.add(other.manaAmount);
+		
+		if(lifeAmount.getValue() <= 0) {
+			this.livesLeft.subtract(1);
+			this.lifeAmount.setValue(100);
+		}
 	}
 	
 	public void detach(StatBlob other) {

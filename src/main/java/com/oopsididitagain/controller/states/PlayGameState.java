@@ -6,6 +6,7 @@ import com.oopsididitagain.controller.Controller;
 import com.oopsididitagain.controller.PlayGameController;
 import com.oopsididitagain.gui.View;
 import com.oopsididitagain.io.KeyCode;
+import com.oopsididitagain.model.AreaEffect;
 import com.oopsididitagain.model.Entity;
 import com.oopsididitagain.model.GameMap;
 import com.oopsididitagain.model.GameObject;
@@ -68,6 +69,8 @@ public class PlayGameState extends GameState {
 		t[0][0].setEntity(avatar);
 		List<Item> items = CSVTool.readItemDatabase();
 		
+		t[10][3].setAreaEffect(new AreaEffect(1, 5));
+		
 		map = new GameMap(t, 11, 10);
 
 		for (Item i: items) {
@@ -123,7 +126,9 @@ public class PlayGameState extends GameState {
 			avatar.setPosition(updatedPosition);
 			map.getTileAt(updatedPosition).setEntity(avatar);
 		}
-
+		
+		map.getTileAt(avatar.getPosition()).getAreaEffect().affect(avatar);
+		System.out.println(avatar.getStats().getBlob().toString());
 	}
 
 	public static GameState getInstance() {

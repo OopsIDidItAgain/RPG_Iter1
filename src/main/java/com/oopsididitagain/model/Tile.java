@@ -19,6 +19,7 @@ public class Tile {
 		super();
 		this.terrain = terrain;
 		items = new ArrayList<Item>();
+		areaEffect = new AreaEffect(0, 0);
 	}
 
 	public void setDecal(Decal decal) {
