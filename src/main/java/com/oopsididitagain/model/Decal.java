@@ -8,7 +8,17 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class Decal {
-	public final static Decal HEART_DECAL = new Decal("/heart_decal.png");
+	public final static Decal HEART_DECAL = new Decal("/decals/heart_decal.png");
+	public final static Decal[] AREA_EFFECTS = {
+		null,
+		new Decal("/decals/take_damage.png"),
+		new Decal("/decals/heal_damage.png"),
+		new Decal("/decals/instant_death.png"),
+		new Decal("/decals/level_up.png")
+	};
+	
+	
+	
 	Image img;
 	
 	public Decal(Image img) {

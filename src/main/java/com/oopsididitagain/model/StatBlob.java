@@ -67,6 +67,44 @@ public class StatBlob {
 		return lifeAmount.getValue();
 	}
 	
+	
+	/* RETURN STAT METHODS */
+	public Stat getLivesLeftStat(){
+		return livesLeft;
+	}
+
+	public Stat getIntellectStat(){
+		return intellect;
+	}
+
+	public Stat getStrengthStat(){
+		return strength;
+	}
+
+	public Stat getAgilityStat(){
+		return agility;
+	}
+
+	public Stat getHardinessStat(){
+		return hardiness;
+	}
+
+	public Stat getExperienceStat(){
+		return experience;
+	}
+	
+	public Stat getMovementStat() {
+		return movement;
+	}
+
+	public Stat getManaAmountStat() {
+		return manaAmount;
+	}
+
+	public Stat getLifeAmountStat() {
+		return lifeAmount;
+	}
+	
 	public void merge(StatBlob other) {
 		this.livesLeft.add(other.livesLeft);
 		this.intellect.add(other.intellect);

@@ -114,6 +114,7 @@ public class AreaViewport extends Viewport{
 					else
 						g.drawImage(image, widthpos, heightpos, h, w, null);
 				}
+			
 				//repaint();
 				widthpos += w;
 			}

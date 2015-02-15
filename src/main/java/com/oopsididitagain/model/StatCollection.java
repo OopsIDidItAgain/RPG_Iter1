@@ -28,7 +28,7 @@ public class StatCollection {
 	private void deriveStats() {
 		//derived
 		level = new Stat(this.blob.getExperience() * .1);
-		lifeCapacity = new Stat(.01 * this.blob.getHardiness());
+		lifeCapacity = new Stat(0.5 * this.blob.getHardiness());
 		manaCapacity = new Stat(25.0 + this.blob.getIntellect() * this.level.getValue());
 		offensiveRating = new Stat((blob.getStrength() + armory.getEquippedWeaponRank())* this.level.getValue()); 
 		defensiveRating = new Stat(blob.getAgility() * this.level.getValue());
@@ -49,6 +49,14 @@ public class StatCollection {
 	
 	public void mergeBlob(StatBlob blob) {
 		this.blob.merge(blob);
+		
+		if(this.blob.getLifeAmount() <= 0) {
+			this.blob.getLivesLeftStat().subtract(1);
+			this.blob.getLifeAmountStat().setValue(lifeCapacity.getValue());
+		} else if(this.blob.getLifeAmount() > lifeCapacity.getValue()) {
+			this.blob.getLifeAmountStat().setValue(lifeCapacity.getValue());
+		}
+		
 		deriveStats();
 	}
 	public void detachBlob(StatBlob blob) {
