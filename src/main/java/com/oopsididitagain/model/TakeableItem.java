@@ -1,5 +1,5 @@
 package com.oopsididitagain.model;
-
+import com.oopsididitagain.gui.InventoryViewport;
 import com.oopsididitagain.gui.View;
 
 /* Should this be an interface maybe? Takeable? */
@@ -14,6 +14,13 @@ public class TakeableItem extends Item {
 	public void accept(Entity visitor) {
 		visitor.visit(this);	
 	}
+
+	@Override
+	public void accept(InventoryViewport inventoryViewport) {
+		inventoryViewport.visit(this);	
+	}
+
+	
 	
 	
 }

@@ -6,9 +6,9 @@ public class Entity extends GameObject {
 	private static final long serialVersionUID = 6897867058695115274L;
     private Inventory inventory;
     private Occupation occupation;
-
     private Armory armory;
     private StatCollection stats;
+
 
     public Entity(String name, String imageName, Position position) {
     	super (name, imageName, position);
@@ -22,6 +22,12 @@ public class Entity extends GameObject {
     	changeOccupation(occupation);
     }
     
+    
+	public Occupation getOccupation() {
+		return occupation;
+	}
+
+
 	public void addToInventory(TakeableItem takeableItem) {
 		this.inventory.addItem(takeableItem);
 	}
@@ -70,11 +76,6 @@ public class Entity extends GameObject {
 	}
 	public void visit(TakeableItem takeableitem){
 		System.out.println("takeable");
-	}
-
-	public void visit(ObstacleItem obstacleItem) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	public void changeOccupation(Occupation occupation) {

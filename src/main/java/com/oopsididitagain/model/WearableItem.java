@@ -1,6 +1,9 @@
 package com.oopsididitagain.model;
 
+
+import com.oopsididitagain.gui.InventoryViewport;
 import com.oopsididitagain.util.WearableItemType;
+
 
 public class WearableItem extends TakeableItem {
 
@@ -46,6 +49,7 @@ public class WearableItem extends TakeableItem {
 		this.blob = blob;
 	}
 	
+	@Override
 	public void accept(Entity visitor) {
 		visitor.visit(this);	
 	}
@@ -53,6 +57,11 @@ public class WearableItem extends TakeableItem {
 
 	public WearableItemType getType() {
 		return type;
+	}
+	
+	@Override
+	public void accept(InventoryViewport inventoryViewport) {
+		inventoryViewport.visit(this);	
 	}
 	
 }

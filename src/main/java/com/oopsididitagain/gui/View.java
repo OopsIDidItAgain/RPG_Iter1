@@ -4,12 +4,14 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+import com.oopsididitagain.controller.states.AvatarCreationGameState;
 import com.oopsididitagain.controller.states.ExitGameState;
 import com.oopsididitagain.controller.states.GameState;
 import com.oopsididitagain.controller.states.InventoryGameState;
 import com.oopsididitagain.controller.states.PauseGameState;
 import com.oopsididitagain.controller.states.PlayGameState;
 import com.oopsididitagain.controller.states.StartGameState;
+import com.oopsididitagain.menu.AvatarCreationMenu;
 import com.oopsididitagain.menu.InventoryMenu;
 import com.oopsididitagain.menu.PauseMenu;
 import com.oopsididitagain.model.Entity;
@@ -25,6 +27,7 @@ public class View extends JPanel {
 	private boolean paused;
 	private String currentGameState = "";
 	private InventoryViewport InventoryViewport;
+	private AvatarCreationViewport AvatarCreationViewport;
 
 	public View(AreaViewport areaViewport, StatsViewport statsViewport) {
 		super();
@@ -69,6 +72,10 @@ public class View extends JPanel {
 			statsViewport.displayStats(g);
 			InventoryViewport.displayInventoryMenu(g);
 		}
+		else if (currentGameState == "AvatarCreationGameState") {
+			super.paintComponent(g);
+			AvatarCreationViewport.displayAvatarCreation(g);
+		}
 
 	}
 
@@ -86,6 +93,19 @@ public class View extends JPanel {
 			InventoryMenu im = inventoryGameState.getInventoryMenu();
 			Inventory inventory = inventoryGameState.getInventory();
 			this.InventoryViewport = new InventoryViewport(im, inventory);
+			this.repaint();
+		}
+
+	}
+	
+	public void visit(AvatarCreationGameState avatarCreateGameState) {
+		if (avatarCreateGameState.toString() == currentGameState) {
+			this.repaint();
+		} else {
+			currentGameState =avatarCreateGameState.toString();
+			paused = true;
+			AvatarCreationMenu am = avatarCreateGameState.getAvatarCreationMenu();
+			this.AvatarCreationViewport = new AvatarCreationViewport(am);
 			this.repaint();
 		}
 

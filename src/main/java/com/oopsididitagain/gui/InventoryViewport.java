@@ -15,6 +15,8 @@ import com.oopsididitagain.model.Entity;
 import com.oopsididitagain.model.GameObject;
 import com.oopsididitagain.model.Inventory;
 import com.oopsididitagain.model.Item;
+import com.oopsididitagain.model.TakeableItem;
+import com.oopsididitagain.model.WearableItem;
 
 public class InventoryViewport extends Viewport{
 	private static InventoryMenu inventoryMenu;
@@ -22,6 +24,7 @@ public class InventoryViewport extends Viewport{
 	private static Inventory inventory;
 	private static Object[] inv;
 	private static int size;
+	static Graphics gr; 
 
 
 	public InventoryViewport(InventoryMenu inventoryMenu, Inventory inventory) {
@@ -33,6 +36,7 @@ public class InventoryViewport extends Viewport{
 	
 	
 	private static void printMatrix(Graphics g,int bottom,int top, int option){
+		gr = g;
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setPaint(Color.red);
         RoundRectangle2D roundedRectangle = new RoundRectangle2D.Float(120, 90, 360, 360, 20, 20);
@@ -61,11 +65,16 @@ public class InventoryViewport extends Viewport{
         	for(int j = 0; j!= 4; ++j){
         		if(count < top){
         			Rectangle r = new Rectangle(w,h,60,60);
-            		g2.fill(r);
+        			if(inv[count] instanceof WearableItem){// fix this later!
+        				if(((WearableItem)inv[count]).isEquipped()){
+        					 g2.setPaint(Color.red);
+        				}
+        			}
         			if(count == option){
         				r.grow(10,10);
         				g2.fill(r);
         			}
+        			g2.fill(r);
         			Image img = ((GameObject) inv[count]).getImage();
         			g.drawImage(img,w, h, 60, 60, null);
         			++count;
@@ -73,7 +82,7 @@ public class InventoryViewport extends Viewport{
         			Rectangle r = new Rectangle(w,h,60,60);
             		g2.fill(r);
         		}
-        		
+        		 g2.setPaint(Color.green);
                 w+=76;
                 
             }
@@ -111,5 +120,19 @@ public class InventoryViewport extends Viewport{
 		printMatrix(g,opt1,opt2,option);
 	
 }
+
+
+	public void visit(WearableItem wearableItem) {
+			Graphics2D g2 = (Graphics2D) gr;
+			if(wearableItem.isEquipped()){
+				 g2.setPaint(Color.red);
+			}
+	}
+
+	public void visit(TakeableItem takeableItem) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 
 }
