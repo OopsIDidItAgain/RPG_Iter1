@@ -50,6 +50,10 @@ public class InventoryController extends Controller{
 						int option = ((InventoryGameState)state).getMenuOption();
 						((InventoryGameState)state).equip(option);
 						break;
+					case KeyCode.DROP:
+						int dropOption = ((InventoryGameState)state).getMenuOption();
+						((InventoryGameState)state).drop(dropOption);
+						break;
 					default:
 						break;
 				}

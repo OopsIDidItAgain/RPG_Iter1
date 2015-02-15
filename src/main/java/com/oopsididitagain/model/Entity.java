@@ -67,6 +67,19 @@ public class Entity extends GameObject {
 		for (String name: hash.keySet())
             System.out.println(name);
 	}
+	public void removeItem(WearableItem wearableItem){
+		//if the item is equipped, unequip before removing
+		if(wearableItem.isEquipped()){
+			this.unequip(wearableItem);	
+		}
+		
+	}
+	public void removeItem(TakeableItem takeableItem){
+		System.out.println("removing takeableItem");
+		
+	}
+		
+	
 	public void visit(WearableItem wearableItem){
 		if(wearableItem.isEquipped()){
 			this.unequip(wearableItem);

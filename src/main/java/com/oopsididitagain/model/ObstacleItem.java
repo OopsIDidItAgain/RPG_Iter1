@@ -19,4 +19,11 @@ public class ObstacleItem extends Item {
 		
 	}
 
+	@Override
+	public void removeItem(Entity visitor) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
 }

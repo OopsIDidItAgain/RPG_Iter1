@@ -25,4 +25,10 @@ public class OneShotItem extends Item {
 	public StatBlob getBlob() {
 			return blob;
 	}
+
+	@Override
+	public void removeItem(Entity visitor) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -6,4 +6,5 @@ import com.oopsididitagain.model.Entity;
 public interface ItemInteraction {
 	void accept(Entity visitor);
 	void accept(InventoryViewport inventoryViewport);
+	void removeItem(Entity visitor);
 }

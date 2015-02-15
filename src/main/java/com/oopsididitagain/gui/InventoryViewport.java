@@ -49,7 +49,8 @@ public class InventoryViewport extends Viewport{
         int x = 130, y = 90;
         String[] s = {	"OPTION: "+ option,
         				"Press 'j' or your 'use' key to select/unselect item", 
-        				"Press 'i' to close inventory"	};
+        				"Press 'i' to close inventory",	
+        				"Press 'i' to close inventory"};
         for (int i = 0; i < 3; i++) 
         	g2.drawString(s[i], x, y += g2.getFontMetrics().getHeight());	 
         
@@ -57,6 +58,7 @@ public class InventoryViewport extends Viewport{
         
         HashMap<String , Item> hash = inventory.getInventory();
 		Collection<Item>item = hash.values();
+		size = inventory.getSize();
 		inv = item.toArray();
 		int count = bottom;
         int w = 156;
@@ -65,6 +67,7 @@ public class InventoryViewport extends Viewport{
         	for(int j = 0; j!= 4; ++j){
         		if(count < top){
         			Rectangle r = new Rectangle(w,h,60,60);
+        			System.out.println(count);
         			if(inv[count] instanceof WearableItem){// fix this later!
         				if(((WearableItem)inv[count]).isEquipped()){
         					 g2.setPaint(Color.red);

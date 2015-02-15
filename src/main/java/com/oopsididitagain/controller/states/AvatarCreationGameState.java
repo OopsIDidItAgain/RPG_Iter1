@@ -66,6 +66,7 @@ public class AvatarCreationGameState extends GameState{
 		t[0][5].setAreaEffect(new AreaEffect(3,5)); 
 		t[0][6].setAreaEffect(new AreaEffect(4,5)); 
 
+		t[3][0].setAreaEffect(new AreaEffect(1, 10)); 
 		List<Item> items = CSVTool.readItemDatabase();
 
 		map = new GameMap(t, height, width);
