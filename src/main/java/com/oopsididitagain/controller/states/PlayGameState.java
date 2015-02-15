@@ -48,7 +48,7 @@ public class PlayGameState extends GameState {
 		t[0][0].setEntity(avatar);
 		List<Item> items = CSVTool.readItemDatabase();
 		
-		t[10][3].setAreaEffect(new AreaEffect(3, 0));
+		t[10][3].setAreaEffect(new AreaEffect(1, 5));
 
 		map = new GameMap(t, t.length, t[0].length);
 
