@@ -94,7 +94,6 @@ public class PlayGameState extends GameState {
 	
 	public void affectAvatar() {
 		map.getTileAt(avatar.getPosition()).getAreaEffect().affect(avatar);
-		System.out.println(avatar.getStats().getBlob().toString());
 	}
 
 	public static GameState getInstance() {
