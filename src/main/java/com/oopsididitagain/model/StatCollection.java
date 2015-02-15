@@ -101,27 +101,6 @@ public class StatCollection {
 		return sb.toString();
 	}
 	
-	public String primaryStats() {
-		StringBuilder sb = new StringBuilder("");
-		sb.append("PRIMARY STATS\n");
-		sb.append(blob.toString());
-		return sb.toString();
-	}
-	
-	public String derivedStats() {
-		StringBuilder sb = new StringBuilder("");
-		
-		sb.append(	"DERIVED STATS"+
-					"\nLevel: " + level.toInt() +
-					"\nLife Capacity: " + lifeCapacity.toInt() +
-					"\nMana Capacity: " + manaCapacity.toInt() +
-					"\nOffensive Rating: " + offensiveRating.toInt() +
-					"\nDefensive Rating: " + defensiveRating.toInt() +
-					"\nArmor Rating: " + armorRating.toInt());
-		
-		return sb.toString();
-	}
-	
 	public String primaryViewport() {
 		StringBuilder sb = new StringBuilder("");
 		
