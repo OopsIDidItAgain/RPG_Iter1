@@ -27,7 +27,6 @@ public class PlayGameState extends GameState {
 
 	private PlayGameState() {
 		super();
-		
 	}
 
 	public GameMap getGameMap() {
@@ -91,7 +90,9 @@ public class PlayGameState extends GameState {
 			avatar.setPosition(updatedPosition);
 			map.getTileAt(updatedPosition).setEntity(avatar);
 		}
-		
+	}
+	
+	public void affectAvatar() {
 		map.getTileAt(avatar.getPosition()).getAreaEffect().affect(avatar);
 		System.out.println(avatar.getStats().getBlob().toString());
 	}
