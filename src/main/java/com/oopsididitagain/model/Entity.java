@@ -5,16 +5,21 @@ import java.util.HashMap;
 public class Entity extends GameObject {
 	private static final long serialVersionUID = 6897867058695115274L;
     private Inventory inventory;
+    private Occupation occupation;
 
     private Armory armory;
     private StatCollection stats;
 
-    
     public Entity(String name, String imageName, Position position) {
     	super (name, imageName, position);
     	stats = new StatCollection();
     	inventory = new Inventory();
     	armory = new Armory();
+    }
+    
+    public Entity(String name, String imageName, Position position, Occupation occupation) {
+    	this(name, imageName, position);
+    	changeOccupation(occupation);
     }
     
 	public void addToInventory(TakeableItem takeableItem) {
@@ -66,4 +71,13 @@ public class Entity extends GameObject {
 		
 	}
 	
+	public void changeOccupation(Occupation occupation) {
+		if (this.occupation != null) 
+			this.stats.detachBlob(this.occupation.getStats());
+
+		this.stats.mergeBlob(occupation.getStats());
+		this.occupation = occupation;
+	}
+	
 }
+
