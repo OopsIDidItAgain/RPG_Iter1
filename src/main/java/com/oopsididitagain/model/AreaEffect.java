@@ -28,7 +28,7 @@ public class AreaEffect {
 				areaBlob = new StatBlob(0, 0, 0, 0, 0, 0, 0, rate, 0);
 				break;
 			case 3:
-				areaBlob = new StatBlob(-1, 0, 0, 0, 0, 0, 0, 0, 0);
+				areaBlob = new StatBlob(0, 0, 0, 0, 0, 0, 0, -1000000, 0);
 				break;
 			case 4:
 				areaBlob = new StatBlob(0, 0, 0, 0, 0, 10, 0, 0, 0);
