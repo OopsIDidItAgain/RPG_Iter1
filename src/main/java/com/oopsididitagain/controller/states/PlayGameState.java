@@ -27,8 +27,9 @@ public class PlayGameState extends GameState {
 
 	private PlayGameState() {
 		super();
-		GameState state =  AvatarCreationGameState.getInstance();
-		this.avatar = AvatarCreationGameState.getAvatar();
+		//GameState state =  AvatarCreationGameState.getInstance();
+		//this.avatar = AvatarCreationGameState.getAvatar();
+		this.avatar = new Entity("Avatar", "/avatar.png", new Position(0, 0));
 		Terrain one = Terrain.createTerrain(Terrain.GRASS);
 		Terrain two = Terrain.createTerrain(Terrain.MOUNTAIN);
 		Terrain three = Terrain.createTerrain(Terrain.WATER);
