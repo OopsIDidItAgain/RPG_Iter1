@@ -1,39 +1,91 @@
 package com.oopsididitagain.model;
 
 public class Armory {
-	Item helmet;
-	Item weapon;
-	Item boots;
-	Item armor;
+	WearableItem helmet;
+	WearableItem weapon;
+	WearableItem boots;
+	WearableItem armor;
 	
 	public Armory() {}
 	
-	public Item getHelmet() { return helmet; }
-	public Item getWeapon()	{ return weapon; }
-	public Item getBoots() 	{ return boots;  }
-	public Item getArmor() 	{ return armor;  }
+	public WearableItem getHelmet() { return helmet; }
+	public WearableItem getWeapon()	{ return weapon; }
+	public WearableItem getBoots() 	{ return boots;  }
+	public WearableItem getArmor() 	{ return armor;  }
 	
-	public void equipHelmet(Item helmet) {
-		if (helmet.getName().equals("helmet"))
-			this.helmet = helmet;
+	public WearableItem equip(WearableItem item) {
+		WearableItem temp = null;
+		switch(item.getType()) {
+			case HELMET: {
+				temp = helmet;
+				helmet = item;
+				break;
+			}
+			case WEAPON: {
+				temp = weapon;
+				weapon = item;
+				break;
+			}
+			case ARMOR: {
+				temp = armor;
+				armor = item;
+				break;
+			}
+			case BOOTS: {
+				temp = boots;
+				boots = item;
+				break;
+			}
+		}
+		return temp;
 	}
 	
-	public void equipWeapon(Item weapon) {
-		if (weapon.getName().equals("weapon"))
-			this.weapon = weapon;
+	public WearableItem unequip(WearableItem item) {
+		if (item == null) return null;
+		WearableItem temp = null;
+		switch(item.getType()) {
+			case HELMET: {
+				if (item.equals(helmet)) {
+					temp = helmet;
+					helmet = null;
+				}
+				break;
+			}
+			case WEAPON: {
+				if (item.equals(weapon)) {
+					temp = weapon;
+					weapon = null;
+				}
+				break;
+			}
+			case ARMOR: {
+				if (item.equals(armor)) {
+					temp = armor;
+					armor = null;
+				}
+				break;
+			}
+			case BOOTS: {
+				if (item.equals(boots)) {
+					temp = boots;
+					boots = null;
+				}
+				break;
+			}
+			default: return null;
+		}
+		return temp;
 	}
 	
-	public void equipBoots(Item boots) {
-		if (boots.getName().equals("boots"))
-			this.boots = boots;
+	public int getEquippedWeaponRank() { 
+		return (weapon == null) ? 0 : weapon.getRank();
 	}
-	
-	public void equipArmor(Item armor) {
-		if (armor.getName().equals("armor"))
-			this.armor = armor;
+
+	public int getEquippedArmorRank() { 
+		int armorRank = (armor == null) ? 0 : armor.getRank();
+		int bootsRank = (boots == null) ? 0 : boots.getRank();
+		int helmetRank = (helmet == null) ? 0 : helmet.getRank();
+		return armorRank + bootsRank + helmetRank;
 	}
-	
-	
-	public int getEquippedWeapon() { return 0; }
-	public int getEquippedArmory() { return 0; }
+
 }

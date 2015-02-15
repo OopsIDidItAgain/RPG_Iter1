@@ -79,18 +79,31 @@ public class StatBlob {
 		this.manaAmount.add(other.manaAmount);
 	}
 	
+	public void detach(StatBlob other) {
+		this.livesLeft.subtract(other.livesLeft);
+		this.intellect.subtract(other.intellect);
+		this.strength.subtract(other.strength);
+		this.agility.subtract(other.agility);
+		this.hardiness.subtract(other.hardiness);
+		this.experience.subtract(other.experience);
+		this.movement.subtract(other.movement);
+		this.lifeAmount.subtract(other.lifeAmount);
+		this.manaAmount.subtract(other.manaAmount);
+	}
+	
+	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder("");
-		sb.append(livesLeft + "\n");
-		sb.append(intellect + "\n");
-		sb.append(strength + "\n");
-		sb.append(agility + "\n");
-		sb.append(hardiness + "\n");
-		sb.append(experience + "\n");
-		sb.append(movement + "\n");
-		sb.append(lifeAmount + "\n");
-		sb.append(manaAmount + "\n");
+		sb.append("Lives Left - " + livesLeft + "\n");
+		sb.append("Intellect - " + intellect + "\n");
+		sb.append("Strength - " + strength + "\n");
+		sb.append("Agility - " + agility + "\n");
+		sb.append("Hardiness - " + hardiness + "\n");
+		sb.append("Experience - " + experience + "\n");
+		sb.append("Movement - " + movement + "\n");
+		sb.append("Life Amount - " + lifeAmount + "\n");
+		sb.append("Mana Amount - " + manaAmount + "\n");
 		return sb.toString();
 	}
 }

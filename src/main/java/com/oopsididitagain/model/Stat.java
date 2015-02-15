@@ -12,6 +12,10 @@ public class Stat {
 		value += other.getValue();
 	}
 	
+	public void subtract(Stat other) {
+		value -= other.getValue();
+	}
+	
 	public double getValue() {
 		return value;
 	}

@@ -2,6 +2,7 @@ package com.oopsididitagain.controller.states;
 
 import com.oopsididitagain.controller.Controller;
 import com.oopsididitagain.controller.StartGameController;
+import com.oopsididitagain.gui.View;
 
 public class StartGameState extends GameState {
 
@@ -16,6 +17,11 @@ public class StartGameState extends GameState {
 			instance = new StartGameState();
 		}
 		return instance;
+	}
+	
+	@Override
+	public void accept(View visitor) {
+		visitor.visit(this);
 	}
 	
 	@Override

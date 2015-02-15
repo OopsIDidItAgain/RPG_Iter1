@@ -45,10 +45,24 @@ public class CSVTool {
 						int movement = Integer.parseInt(splitLine[12]);
 						int lifeAmount = Integer.parseInt(splitLine[13]);
 						int manaAmount = Integer.parseInt(splitLine[14]);
+						String wearableTypeString = splitLine[15];
+						WearableItemType wearableItemType = null;
+						switch(wearableTypeString) {
+							case "HELMET": wearableItemType = WearableItemType.HELMET;
+								break;
+							case "ARMOR": wearableItemType = WearableItemType.ARMOR;
+								break;
+							case "BOOTS": wearableItemType = WearableItemType.BOOTS;
+								break;
+							case "WEAPON": wearableItemType = WearableItemType.WEAPON;
+								break;
+						}
+
 						StatBlob blob = new StatBlob(livesLeft, strength, agility, 
 								intellect, hardiness, experience, movement, 
 								lifeAmount, manaAmount);
-						item = new WearableItem(name, imageName, position, rank, blob);
+						item = new WearableItem(name, imageName, position, rank, blob, 
+								wearableItemType);
 						break;
 					}
 					case "Takeable": {

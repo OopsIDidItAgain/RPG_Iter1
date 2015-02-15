@@ -2,6 +2,7 @@ package com.oopsididitagain.controller;
 
 import com.oopsididitagain.controller.states.ExitGameState;
 import com.oopsididitagain.controller.states.GameState;
+import com.oopsididitagain.controller.states.InventoryGameState;
 import com.oopsididitagain.controller.states.PauseGameState;
 import com.oopsididitagain.controller.states.PlayGameState;
 import com.oopsididitagain.io.KeyCode;
@@ -42,6 +43,9 @@ public class PlayGameController extends Controller{
 				break;
 			case KeyCode.EXIT:
 				state = ExitGameState.getInstance();
+				break;
+			case KeyCode.INVENTORY:
+				state = InventoryGameState.getInstance();
 				break;
 			default:
 				break;
