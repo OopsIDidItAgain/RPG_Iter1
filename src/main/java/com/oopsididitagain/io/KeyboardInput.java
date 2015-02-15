@@ -62,6 +62,9 @@ public class KeyboardInput implements KeyListener {
 		case 'k':
 			input = KeyCode.DROP;
 			break;
+		case 'f':
+			input = KeyCode.FLY;
+			break;
 		}
 	}
 
