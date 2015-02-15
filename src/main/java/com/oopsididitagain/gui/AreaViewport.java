@@ -128,7 +128,7 @@ public class AreaViewport extends Viewport{
 		
 		// printing lives left as hearts
 		int livesLeft = avatar.getStats().getBlob().getLivesLeft();
-		if (livesLeft > 0) {						
+		if (livesLeft > 0) {	
 			int y = 20, x = 560;
 			for (int i = 0; i < livesLeft; i++) {
 				g.drawImage(Decal.HEART_DECAL.getImage(), x, y, 25, 30, null);
