@@ -23,11 +23,9 @@ public class Entity extends GameObject {
     	changeOccupation(occupation);
     }
     
-    
 	public Occupation getOccupation() {
 		return occupation;
 	}
-
 
 	public void addToInventory(TakeableItem takeableItem) {
 		this.inventory.addItem(takeableItem);
@@ -133,7 +131,7 @@ public class Entity extends GameObject {
 	@Override
 	public String toSaveFormat() {
 		StringBuilder sb = new StringBuilder(super.toSaveFormat());
-		sb.append("," + occupation);
+		sb.append("," + occupation + "," + isFlying);
 		return sb.toString();
 	}
 

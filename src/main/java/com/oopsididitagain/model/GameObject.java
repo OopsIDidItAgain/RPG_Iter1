@@ -11,15 +11,12 @@ public abstract class GameObject implements Saveable {
 	protected Image image;
 	protected String imageName;
     protected String name;
-    protected Direction facing;
-    
 
 	public GameObject(String name, String imageName, Position position) {
     	this.name = name;
     	this.image = Toolkit.getDefaultToolkit().createImage(getClass().getResource(imageName));
     	this.imageName = imageName;
     	this.position = position;
-    	this.facing = Direction.NORTH;
     }
 
     public Position getPosition() {
@@ -45,14 +42,9 @@ public abstract class GameObject implements Saveable {
     public void setName(String name) {
         this.name = name;
     }
-    
-
-    public Direction getFacing() {
-		return facing;
-	}
 
 	public void setFacing(Direction facing) {
-		this.facing = facing;
+		this.position.setFacing(facing);
 	}
     
     @Override
@@ -66,7 +58,7 @@ public abstract class GameObject implements Saveable {
     @Override
     public String toSaveFormat() {
     	StringBuilder sb = new StringBuilder("");
-    	sb.append(position.toSaveFormat() + "," + imageName + "," + name + "," + facing);
+    	sb.append(position.toSaveFormat() + "," + imageName + "," + name);
     	return sb.toString();
     }
 }

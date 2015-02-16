@@ -4,9 +4,9 @@ import com.oopsididitagain.util.Saveable;
 
 public class StatBlob implements Saveable {
 	
-	public final static StatBlob SNEAK_DEFAULT = new StatBlob(3, 10, 50, 20, 20, 0, 50, 100, 25);
-	public final static StatBlob SMASHER_DEFAULT = new StatBlob(3, 50, 20, 10, 40, 0, 25, 100, 25);
-	public final static StatBlob SUMMONER_DEFAULT = new StatBlob(3, 15, 20, 50, 10, 0, 25, 100, 25);
+	public final static StatBlob SNEAK_DEFAULT = new StatBlob(0, 10, 50, 20, 20, 0, 50, 0, 0);
+	public final static StatBlob SMASHER_DEFAULT = new StatBlob(0, 50, 20, 10, 40, 0, 25, 0, 0);
+	public final static StatBlob SUMMONER_DEFAULT = new StatBlob(0, 15, 20, 50, 10, 0, 25, 0, 0);
 	
 	//primary stats
 	private Stat livesLeft;
@@ -31,6 +31,18 @@ public class StatBlob implements Saveable {
 		this.movement = new Stat(movement);
 		this.lifeAmount = new Stat(lifeAmount);
 		this.manaAmount = new Stat(manaAmount);
+	}
+	
+	public StatBlob(StatBlob other) {
+		this.livesLeft = new Stat(other.livesLeft.getValue());
+		this.strength = new Stat(other.strength.getValue());
+		this.agility = new Stat(other.agility.getValue());
+		this.intellect = new Stat(other.intellect.getValue());
+		this.hardiness = new Stat(other.hardiness.getValue());
+		this.experience = new Stat(other.experience.getValue());
+		this.movement = new Stat(other.movement.getValue());
+		this.lifeAmount = new Stat(other.lifeAmount.getValue());
+		this.manaAmount = new Stat(other.manaAmount.getValue());
 	}
 	
 	public int getLivesLeft(){

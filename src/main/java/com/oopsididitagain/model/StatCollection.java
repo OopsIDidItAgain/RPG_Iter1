@@ -23,14 +23,14 @@ public class StatCollection implements Saveable {
 	
 	public StatCollection(Armory armory) {
 		this.armory = armory;
-		this.blob = new StatBlob(0, 0, 0, 0, 0, 0, 0, 0, 0);
+		this.blob = new StatBlob(3, 0, 0, 0, 0, 0, 0, 20, 25);
 		deriveStats();
 	}
 	
 	private void deriveStats() {
 		//derived
 		level = new Stat(this.blob.getExperience() * .1);
-		lifeCapacity = new Stat(0.5 * this.blob.getHardiness());
+		lifeCapacity = new Stat(20 + (0.5 * this.blob.getHardiness()));
 		manaCapacity = new Stat(25.0 + this.blob.getIntellect() * this.level.getValue());
 		offensiveRating = new Stat((blob.getStrength() + armory.getEquippedWeaponRank())* this.level.getValue()); 
 		defensiveRating = new Stat(blob.getAgility() * this.level.getValue());

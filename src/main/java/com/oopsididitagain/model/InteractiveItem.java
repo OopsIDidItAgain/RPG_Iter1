@@ -30,4 +30,11 @@ public class InteractiveItem extends Item {
 		
 	}
 
+	@Override
+	public String toSaveFormat() {
+		StringBuilder sb = new StringBuilder("");
+		sb.append(super.toSaveFormat());
+		sb.append(",Interactive");
+		return sb.toString();
+	}
 }

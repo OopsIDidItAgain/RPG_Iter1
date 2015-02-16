@@ -41,4 +41,15 @@ public class AffectMapItem extends InteractiveItem {
 			break;
 		}
 	}
+	
+	@Override
+	public String toSaveFormat() {
+		StringBuilder sb = new StringBuilder("");
+		String[] arr = super.toSaveFormat().split(",");
+		arr[5] = "AffectMapItem";
+		for (String s: arr) 
+			sb.append(s + ",");
+		sb.append("," + affect);
+		return sb.toString();
+	}
 }

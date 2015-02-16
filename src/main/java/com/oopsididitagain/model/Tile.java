@@ -111,10 +111,13 @@ public class Tile {
 		}
 	}
 
-
 	public void interact() {
 		if(interactiveItem != null) {
 			interactiveItem.affect();
 		}
+	}
+
+	public InteractiveItem getInteractiveItem() {
+		return interactiveItem;
 	}
 }

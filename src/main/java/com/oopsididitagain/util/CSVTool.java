@@ -177,6 +177,8 @@ public class CSVTool {
 				Tile t = map.getTileAt(i, j);
 				if (t.getItems() != null && t.getItems().size() > 0) 
 					itemsOnMap.addAll(t.getItems());
+				if (t.getInteractiveItem() != null)
+					itemsOnMap.add(t.getInteractiveItem());
 				areaEffects[i][j] = t.getAreaEffect();
 				switch(t.getTerrain().getType()) {
 					case Terrain.GRASS: {
@@ -199,6 +201,7 @@ public class CSVTool {
 		sb.append("AREAEFFECTS\n");
 		for (int i = 0; i < areaEffects.length; ++i) {
 			for (int j = 0; j < areaEffects[0].length; ++j) {
+				if (areaEffects[i][j].getType() == 0) continue;
 				sb.append(i + "," + j + "," + areaEffects[i][j].toSaveFormat() + "\n");
 			}
 		}
@@ -208,14 +211,17 @@ public class CSVTool {
 			sb.append(i.toSaveFormat() + "\n");
 		}
 		sb.append("AVATAR\n");
-		sb.append("STATBLOB\n");
-		sb.append(avatar.getStats().toSaveFormat() + "\n");
+		StatBlob blob = new StatBlob(avatar.getStats().getBlob());
+		blob.detach(avatar.getOccupation().getStats());
+		sb.append(avatar.toSaveFormat() + "\n");
 		sb.append("ARMORY\n");
 		for (Item i: avatar.getInventory().getInventory().values()) {
 			if (i instanceof WearableItem) {
 				WearableItem wearable = (WearableItem)i;
-				if (wearable.isEquipped())
+				if (wearable.isEquipped()) {
 					sb.append(wearable.toSaveFormat() + "\n");
+					blob.detach(wearable.getBlob());
+				}
 			}
 		}
 		sb.append("INVENTORY_NOT_EQUIPPED\n");
@@ -227,8 +233,10 @@ public class CSVTool {
 			}
 			else sb.append(i.toSaveFormat());
 		}
+		sb.append("BASE_STATS_WITH_NO_OCCUPATION_NO_EQUIPMENT\n");
+		sb.append(blob.toSaveFormat());
 		try {
-			File output = new File(System.getProperty("user.home") + "/OOP_SAVEGAME.csv");
+			File output = new File(System.getProperty("user.home"), "OOP_SAVEGAME.csv");
 			FileWriter writer = new FileWriter(output);
 			writer.write(sb.toString());
 			writer.flush();

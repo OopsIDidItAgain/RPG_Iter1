@@ -66,7 +66,7 @@ public class WearableItem extends TakeableItem {
 	public String toSaveFormat() {
 		StringBuilder sb = new StringBuilder("");
 		String[] splitString = super.toSaveFormat().split(",");
-		splitString[6] = "Wearable";
+		splitString[5] = "Wearable";
 		for (String s: splitString) 
 			sb.append(s + ",");
 		sb.append(blob.toSaveFormat() + ",");
