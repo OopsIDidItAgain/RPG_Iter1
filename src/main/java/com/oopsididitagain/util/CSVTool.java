@@ -341,7 +341,7 @@ public class CSVTool {
 				case "OneShotItem":
 
 					livesLeft = Double.parseDouble(splitLine[6]);
-					intellect = Double.parseDouble(splitLine[7];
+					intellect = Double.parseDouble(splitLine[7]);
 					strength = Double.parseDouble(splitLine[8]);
 					agility = Double.parseDouble(splitLine[9]);
 					hardiness = Double.parseDouble(splitLine[10]);
