@@ -109,7 +109,7 @@ public class StatBlob implements Saveable {
 	
 	public void merge(StatBlob other) {
 		
-			this.livesLeft.add(other.livesLeft);
+		this.livesLeft.add(other.livesLeft);
 		
 		if (this.lifeAmount.getValue() + other.lifeAmount.getValue() > 0) // aka you don't die
 			this.lifeAmount.add(other.lifeAmount);

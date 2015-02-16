@@ -49,9 +49,6 @@ public class StatsViewport extends Viewport{
 
 		 
 		 // actually printing out primary and derived stats
-		 // String pStats = avatar.getStats().primaryStats();
-		 // String dStats = avatar.getStats().derivedStats();
-
 		 String pStats = avatar.getStats().primaryViewport();
 		 String dStats = avatar.getStats().derivedViewport();
 
@@ -64,6 +61,7 @@ public class StatsViewport extends Viewport{
 		        // graphics2d doesn't handle "\n" as new lines, so we have to split it
 		 
 		 x+=130; y = 537;
+		 
 		 for (String line : dStats.split("\n"))
 			 g2.drawString(line, x, y+= g2.getFontMetrics().getHeight());
 		 

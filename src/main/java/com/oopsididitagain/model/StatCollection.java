@@ -49,15 +49,27 @@ public class StatCollection implements Saveable {
 		return Math.floor(level.getValue());
 	}
 	
+	public boolean dyingLogic() {
+		// only returns true if zero lives left, and game is over
+		this.blob.getLifeAmountStat().setValue(this.blob.getLivesLeft() == 0 ? 0 : lifeCapacity.getValue());
+		if(this.blob.getLivesLeft() > 0)
+			this.blob.getLivesLeftStat().subtract(1);
+		else return true; // will recursively be sent to PlayGameState
+		return false;
+	}
 	public void mergeBlob(StatBlob blob) {
 		this.blob.merge(blob);
 		
 		// has to be handled here because it contains both primary and derived stats
-		if(this.blob.getLifeAmount() <= 0) {
-			if(this.blob.getLivesLeft() > 0)
-				this.blob.getLivesLeftStat().subtract(1);
-			this.blob.getLifeAmountStat().setValue(this.blob.getLivesLeft() == 0 ? 0 : lifeCapacity.getValue());
-		} else if(this.blob.getLifeAmount() > lifeCapacity.getValue()) {
+		/*if(this.blob.getLifeAmount() <= 0) {
+			//if(this.blob.getLivesLeft() > 0) {
+				//this.blob.getLivesLeftStat().subtract(1);
+			//}
+			//this.blob.getLifeAmountStat().setValue(this.blob.getLivesLeft() == 0 ? 0 : lifeCapacity.getValue());
+			
+		} else */
+		// if ((int)this.blob.getLifeAmount() <= 0) dyingLogic();
+		if(this.blob.getLifeAmount() > lifeCapacity.getValue()) {
 			this.blob.getLifeAmountStat().setValue(lifeCapacity.getValue());
 		}
 				

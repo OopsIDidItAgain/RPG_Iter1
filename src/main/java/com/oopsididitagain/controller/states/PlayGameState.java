@@ -29,6 +29,7 @@ public class PlayGameState extends GameState {
 	private Entity avatar;
 	private List<Tile> terraFormedTiles;
 	int carrotid;
+	private final static Position ORIGIN_POSITION = new Position(0,0);
 	
 
 	private PlayGameState() {
@@ -130,11 +131,18 @@ public class PlayGameState extends GameState {
 			try { Thread.sleep(300);  } 
 			catch(InterruptedException ex) { Thread.currentThread().interrupt(); }
 			
-			map.getTileAt(avatar.getPosition()).setEntity(null);
-			Position updatedPosition = new Position(0,0);
-			avatar.setPosition(updatedPosition);
-			map.getTileAt(updatedPosition).setEntity(avatar);
+			if (avatarDies()) /* go_to_game_over_screen() */; 
 		}
+		
+		if (avatar.shouldDie()) if (avatarDies()) /* go_to_game_over_screen() */;
+	}
+	
+	public boolean avatarDies() { // returns true when game is completely over
+		map.getTileAt(avatar.getPosition()).setEntity(null);
+		avatar.setPosition(ORIGIN_POSITION);
+		map.getTileAt(ORIGIN_POSITION).setEntity(avatar);
+		
+		return (avatar.getStats().dyingLogic());
 	}
 	
 	public void toggleFlight() {

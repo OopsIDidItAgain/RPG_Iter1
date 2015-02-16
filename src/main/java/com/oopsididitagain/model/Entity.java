@@ -115,7 +115,10 @@ public class Entity extends GameObject {
 
 	public void visit(ObstacleItem obstacleItem) {
 		// TODO Auto-generated method stub
-		
+	}
+	
+	public boolean shouldDie() {
+		return ((int)stats.getBlob().getLifeAmount() <= 0 ? true : false);
 	}
 	
 	public void visit(OneShotItem item) {
