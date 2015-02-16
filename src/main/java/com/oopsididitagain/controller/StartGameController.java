@@ -1,8 +1,6 @@
 package com.oopsididitagain.controller;
 
-import com.oopsididitagain.controller.states.ExitGameState;
 import com.oopsididitagain.controller.states.GameState;
-import com.oopsididitagain.controller.states.PauseGameState;
 import com.oopsididitagain.controller.states.StartGameState;
 import com.oopsididitagain.io.KeyCode;
 

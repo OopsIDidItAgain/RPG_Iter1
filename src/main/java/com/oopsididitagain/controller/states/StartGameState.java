@@ -2,6 +2,11 @@ package com.oopsididitagain.controller.states;
 
 
 
+import java.io.File;
+
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import com.oopsididitagain.controller.Controller;
 import com.oopsididitagain.controller.StartGameController;
 import com.oopsididitagain.gui.View;
@@ -56,10 +61,12 @@ public class StartGameState extends GameState {
 			state = AvatarCreationGameState.getInstance();
 			break;
 		case StartMenu.LOAD_GAME:
-			GameMap m = CSVTool.makeLoadedMap();
-			Entity avatar = CSVTool.makeLoadedAvatar();
+			File file = chooseFile();
+			GameMap m = CSVTool.makeLoadedMap(file);
+			Entity avatar = CSVTool.makeLoadedAvatar(file);
+			System.out.println(file.getAbsolutePath());
 			
-			state = PlayGameState.getInstance();
+			//state = PlayGameState.getInstance();
 			((PlayGameState)state).setMap(m);
 			((PlayGameState)state).setAvatar(avatar);
 			break;
@@ -70,5 +77,16 @@ public class StartGameState extends GameState {
 			break;
 		}
 		return state;
+	}
+	
+	private File chooseFile() {
+		File loadGameFile = null;
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV Files", "csv");
+		JFileChooser chooser = new JFileChooser();
+		chooser.setFileFilter(filter);
+		int returnVal = chooser.showOpenDialog(null);
+		if (returnVal == JFileChooser.APPROVE_OPTION) 
+			loadGameFile = chooser.getSelectedFile();
+		return loadGameFile;
 	}
 }

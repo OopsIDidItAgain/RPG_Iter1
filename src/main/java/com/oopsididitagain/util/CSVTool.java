@@ -2,6 +2,7 @@ package com.oopsididitagain.util;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -246,26 +247,9 @@ public class CSVTool {
 	}
 
 
-	public static GameMap makeLoadedMap() {
-		/*
-		final JFileChooser fc = new JFileChooser();
-		int returnVal = fc.showOpenDialog(fc);
-		File output = null;
-		FileNameExtensionFilter filter = new FileNameExtensionFilter("csvfile",".csv");
-		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			output = fc.getSelectedFile();
-		}
-		*/
-		String output = "hi";
-		if (output != null) {
-			//String name = output.getAbsolutePath();
-			//InputStream in = CSVTool.class.getResourceAsStream("/ItemDatabase.csv");
-			//BufferedReader input = new BufferedReader(new InputStreamReader(in));
-			
-			
-			InputStream in = CSVTool.class.getResourceAsStream("/test1.csv");
-			BufferedReader input = new BufferedReader(new InputStreamReader(in));
+	public static GameMap makeLoadedMap(File loadGameFile) {
 			try {
+				BufferedReader input = new BufferedReader(new FileReader(loadGameFile));
 				String line = input.readLine(); // x y skip
 				line = input.readLine();// width height
 				String[] splitLine = line.split(",");
@@ -424,142 +408,126 @@ public class CSVTool {
 				e.printStackTrace();
 			}
 
-		}
 
 		return null;
 
 	}
 
-	public static Entity makeLoadedAvatar() {
-		/*
-		final JFileChooser fc = new JFileChooser();
-		int returnVal = fc.showOpenDialog(fc);
-		File output = null;
-		FileNameExtensionFilter filter = new FileNameExtensionFilter("csv please",".csv");
-		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			output = fc.getSelectedFile();
-		}
-		*/
-		String output = "hi";
-		if (output != null) {
-			//String name = output.getName();
-			InputStream in = CSVTool.class.getResourceAsStream("/test1.csv");
-			BufferedReader input = new BufferedReader(new InputStreamReader(in));
-			try {
-				String line = input.readLine(); // x y skip
-				String[] splitLine = line.split(",");
-				line = input.readLine();// skipping items
-				ArrayList<Item> items = new ArrayList<Item>();
-				while (!line.equals("AVATAR")) {// check here!!!!!!!!!
-					line = input.readLine();
-				}
+	public static Entity makeLoadedAvatar(File loadGameFile) {
+		try {
+			BufferedReader input = new BufferedReader(new FileReader(loadGameFile));
+			String line = input.readLine(); // x y skip
+			String[] splitLine = line.split(",");
+			line = input.readLine();// skipping items
+			ArrayList<Item> items = new ArrayList<Item>();
+			while (!line.equals("AVATAR")) {// check here!!!!!!!!!
+				line = input.readLine();
+			}
+			line = input.readLine();
+			splitLine = line.split(",");
+			String image = splitLine[0];
+			String occupation= splitLine[1];
+			int postionx = Integer.parseInt(splitLine[2]);
+			int positiony = Integer.parseInt(splitLine[3]);
+			String isflying = splitLine[4];
+			Position p = new Position(postionx, positiony, Direction.NORTH);
+			boolean isFlying = false;
+			if(isflying.equals("TRUE")){
+				isFlying = true;
+			}
+			
+			line = input.readLine();
+			line = input.readLine();
+			splitLine = line.split(",");
+			
+			double livesLeft, intellect, strength, agility, hardiness, experience, movement, lifeAmount, manaAmount;
+			
+			livesLeft = Double.parseDouble(splitLine[0]);
+			intellect = Double.parseDouble(splitLine[1]);
+			strength = Double.parseDouble(splitLine[2]);
+			agility = Double.parseDouble(splitLine[3]);
+			hardiness = Double.parseDouble(splitLine[4]);
+			experience = Double.parseDouble(splitLine[5]);
+			movement = Double.parseDouble(splitLine[6]);
+			lifeAmount = Double.parseDouble(splitLine[7]);
+			manaAmount = Double.parseDouble(splitLine[8]);
+			
+			StatBlob wearBlob = new StatBlob(livesLeft, intellect,
+					strength, agility, hardiness, experience,
+					movement, lifeAmount, manaAmount);
+			
+			Entity av = new Entity("avatar", image, p,isFlying);
+			
+					
+					
+			
+			//av.changeOccupation(Occupation.SMASHER);
+			return av;
+			//line = input.readLine();
+			//ArrayList<Item> inventory = new ArrayList<Item>();
+			/*
+			while(line!= "INVENTORY_NOT_EQUIPPED"){
 				line = input.readLine();
 				splitLine = line.split(",");
-				String image = splitLine[0];
-				String occupation= splitLine[1];
-				int postionx = Integer.parseInt(splitLine[2]);
-				int positiony = Integer.parseInt(splitLine[3]);
-				String isflying = splitLine[4];
-				Position p = new Position(postionx, positiony, Direction.NORTH);
-				boolean isFlying = false;
-				if(isflying.equals("TRUE")){
-					isFlying = true;
+				livesLeft = Integer.parseInt(splitLine[6]);
+				intellect = Integer.parseInt(splitLine[7]);
+				strength = Integer.parseInt(splitLine[8]);
+				agility = Integer.parseInt(splitLine[9]);
+				hardiness = Integer.parseInt(splitLine[10]);
+				experience = Integer.parseInt(splitLine[11]);
+				movement = Integer.parseInt(splitLine[12]);
+				lifeAmount = Integer.parseInt(splitLine[13]);
+				manaAmount = Integer.parseInt(splitLine[14]);
+				String wearableType = splitLine[15];
+
+				WearableItemType wT = null;
+				switch (wearableType) {
+				case "HELMET":
+					wT = WearableItemType.HELMET;
+					break;
+				case "BOOTS":
+					wT = WearableItemType.BOOTS;
+					break;
+				case "ARMOR":
+					wT = WearableItemType.ARMOR;
+					break;
+				case "WEAPON":
+					wT = WearableItemType.WEAPON;
+					break;
+
 				}
-				
-				line = input.readLine();
-				line = input.readLine();
-				splitLine = line.split(",");
-				
-				double livesLeft, intellect, strength, agility, hardiness, experience, movement, lifeAmount, manaAmount;
-				
-				livesLeft = Double.parseDouble(splitLine[0]);
-				intellect = Double.parseDouble(splitLine[1]);
-				strength = Double.parseDouble(splitLine[2]);
-				agility = Double.parseDouble(splitLine[3]);
-				hardiness = Double.parseDouble(splitLine[4]);
-				experience = Double.parseDouble(splitLine[5]);
-				movement = Double.parseDouble(splitLine[6]);
-				lifeAmount = Double.parseDouble(splitLine[7]);
-				manaAmount = Double.parseDouble(splitLine[8]);
-				
+				rank = Integer.parseInt(splitLine[16]);
+
 				StatBlob wearBlob = new StatBlob(livesLeft, intellect,
 						strength, agility, hardiness, experience,
 						movement, lifeAmount, manaAmount);
+				Position wP = new Position(x, y, Direction.NORTH);
+				WearableItem wearableItem = new WearableItem(nameID,
+						img, wP, rank, wearBlob, wT);
+				items.add(wearableItem);
 				
-				Entity av = new Entity("avatar", image, p,isFlying);
-				
-						
-						
-				
-				//av.changeOccupation(Occupation.SMASHER);
-				return av;
-				//line = input.readLine();
-				//ArrayList<Item> inventory = new ArrayList<Item>();
-				/*
-				while(line!= "INVENTORY_NOT_EQUIPPED"){
-					line = input.readLine();
-					splitLine = line.split(",");
-					livesLeft = Integer.parseInt(splitLine[6]);
-					intellect = Integer.parseInt(splitLine[7]);
-					strength = Integer.parseInt(splitLine[8]);
-					agility = Integer.parseInt(splitLine[9]);
-					hardiness = Integer.parseInt(splitLine[10]);
-					experience = Integer.parseInt(splitLine[11]);
-					movement = Integer.parseInt(splitLine[12]);
-					lifeAmount = Integer.parseInt(splitLine[13]);
-					manaAmount = Integer.parseInt(splitLine[14]);
-					String wearableType = splitLine[15];
-
-					WearableItemType wT = null;
-					switch (wearableType) {
-					case "HELMET":
-						wT = WearableItemType.HELMET;
-						break;
-					case "BOOTS":
-						wT = WearableItemType.BOOTS;
-						break;
-					case "ARMOR":
-						wT = WearableItemType.ARMOR;
-						break;
-					case "WEAPON":
-						wT = WearableItemType.WEAPON;
-						break;
-
-					}
-					rank = Integer.parseInt(splitLine[16]);
-
-					StatBlob wearBlob = new StatBlob(livesLeft, intellect,
-							strength, agility, hardiness, experience,
-							movement, lifeAmount, manaAmount);
-					Position wP = new Position(x, y, Direction.NORTH);
-					WearableItem wearableItem = new WearableItem(nameID,
-							img, wP, rank, wearBlob, wT);
-					items.add(wearableItem);
-					
-				}
-
-
-				String img = splitLine[3];
-				String nameID = splitLine[4];
-				String itemtype = splitLine[6];
-				
-				switch (itemtype) {
-				case "OneShotItem":
-
-
-
-					StatBlob blob = new StatBlob(livesLeft, intellect,
-							strength, agility, hardiness, experience,
-							movement, lifeAmount, manaAmount);
-					Position p = new Position(x, y, Direction.NORTH);
-					
-					*/
-						
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 
+
+			String img = splitLine[3];
+			String nameID = splitLine[4];
+			String itemtype = splitLine[6];
+			
+			switch (itemtype) {
+			case "OneShotItem":
+
+
+
+				StatBlob blob = new StatBlob(livesLeft, intellect,
+						strength, agility, hardiness, experience,
+						movement, lifeAmount, manaAmount);
+				Position p = new Position(x, y, Direction.NORTH);
+				
+				*/
+					
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		return null;
