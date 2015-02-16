@@ -52,13 +52,15 @@ public class StatCollection implements Saveable {
 	public void mergeBlob(StatBlob blob) {
 		this.blob.merge(blob);
 		
+		// has to be handled here because it contains both primary and derived stats
 		if(this.blob.getLifeAmount() <= 0) {
-			this.blob.getLivesLeftStat().subtract(1);
-			this.blob.getLifeAmountStat().setValue(lifeCapacity.getValue());
+			if(this.blob.getLivesLeft() > 0)
+				this.blob.getLivesLeftStat().subtract(1);
+			this.blob.getLifeAmountStat().setValue(this.blob.getLivesLeft() == 0 ? 0 : lifeCapacity.getValue());
 		} else if(this.blob.getLifeAmount() > lifeCapacity.getValue()) {
 			this.blob.getLifeAmountStat().setValue(lifeCapacity.getValue());
 		}
-		
+				
 		deriveStats();
 	}
 	public void detachBlob(StatBlob blob) {
@@ -82,7 +84,7 @@ public class StatCollection implements Saveable {
 		return armorRating.getValue();
 	}
 
-	public double getLifeCapactiy() {
+	public double getLifeCapacity() {
 		return lifeCapacity.getValue();
 	}
 	
@@ -101,24 +103,33 @@ public class StatCollection implements Saveable {
 		return sb.toString();
 	}
 	
-	public String primaryStats() {
+	public String primaryViewport() {
 		StringBuilder sb = new StringBuilder("");
-		sb.append("PRIMARY STATS\n");
-		sb.append(blob.toString());
+		
+		sb.append(	"PRIMARY STATS"+
+					"\nIntellect: "	+(int)blob.getIntellect()+
+					"\nStrength: "	+(int)blob.getStrength()+
+					"\nAgility: "	+(int)blob.getAgility()+
+					"\nHardiness: "	+(int)blob.getExperience()+
+					"\nMovement: "	+(int)blob.getMovement()+
+					"\nExperience: "+(int)blob.getExperience()+
+					"\nLife: "		+(int)blob.getLifeAmount()+
+									"/"+(int)getLifeCapacity()+
+					"\nMana: "		+(int)blob.getManaAmount()+
+									"/"+(int)getMana());
+		
 		return sb.toString();
+		
 	}
 	
-	public String derivedStats() {
+	public String derivedViewport() {
 		StringBuilder sb = new StringBuilder("");
 		
-		sb.append(	"DERIVED STATS"+
-					"\nLevel: " + level.toInt() +
-					"\nLife Capacity: " + lifeCapacity.toInt() +
-					"\nMana Capacity: " + manaCapacity.toInt() +
-					"\nOffensive Rating: " + offensiveRating.toInt() +
-					"\nDefensive Rating: " + defensiveRating.toInt() +
-					"\nArmor Rating: " + armorRating.toInt());
-		
+		sb.append(	"SECONDARY STATS"+
+					"\nLevel: "				+(int)getLevel()+
+					"\nOffensive Rating: "	+(int)getOffensiveRating()+
+					"\nDefensiveRating: "	+(int)getDefensiveRating()+
+					"\nArmor Rating: "		+(int)getArmorRating());
 		return sb.toString();
 	}
 

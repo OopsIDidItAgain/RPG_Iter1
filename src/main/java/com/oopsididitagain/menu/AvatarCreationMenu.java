@@ -36,6 +36,9 @@ public class AvatarCreationMenu {
 	public int getCurrentOption() {
 		return currentOption;
 	}
+	public String getCurrentOptionString(){
+		return menuOptions.get(currentOption).displayValue();
+	}
 
 	// @Override
 	public void changeMenuOption(int keyCode) {

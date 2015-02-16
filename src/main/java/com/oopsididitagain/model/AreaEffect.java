@@ -46,7 +46,7 @@ public class AreaEffect implements Saveable {
 	public void affect(Entity entity) {
 		entity.getStats().mergeBlob(areaBlob);
 	}
-	
+	public int getType() { return type; }
 	public Decal getDecal() { return decal; }
 
 	@Override

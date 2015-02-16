@@ -53,7 +53,7 @@ public class PauseGameController extends Controller {
 				state = ExitGameState.getInstance();
 				break;
 			case KeyCode.ENTER:
-				break;
+				state = ((PauseGameState)state).doMenuOption();
 			// TODO perform the menu option
 			default:
 				break;
