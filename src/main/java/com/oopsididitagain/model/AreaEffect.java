@@ -20,7 +20,7 @@ public class AreaEffect implements Saveable {
 		//position = new Postion();
 		decal = Decal.AREA_EFFECTS[type];
 	}
-	public AreaEffect(int type, int rate, Position p) {
+	public AreaEffect(int type, int rate, Position position) {
 		this.type = type;
 		this.rate = rate;
 		initializeBlob(type, rate);
@@ -76,7 +76,7 @@ public class AreaEffect implements Saveable {
 		this.rate = rate;
 	}
 
-	public void setPosition(Position p) {
+	public void setPosition(Position position) {
 		this.position = position;
 		
 	}

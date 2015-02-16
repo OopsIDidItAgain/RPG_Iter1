@@ -24,5 +24,19 @@ public enum Direction {
 	public String toString() {
 		return Integer.toString(keyCode);
 	}
+	
+	public Direction fromInteger(int keyCode) {
+		switch (keyCode) {
+		case 1: return SOUTHWEST;
+		case 2: return SOUTH;
+		case 3: return SOUTHEAST;
+		case 4: return WEST;
+		case 5: return EAST;
+		case 6: return NORTHWEST;
+		case 7: return NORTH;
+		case 8: return NORTHEAST;
+		default: return NORTH;
+		}
+	}
 }
 

@@ -23,6 +23,10 @@ public class Entity extends GameObject {
     	changeOccupation(occupation);
     }
     
+    public void setBlob(StatBlob blob) {
+    	stats.setBlob(blob);
+    }
+    
 	public Occupation getOccupation() {
 		return occupation;
 	}
