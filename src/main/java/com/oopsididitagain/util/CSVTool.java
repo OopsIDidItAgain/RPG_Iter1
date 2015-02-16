@@ -340,15 +340,15 @@ public class CSVTool {
 				switch (itemtype) {
 				case "OneShotItem":
 
-					livesLeft = Double.parseDouble(splitLine[7]);
-					intellect = Double.parseDouble(splitLine[8]);
-					strength = Double.parseDouble(splitLine[9]);
-					agility = Double.parseDouble(splitLine[10]);
-					hardiness = Double.parseDouble(splitLine[11]);
-					experience = Double.parseDouble(splitLine[12]);
-					movement = Double.parseDouble(splitLine[13]);
-					lifeAmount = Double.parseDouble(splitLine[14]);
-					manaAmount = Double.parseDouble(splitLine[15]);
+					livesLeft = Double.parseDouble(splitLine[6]);
+					intellect = Double.parseDouble(splitLine[7];
+					strength = Double.parseDouble(splitLine[8]);
+					agility = Double.parseDouble(splitLine[9]);
+					hardiness = Double.parseDouble(splitLine[10]);
+					experience = Double.parseDouble(splitLine[11]);
+					movement = Double.parseDouble(splitLine[12]);
+					lifeAmount = Double.parseDouble(splitLine[13]);
+					manaAmount = Double.parseDouble(splitLine[14]);
 
 					StatBlob blob = new StatBlob(livesLeft, intellect,
 							strength, agility, hardiness, experience, movement,
@@ -558,15 +558,15 @@ public class CSVTool {
 					switch (itemtype) {
 					case "OneShotItem":
 
-						livesLeft = Double.parseDouble(splitLine[7]);
-						intellect = Double.parseDouble(splitLine[8]);
-						strength = Double.parseDouble(splitLine[9]);
-						agility = Double.parseDouble(splitLine[10]);
-						hardiness = Double.parseDouble(splitLine[11]);
-						experience = Double.parseDouble(splitLine[12]);
-						movement = Double.parseDouble(splitLine[13]);
-						lifeAmount = Double.parseDouble(splitLine[14]);
-						manaAmount = Double.parseDouble(splitLine[15]);
+						livesLeft = Double.parseDouble(splitLine[6]);
+						intellect = Double.parseDouble(splitLine[7]);
+						strength = Double.parseDouble(splitLine[8]);
+						agility = Double.parseDouble(splitLine[9]);
+						hardiness = Double.parseDouble(splitLine[10]);
+						experience = Double.parseDouble(splitLine[11]);
+						movement = Double.parseDouble(splitLine[12]);
+						lifeAmount = Double.parseDouble(splitLine[13]);
+						manaAmount = Double.parseDouble(splitLine[14]);
 
 						StatBlob blob = new StatBlob(livesLeft, intellect,
 								strength, agility, hardiness, experience, movement,
