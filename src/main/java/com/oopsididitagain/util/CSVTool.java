@@ -163,7 +163,7 @@ public class CSVTool {
 		return items;
 	}
 	
-	public static void writeSaveGame(GameMap map, Entity avatar) {
+	public static void writeSaveGame(GameMap map, Entity avatar, File outputFile) {
 		StringBuilder sb = new StringBuilder("");
 
 		AreaEffect[][] areaEffects = new AreaEffect[map.getTiles().length][map.getTiles()[0].length];
@@ -236,8 +236,7 @@ public class CSVTool {
 		sb.append("BASE_STATS_WITH_NO_OCCUPATION_NO_EQUIPMENT\n");
 		sb.append(blob.toSaveFormat());
 		try {
-			File output = new File(System.getProperty("user.home"), "OOP_SAVEGAME.csv");
-			FileWriter writer = new FileWriter(output);
+			FileWriter writer = new FileWriter(outputFile);
 			writer.write(sb.toString());
 			writer.flush();
 			writer.close();

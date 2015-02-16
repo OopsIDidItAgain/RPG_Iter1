@@ -1,5 +1,9 @@
 package com.oopsididitagain.controller.states;
 
+import java.io.File;
+
+import javax.swing.JFileChooser;
+
 import com.oopsididitagain.controller.Controller;
 import com.oopsididitagain.controller.PauseGameController;
 import com.oopsididitagain.gui.View;
@@ -7,6 +11,7 @@ import com.oopsididitagain.gui.View;
 import com.oopsididitagain.menu.PauseMenu;
 import com.oopsididitagain.model.Entity;
 import com.oopsididitagain.model.GameMap;
+import com.oopsididitagain.util.CSVTool;
 
 public class PauseGameState extends GameState {
 
@@ -62,8 +67,8 @@ public class PauseGameState extends GameState {
 		GameState state;
 		switch (option) {
 		case (1):// saveStuffz!
-
-			state = ExitGameState.getInstance();
+			saveGame();
+			state = PauseGameState.getInstance();
 			return state;
 		case (2):// exit
 			state = ExitGameState.getInstance();
@@ -76,6 +81,16 @@ public class PauseGameState extends GameState {
 			return state;
 		}
 
+	}
+	
+	private void saveGame() {
+		JFileChooser chooser = new JFileChooser();
+		int returnVal = chooser.showSaveDialog(null);
+		
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			File saveGameFile = chooser.getSelectedFile();
+			CSVTool.writeSaveGame(map, avatar, saveGameFile);
+		}
 	}
 
 }

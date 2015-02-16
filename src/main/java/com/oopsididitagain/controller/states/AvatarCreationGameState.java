@@ -127,7 +127,6 @@ public class AvatarCreationGameState extends GameState{
 			state = PlayGameState.getInstance();
 			((PlayGameState)state).setMap(map);
 			((PlayGameState)state).setAvatar(avatar);
-			CSVTool.writeSaveGame(map, avatar);
 		}
 		
 		return state;
