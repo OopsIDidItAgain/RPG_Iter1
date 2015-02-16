@@ -1,5 +1,6 @@
 package com.oopsididitagain.controller.states;
 
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +60,12 @@ public class PlayGameState extends GameState {
 	public void setAvatar(Entity avatar) {
 		this.avatar = avatar;
 	}
+	
+	public void setImageDirection(String direction) {
+		avatar.setImage(
+				Toolkit.getDefaultToolkit().createImage(getClass()
+						.getResource("/avatar_images/"+direction+".png")));
+	}
 
 	public void moveAvatar(int keyCode) {
 		int x = avatar.getPosition().getX();
@@ -68,34 +75,42 @@ public class PlayGameState extends GameState {
 		case KeyCode.NORTH:
 			updatedPosition = new Position(y - 1, x);
 			avatar.setFacing(Direction.NORTH);
+			setImageDirection("n");
 			break;
 		case KeyCode.SOUTH:
 			updatedPosition = new Position(y + 1, x);
 			avatar.setFacing(Direction.SOUTH);
+			setImageDirection("s");
 			break;
 		case KeyCode.EAST:
 			updatedPosition = new Position(y, x + 1);
 			avatar.setFacing(Direction.EAST);
+			setImageDirection("e");
 			break;
 		case KeyCode.WEST:
 			updatedPosition = new Position(y, x - 1);
 			avatar.setFacing(Direction.WEST);
+			setImageDirection("w");
 			break;
 		case KeyCode.NORTH_EAST:
 			updatedPosition = new Position(y - 1, x + 1);
 			avatar.setFacing(Direction.NORTHEAST);
+			setImageDirection("ne");
 			break;
 		case KeyCode.NORTH_WEST:
 			updatedPosition = new Position(y - 1, x - 1);
 			avatar.setFacing(Direction.NORTHWEST);
+			setImageDirection("nw");
 			break;
 		case KeyCode.SOUTH_EAST:
 			updatedPosition = new Position(y + 1, x + 1);
 			avatar.setFacing(Direction.SOUTHEAST);
+			setImageDirection("se");
 			break;
 		case KeyCode.SOUTH_WEST:
 			updatedPosition = new Position(y + 1, x - 1);
 			avatar.setFacing(Direction.SOUTHWEST);
+			setImageDirection("sw");
 			break;
 
 		}
