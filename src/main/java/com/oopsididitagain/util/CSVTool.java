@@ -332,9 +332,6 @@ public class CSVTool {
 			line = input.readLine();// skipping items
 			// ln(line);
 			ArrayList<Item> items = new ArrayList<Item>();
-			line = input.readLine();
-			splitLine = line.split(",");
-
 			
 			items.addAll(parseItems("AVATAR", input));
 			
@@ -372,7 +369,6 @@ public class CSVTool {
 			String line = input.readLine(); // x y skip
 			String[] splitLine = line.split(",");
 			line = input.readLine();// skipping items
-			ArrayList<Item> items = new ArrayList<Item>();
 			System.out.println(line);
 			while (!(splitLine[0].equals("AVATAR"))) {// check here!!!!!!!!!
 				line = input.readLine();
@@ -393,8 +389,6 @@ public class CSVTool {
 
 			ArrayList<Item> armoryList = new ArrayList<Item>();
 
-			line = input.readLine();
-			splitLine = line.split(",");
 			armoryList.addAll(parseItems("INVENTORY_NOT_EQUIPPED", input));
 
 			Armory armory = new Armory();
@@ -403,10 +397,7 @@ public class CSVTool {
 
 			ArrayList<Item> inventoryList = new ArrayList<Item>();
 
-			line = input.readLine();
-			
 			inventoryList.addAll(parseItems("BASE_STATS_WITH_NO_OCCUPATION_NO_EQUIPMENT", input));
-
 
 			double livesLeft, intellect, strength, agility, hardiness, experience, movement, lifeAmount, manaAmount;
 
