@@ -1,5 +1,6 @@
 package com.oopsididitagain.controller.states;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.oopsididitagain.controller.Controller;
@@ -13,6 +14,7 @@ import com.oopsididitagain.model.GameObject;
 import com.oopsididitagain.model.Item;
 import com.oopsididitagain.model.Position;
 import com.oopsididitagain.model.Sneak;
+import com.oopsididitagain.model.TakeableItem;
 import com.oopsididitagain.model.Terrain;
 import com.oopsididitagain.model.Tile;
 import com.oopsididitagain.util.CSVTool;
@@ -24,10 +26,14 @@ public class PlayGameState extends GameState {
 	private GameMap map;
 	private List<GameObject> gameObjects;
 	private Entity avatar;
+	private List<Tile> terraFormedTiles;
+	int carrotid;
 	
 
 	private PlayGameState() {
 		super();
+		terraFormedTiles = new ArrayList<Tile>();
+		int carrotid = 0;
 	}
 
 	public GameMap getGameMap() {
@@ -131,6 +137,34 @@ public class PlayGameState extends GameState {
 	public String toString(){
 		return "PlayGameState";
 	}
+	
+	public void terraform_grow() {
+		if (!terraFormedTiles.isEmpty()) {
+			int j = 0;
+			for (Tile tile : terraFormedTiles) {
+				Terrain t = tile.getTerrain();
+				Position p = tile.getPosition();
+				long time = t.getTimeCreated();
+				if ((System.currentTimeMillis() - time) > 5000) {
+					//System.out.println("whatt");
+					String c = "carrot" + carrotid;
+					TakeableItem i = new TakeableItem(c, "/carrot.jpg",p);
+					tile.setItem(i);
+					terraFormedTiles.remove(j);
+					break;
+				}
+				++j;
+
+			}
+		}
+	}
+	public void terraform(){
+		Terrain soil = Terrain.createTerrain(Terrain.SOIL);
+		Tile t = map.getTileAt(avatar.getPosition());
+		t.setTerrain(soil);
+		t.setPosition(avatar.getPosition());
+		terraFormedTiles.add(t);
+	}
 
 	@Override
 	public void accept(View visitor) {
@@ -140,6 +174,14 @@ public class PlayGameState extends GameState {
 	@Override
 	public Controller getController() {
 		return PlayGameController.getInstance();
+	}
+
+	public GameState changeToPauseState() {
+		GameState state = PauseGameState.getInstance();
+		PauseGameState.setAvatar(avatar);
+		PauseGameState.setMap(map);
+		return state;
+		
 	}
 
 }

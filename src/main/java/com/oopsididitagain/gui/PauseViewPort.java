@@ -17,6 +17,7 @@ public PauseViewPort(PauseMenu pauseMenu) {
 
 public static void displayPauseMenu(Graphics g){
 	int option = pauseMenu.getSelectedOption();
+	g.drawRect(0, 300, 10, 10);
 	switch(option){
 	case 1:
 		g.drawRect(0, 300, 10, 10);
@@ -27,8 +28,7 @@ public static void displayPauseMenu(Graphics g){
 	case 3:
 		g.drawRect(400, 300, 10, 10);
 		break;
-	case 5:
-		g.drawRect(400, 300, 100, 100);
+
 	}
 	
 }

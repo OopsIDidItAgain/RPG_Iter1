@@ -18,4 +18,6 @@ public class KeyCode {
 	public static final int DROP = 27;//k
 	public static final int INVENTORY = 25;
 	public static final int FLY = 23; //f
+	public static final int FARM = 22;//f
+
 }

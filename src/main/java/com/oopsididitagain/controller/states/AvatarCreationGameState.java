@@ -37,6 +37,7 @@ public class AvatarCreationGameState extends GameState{
 		Terrain one = Terrain.createTerrain(Terrain.GRASS);
 		Terrain two = Terrain.createTerrain(Terrain.MOUNTAIN);
 		Terrain three = Terrain.createTerrain(Terrain.WATER);
+		Terrain four = Terrain.createTerrain(Terrain.SOIL);
 
 		int width;
 		int height;
@@ -55,6 +56,8 @@ public class AvatarCreationGameState extends GameState{
 					t[i][j] = new Tile(two);
 				} else if (terrain.equals("w")) {
 					t[i][j] = new Tile(three);
+				}else if (terrain.equals("s")) {
+					t[i][j] = new Tile(four);
 				}
 
 			}
@@ -106,6 +109,15 @@ public class AvatarCreationGameState extends GameState{
 				break;
 			case Occupation.SUMMONER:
 				avatar.changeOccupation(new Summoner());
+				break;
+			}
+			int gender = avatarCreationMenu.getMenuOptions().get(AvatarCreationMenu.GENDER).getCurrentValue();
+			switch(gender){
+			case 1:
+				//avatar.setImage();
+				break;
+			case 2:
+				//avatar.setImage();
 				break;
 			}
 			createMap();
