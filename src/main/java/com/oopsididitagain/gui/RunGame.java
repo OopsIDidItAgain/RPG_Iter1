@@ -5,7 +5,7 @@ import javax.swing.SwingUtilities;
 
 import com.oopsididitagain.controller.GameLoop;
 
-public class Main extends JFrame{
+public class RunGame extends JFrame{
 
 	private static final long serialVersionUID = -4222070071039252746L;
 	
@@ -16,8 +16,8 @@ public class Main extends JFrame{
 	    SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				Main main = new Main();
-				main.initialize();
+				RunGame runGame = new RunGame();
+				runGame.initialize();
 			}
 	    });
 
