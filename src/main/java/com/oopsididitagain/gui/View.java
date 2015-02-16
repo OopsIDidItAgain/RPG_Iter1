@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 
 import com.oopsididitagain.controller.states.AvatarCreationGameState;
 import com.oopsididitagain.controller.states.ExitGameState;
+import com.oopsididitagain.controller.states.GameOverState;
 import com.oopsididitagain.controller.states.GameState;
 import com.oopsididitagain.controller.states.InventoryGameState;
 import com.oopsididitagain.controller.states.PauseGameState;
@@ -29,6 +30,7 @@ public class View extends JPanel {
 	private String currentGameState = "";
 	private InventoryViewport InventoryViewport;
 	private AvatarCreationViewport AvatarCreationViewport;
+	private GameOverViewport GameOverViewport;
 
 	public View(AreaViewport areaViewport, StatsViewport statsViewport) {
 		super();
@@ -78,6 +80,10 @@ public class View extends JPanel {
 		} else if (currentGameState == "AvatarCreationGameState") {
 			super.paintComponent(g);
 			AvatarCreationViewport.displayAvatarCreation(g);
+		}
+		else if(currentGameState == "GameOverState"){
+			super.paintComponent(g);
+			GameOverViewport.printView(g);
 		}
 
 	}
@@ -154,4 +160,15 @@ public class View extends JPanel {
 		}
 	}
 
+	public void visit(GameOverState GameOverState) {
+		if (GameOverState.toString() == currentGameState) {
+			this.repaint();
+		} else {
+			currentGameState = GameOverState.toString();
+			paused = false;
+			this.GameOverViewport = new GameOverViewport();
+			this.repaint();
+		}
+	}
+	
 }

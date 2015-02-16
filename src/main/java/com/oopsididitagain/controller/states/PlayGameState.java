@@ -109,6 +109,7 @@ public class PlayGameState extends GameState {
 	}
 	
 	public void affectAvatar() {
+		GameState state;
 		map.getTileAt(avatar.getPosition()).getAreaEffect().affect(avatar);
 		
 		// avatar steps on instant death
@@ -116,10 +117,18 @@ public class PlayGameState extends GameState {
 			try { Thread.sleep(300);  } 
 			catch(InterruptedException ex) { Thread.currentThread().interrupt(); }
 			
-			if (avatarDies()) /* go_to_game_over_screen() */; 
+			if (avatarDies()) /* go_to_game_over_screen() */{
+				System.out.println("X");
+				changeToGameOverState();
+				System.out.println("X");
+			}; 
 		}
 		
-		if (avatar.shouldDie()) if (avatarDies()) /* go_to_game_over_screen() */;
+		if (avatar.shouldDie()) {
+			if (avatarDies()) /* go_to_game_over_screen() */{
+				changeToGameOverState();
+			};
+		}
 	}
 	
 	public boolean avatarDies() { // returns true when game is completely over
@@ -193,6 +202,11 @@ public class PlayGameState extends GameState {
 		
 		return state;
 		
+	}
+	
+	public GameState changeToGameOverState(){
+		GameState state = GameOverState.getInstance();
+		return state;
 	}
 
 	public void interact() {
