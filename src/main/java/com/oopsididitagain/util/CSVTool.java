@@ -389,6 +389,7 @@ public class CSVTool {
 
 			ArrayList<Item> armoryList = new ArrayList<Item>();
 
+			input.readLine();
 			armoryList.addAll(parseItems("INVENTORY_NOT_EQUIPPED", input));
 
 			Armory armory = new Armory();
