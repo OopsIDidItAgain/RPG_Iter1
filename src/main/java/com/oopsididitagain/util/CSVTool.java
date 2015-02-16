@@ -18,6 +18,7 @@ import com.oopsididitagain.model.Entity;
 import com.oopsididitagain.model.GameMap;
 import com.oopsididitagain.model.Item;
 import com.oopsididitagain.model.ObstacleItem;
+import com.oopsididitagain.model.Occupation;
 import com.oopsididitagain.model.OneShotItem;
 import com.oopsididitagain.model.Position;
 import com.oopsididitagain.model.StatBlob;
@@ -504,6 +505,11 @@ public class CSVTool {
 						movement, lifeAmount, manaAmount);
 				
 				Entity av = new Entity("avatar", image, p,isFlying);
+				
+						
+						
+				
+				//av.changeOccupation(Occupation.SMASHER);
 				return av;
 				//line = input.readLine();
 				//ArrayList<Item> inventory = new ArrayList<Item>();
