@@ -1,5 +1,7 @@
 package com.oopsididitagain.menu;
 
+import com.oopsididitagain.model.Occupation;
+
 public class AvatarCreationMenuItem {
 	private String name;
 	private int currentValue;
@@ -25,9 +27,9 @@ public class AvatarCreationMenuItem {
 		switch(name){
 		case("Occupation"):
 			switch(currentValue){
-			case(1):return" Sneak";
-			case(2):return" Summoner";
-			case(3):return" Smasher";
+			case(Occupation.SMASHER):return" Smasher";
+			case(Occupation.SNEAK):return" Sneak";
+			case(Occupation.SUMMONER):return" Summoner";
 			}
 		case("Gender"):
 			switch(currentValue){
