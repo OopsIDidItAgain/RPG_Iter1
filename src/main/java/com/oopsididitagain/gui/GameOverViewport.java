@@ -28,7 +28,12 @@ public class GameOverViewport extends Viewport {
         int x = 130, y = 90;
         String[] s = {	"GAME OVER!",	"Press 'j' to exit"	};
         for (int i = 0; i < s.length; i++) 
+        {
+        	g2.setPaint(Color.blue);
         	g2.drawString(s[i], x, y += g2.getFontMetrics().getHeight());	 
+        }
+        
+        
         
 	}
 }

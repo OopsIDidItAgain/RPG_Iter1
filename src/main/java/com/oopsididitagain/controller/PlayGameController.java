@@ -30,8 +30,9 @@ public class PlayGameController extends Controller{
 	@Override
 	public GameState handleInputAndUpdate(GameState state, int input) {
 		// TODO: send messages to avatar
-		((PlayGameState)state).affectAvatar();
 		((PlayGameState)state).terraform_grow();
+		//if(((PlayGameState)state).avatarDies() && ((PlayGameState)state).getAvatar().shouldDie())
+		//	state = ((PlayGameState)state).changeToGameOverState();
 		switch(input) {
 			case KeyCode.NORTH:
 			case KeyCode.SOUTH:
@@ -64,6 +65,7 @@ public class PlayGameController extends Controller{
 			default:
 				break;
 		}
+		state = ((PlayGameState)state).affectAvatar();
 		return state;
 		
 	}
