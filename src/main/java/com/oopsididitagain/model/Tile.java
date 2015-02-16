@@ -7,6 +7,7 @@ import java.util.List;
 public class Tile {
 	private Entity entity;
 	private List<Item> items;
+	private InteractiveItem interactiveItem;
 	private Terrain terrain;
 	private AreaEffect areaEffect;
 
@@ -71,6 +72,10 @@ public class Tile {
 		items.add(item);
 	}
 
+	public void setInteractiveItem(InteractiveItem item) {
+		this.interactiveItem = item;
+	}
+	
 	public List<Image> getImages() {
 		List<Image> images = new ArrayList<Image>();
 		images.add(terrain.getImage());
@@ -80,6 +85,7 @@ public class Tile {
 				images.add(item.getImage());
 			}
 		}
+		if (interactiveItem != null) images.add(interactiveItem.getImage());
 		
 		if (areaEffect.getDecal() != null) images.add(areaEffect.getDecal().getImage());
 		if (entity != null) images.add(entity.getImage());
@@ -102,6 +108,13 @@ public class Tile {
 					items.remove(i);
 				}
 			}
+		}
+	}
+
+
+	public void interact() {
+		if(interactiveItem != null) {
+			interactiveItem.affect();
 		}
 	}
 }

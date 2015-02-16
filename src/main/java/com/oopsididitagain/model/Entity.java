@@ -124,6 +124,11 @@ public class Entity extends GameObject {
 	public void visit(OneShotItem item) {
 		stats.mergeBlob(item.getBlob());
 	}
+	
+
+	public void visit(InteractiveItem interactiveItem) {
+		
+	}
 
 	@Override
 	public String toSaveFormat() {
@@ -131,6 +136,7 @@ public class Entity extends GameObject {
 		sb.append("," + occupation);
 		return sb.toString();
 	}
+
 	
 }
 
