@@ -360,16 +360,16 @@ public class CSVTool {
 					break;
 				case "Wearable":
 					// ln(splitLine[7]);
-					livesLeft = Double.parseDouble(splitLine[7]);
-					intellect = Double.parseDouble(splitLine[8]);
-					strength = Double.parseDouble(splitLine[9]);
-					agility = Double.parseDouble(splitLine[10]);
-					hardiness = Double.parseDouble(splitLine[11]);
-					experience = Double.parseDouble(splitLine[12]);
-					movement = Double.parseDouble(splitLine[13]);
-					lifeAmount = Double.parseDouble(splitLine[14]);
-					manaAmount = Double.parseDouble(splitLine[15]);
-					String wearableType = splitLine[16];
+					livesLeft = Double.parseDouble(splitLine[6]);
+					intellect = Double.parseDouble(splitLine[7]);
+					strength = Double.parseDouble(splitLine[8]);
+					agility = Double.parseDouble(splitLine[9]);
+					hardiness = Double.parseDouble(splitLine[10]);
+					experience = Double.parseDouble(splitLine[11]);
+					movement = Double.parseDouble(splitLine[12]);
+					lifeAmount = Double.parseDouble(splitLine[13]);
+					manaAmount = Double.parseDouble(splitLine[14]);
+					String wearableType = splitLine[15];
 
 					WearableItemType wT = null;
 					switch (wearableType) {
@@ -387,7 +387,7 @@ public class CSVTool {
 						break;
 
 					}
-					rank = Integer.parseInt(splitLine[17]);
+					rank = Integer.parseInt(splitLine[16]);
 
 					StatBlob wearBlob = new StatBlob(livesLeft, intellect,
 							strength, agility, hardiness, experience, movement,
@@ -477,6 +477,7 @@ public class CSVTool {
 			
 			
 			ArrayList<Item> armory = new ArrayList<Item>();
+			Armory armory1 = new Armory();
 			line = input.readLine();
 			line = input.readLine();
 			splitLine = line.split(",");
@@ -493,16 +494,16 @@ public class CSVTool {
 					switch (itemtype) {
 					case "Wearable":
 						// ln(splitLine[7]);
-						livesLeft = Double.parseDouble(splitLine[7]);
-						intellect = Double.parseDouble(splitLine[8]);
-						strength = Double.parseDouble(splitLine[9]);
-						agility = Double.parseDouble(splitLine[10]);
-						hardiness = Double.parseDouble(splitLine[11]);
-						experience = Double.parseDouble(splitLine[12]);
-						movement = Double.parseDouble(splitLine[13]);
-						lifeAmount = Double.parseDouble(splitLine[14]);
-						manaAmount = Double.parseDouble(splitLine[15]);
-						String wearableType = splitLine[16];
+						livesLeft = Double.parseDouble(splitLine[6]);
+						intellect = Double.parseDouble(splitLine[7]);
+						strength = Double.parseDouble(splitLine[8]);
+						agility = Double.parseDouble(splitLine[9]);
+						hardiness = Double.parseDouble(splitLine[10]);
+						experience = Double.parseDouble(splitLine[11]);
+						movement = Double.parseDouble(splitLine[12]);
+						lifeAmount = Double.parseDouble(splitLine[13]);
+						manaAmount = Double.parseDouble(splitLine[14]);
+						String wearableType = splitLine[15];
 
 						WearableItemType wT = null;
 						switch (wearableType) {
@@ -520,7 +521,7 @@ public class CSVTool {
 							break;
 
 						}
-						rank = Integer.parseInt(splitLine[17]);
+						rank = Integer.parseInt(splitLine[16]);
 
 						StatBlob wearBlob = new StatBlob(livesLeft, intellect,
 								strength, agility, hardiness, experience, movement,
@@ -528,7 +529,7 @@ public class CSVTool {
 						Position wP = new Position(x, y, Direction.NORTH);
 						WearableItem wearableItem = new WearableItem(nameID, img,
 								wP, rank, wearBlob, wT);
-						items.add(wearableItem);
+						armory1.equip(wearableItem);
 						break;
 					}
 					line = input.readLine();
@@ -536,7 +537,6 @@ public class CSVTool {
 
 			 }
 			
-			 Armory armory1 = new Armory();
 			 
 			 Inventory inv = new Inventory();
 				
@@ -657,10 +657,11 @@ public class CSVTool {
 					manaAmount);
 			
 
-			//StatCollection sc = new StatCollection(wearBlob,armory1);
+			//StatCollection sc = new StatCollection(armory1,wearBlob);
 			
 			Entity av = new Entity("avatar", image, p, isFlying);
 			av.setInventory(inv);
+			//av.setStatCollection(sc);
 			switch(occupation){
 			case("Smasher"):
 				av.changeOccupation(new Smasher());

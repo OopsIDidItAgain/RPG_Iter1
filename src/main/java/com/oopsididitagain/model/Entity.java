@@ -145,6 +145,10 @@ public class Entity extends GameObject {
 		
 	}
 
+	public void setStatCollection(StatCollection sc) {
+		this.stats = sc;
+	}
+
 	
 }
 
