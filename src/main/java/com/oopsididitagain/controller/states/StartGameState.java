@@ -1,9 +1,14 @@
 package com.oopsididitagain.controller.states;
 
+
+
 import com.oopsididitagain.controller.Controller;
 import com.oopsididitagain.controller.StartGameController;
 import com.oopsididitagain.gui.View;
 import com.oopsididitagain.menu.StartMenu;
+import com.oopsididitagain.model.Entity;
+import com.oopsididitagain.model.GameMap;
+import com.oopsididitagain.util.CSVTool;
 
 public class StartGameState extends GameState {
 
@@ -51,7 +56,12 @@ public class StartGameState extends GameState {
 			state = AvatarCreationGameState.getInstance();
 			break;
 		case StartMenu.LOAD_GAME:
-			state = LoadGameState.getInstance();
+			GameMap m = CSVTool.makeLoadedMap();
+			Entity avatar = CSVTool.makeLoadedAvatar();
+			
+			state = PlayGameState.getInstance();
+			((PlayGameState)state).setMap(m);
+			((PlayGameState)state).setAvatar(avatar);
 			break;
 		case StartMenu.EXIT_GAME:
 			state = ExitGameState.getInstance();

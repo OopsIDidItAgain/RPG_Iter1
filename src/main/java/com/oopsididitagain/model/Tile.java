@@ -97,11 +97,20 @@ public class Tile {
 		for (int i = items.size() - 1; i >= 0; --i) {
 			Item item = items.get(i);
 			if (item instanceof TakeableItem) {
-				if(entity!=null){
-				entity.addToInventory((TakeableItem)item);
-				items.remove(i);
+				if(item instanceof WearableItem){
+					if(entity!=null){
+						entity.addToInventory((WearableItem)item);
+						items.remove(i);
+						}
+					
+				}else{
+					if(entity!=null){
+					entity.addToInventory((TakeableItem)item);
+					items.remove(i);
+					}
 				}
 			}
+		
 			if (item instanceof OneShotItem) {
 				if (entity != null) {
 					entity.visit((OneShotItem)item);

@@ -48,7 +48,7 @@ public class Terrain {
 			isMovableOnGround = true;
 			isMovableInAir = true;
 			image = Toolkit.getDefaultToolkit().getImage(
-					Terrain.class.getResource("/mountain.jpg"));
+					Terrain.class.getResource("/soil.jpg"));
 			// timeCreated = 0;
 			break;
 		}

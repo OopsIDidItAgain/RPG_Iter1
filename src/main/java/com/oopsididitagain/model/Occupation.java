@@ -12,6 +12,7 @@ public abstract class Occupation implements Saveable {
 	public static final int SUMMONER = 3;
 	
 	protected StatBlob stats;
+	
 
 	public StatBlob getStats() {
 		return stats;

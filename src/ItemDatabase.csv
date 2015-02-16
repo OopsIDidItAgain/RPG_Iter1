@@ -1,6 +1,6 @@
 NAME,IMAGE,X,Y,TYPE,RANK,LIVES,STR,AGIL,INTEL,HARDI,EXP,MOVEM,LIFEAMT,MANAAMT,TYPE
 Sword,sword.jpg,5,1,Wearable,5,0,5,0,0,0,0,0,0,0,WEAPON
-Cape,cape.png,2,3,Wearable,2,1,2,3,4,5,6,7,8,9,ARMOR
+Cape,cape.png,2,3,Wearable,2,0,2,3,4,5,0,7,0,0,ARMOR
 Potion,potion.jpg,0,10,Takeable,,,,,,,,,,,
 Chainsaw,chainsaw.png,0,2,Wearable,5,0,15,0,0,0,0,-2,0,0,WEAPON
 Food,mushroom.jpg,0,1,OneShot,,2,0,0,0,0,0,0,0,0,
