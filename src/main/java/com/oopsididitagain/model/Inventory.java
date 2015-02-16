@@ -2,11 +2,13 @@ package com.oopsididitagain.model;
 
 import java.util.HashMap;
 
+import com.oopsididitagain.util.Saveable;
+
 /** Inventory
  *
  * Created by parango on 2/12/15.
  */
-public class Inventory {
+public class Inventory implements Saveable {
     private HashMap<String , Item> inventory;
 
     public Inventory() {
@@ -35,6 +37,12 @@ public class Inventory {
 
 	public int getSize() {
 		return inventory.size();
+	}
+
+	@Override
+	public String toSaveFormat() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

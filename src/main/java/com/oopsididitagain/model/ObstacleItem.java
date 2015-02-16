@@ -24,6 +24,12 @@ public class ObstacleItem extends Item {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public String toSaveFormat() {
+		StringBuilder sb = new StringBuilder(super.toSaveFormat() + ",ObstacleItem");
+		return sb.toString();
+	}
 	
 
 }

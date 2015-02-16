@@ -7,8 +7,6 @@ import com.oopsididitagain.util.WearableItemType;
 
 public class WearableItem extends TakeableItem {
 
-
-	private static final long serialVersionUID = -8654005789531505596L;
 	private int rank;
 	private boolean equipped = false;
 	private WearableItemType type;
@@ -62,6 +60,18 @@ public class WearableItem extends TakeableItem {
 	@Override
 	public void accept(InventoryViewport inventoryViewport) {
 		inventoryViewport.visit(this);	
+	}
+	
+	@Override
+	public String toSaveFormat() {
+		StringBuilder sb = new StringBuilder("");
+		String[] splitString = super.toSaveFormat().split(",");
+		splitString[6] = "Wearable";
+		for (String s: splitString) 
+			sb.append(s + ",");
+		sb.append(blob.toSaveFormat() + ",");
+		sb.append(type);
+		return sb.toString();
 	}
 	
 }

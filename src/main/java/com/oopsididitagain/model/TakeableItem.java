@@ -1,10 +1,7 @@
 package com.oopsididitagain.model;
 import com.oopsididitagain.gui.InventoryViewport;
-import com.oopsididitagain.gui.View;
 
-/* Should this be an interface maybe? Takeable? */
 public class TakeableItem extends Item {
-	private static final long serialVersionUID = -7151959478242233966L;
 	
 	public TakeableItem(String name, String imageName, Position position) {
 		super(name, imageName, position);
@@ -25,6 +22,12 @@ public class TakeableItem extends Item {
 	public void removeItem(Entity visitor) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public String toSaveFormat() {
+		StringBuilder sb = new StringBuilder(super.toSaveFormat() + ",Takeable");
+		return sb.toString();
 	}
 
 }

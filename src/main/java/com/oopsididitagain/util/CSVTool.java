@@ -1,18 +1,25 @@
 package com.oopsididitagain.util;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.oopsididitagain.model.AreaEffect;
+import com.oopsididitagain.model.Entity;
+import com.oopsididitagain.model.GameMap;
 import com.oopsididitagain.model.Item;
 import com.oopsididitagain.model.ObstacleItem;
 import com.oopsididitagain.model.OneShotItem;
 import com.oopsididitagain.model.Position;
 import com.oopsididitagain.model.StatBlob;
 import com.oopsididitagain.model.TakeableItem;
+import com.oopsididitagain.model.Terrain;
+import com.oopsididitagain.model.Tile;
 import com.oopsididitagain.model.WearableItem;
 
 public class CSVTool {
@@ -154,6 +161,81 @@ public class CSVTool {
 			ex.printStackTrace();
 		}
 		return items;
+	}
+	
+	public static void writeSaveGame(GameMap map, Entity avatar) {
+		StringBuilder sb = new StringBuilder("");
+
+		AreaEffect[][] areaEffects = new AreaEffect[map.getTiles().length][map.getTiles()[0].length];
+		List<Item> itemsOnMap = new ArrayList<Item>();
+		
+		sb.append("MAP\n");
+		sb.append(map.getTiles().length + "," + map.getTiles()[0].length + "\n");
+
+		for (int i = 0; i < map.getTiles().length; ++i) {
+			for(int j = 0; j < map.getTiles()[0].length; ++j) {
+				Tile t = map.getTileAt(i, j);
+				if (t.getItems() != null && t.getItems().size() > 0) 
+					itemsOnMap.addAll(t.getItems());
+				areaEffects[i][j] = t.getAreaEffect();
+				switch(t.getTerrain().getType()) {
+					case Terrain.GRASS: {
+						sb.append("G");
+						break;
+					}
+					case Terrain.WATER: {
+						sb.append("W");
+						break;
+					}
+					case Terrain.MOUNTAIN: {
+						sb.append("M");
+						break;
+					}
+				}
+				sb.append(",");
+			}
+			sb.append("\n");
+		}
+		sb.append("AREAEFFECTS\n");
+		for (int i = 0; i < areaEffects.length; ++i) {
+			for (int j = 0; j < areaEffects[0].length; ++j) {
+				sb.append(i + "," + j + "," + areaEffects[i][j].toSaveFormat() + "\n");
+			}
+		}
+		
+		sb.append("ITEMS\n");
+		for (Item i: itemsOnMap) {
+			sb.append(i.toSaveFormat() + "\n");
+		}
+		sb.append("AVATAR\n");
+		sb.append("STATBLOB\n");
+		sb.append(avatar.getStats().toSaveFormat() + "\n");
+		sb.append("ARMORY\n");
+		for (Item i: avatar.getInventory().getInventory().values()) {
+			if (i instanceof WearableItem) {
+				WearableItem wearable = (WearableItem)i;
+				if (wearable.isEquipped())
+					sb.append(wearable.toSaveFormat() + "\n");
+			}
+		}
+		sb.append("INVENTORY_NOT_EQUIPPED\n");
+		for (Item i: avatar.getInventory().getInventory().values()) {
+			if (i instanceof WearableItem) {
+				WearableItem wearable = (WearableItem)i;
+				if (!wearable.isEquipped())
+					sb.append(wearable.toSaveFormat() + "\n");
+			}
+			else sb.append(i.toSaveFormat());
+		}
+		try {
+			File output = new File(System.getProperty("user.home") + "/OOP_SAVEGAME.csv");
+			FileWriter writer = new FileWriter(output);
+			writer.write(sb.toString());
+			writer.flush();
+			writer.close();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
 	}
 }
 

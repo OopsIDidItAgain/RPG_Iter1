@@ -1,6 +1,8 @@
 package com.oopsididitagain.model;
 
-public class StatBlob {
+import com.oopsididitagain.util.Saveable;
+
+public class StatBlob implements Saveable {
 	
 	public final static StatBlob SNEAK_DEFAULT = new StatBlob(3, 10, 50, 20, 20, 0, 50, 100, 100);
 	public final static StatBlob SMASHER_DEFAULT = new StatBlob(3, 50, 20, 10, 40, 0, 25, 100, 100);
@@ -146,6 +148,21 @@ public class StatBlob {
 					"\nMovement: " + movement.toInt() + 
 					"\nLife Amount: " + lifeAmount.toInt() +
 					"\nMana Amount: " + manaAmount.toInt());
+		return sb.toString();
+	}
+
+	@Override
+	public String toSaveFormat() {
+		StringBuilder sb = new StringBuilder("");
+		sb.append(livesLeft + ",");
+		sb.append(intellect + ",");
+		sb.append(strength + ",");
+		sb.append(agility + ",");
+		sb.append(hardiness + ",");
+		sb.append(experience + ",");
+		sb.append(movement + ",");
+		sb.append(lifeAmount + ",");
+		sb.append(manaAmount);
 		return sb.toString();
 	}
 }

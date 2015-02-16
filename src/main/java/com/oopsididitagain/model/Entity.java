@@ -3,7 +3,6 @@ package com.oopsididitagain.model;
 import java.util.HashMap;
 
 public class Entity extends GameObject {
-	private static final long serialVersionUID = 6897867058695115274L;
     private Inventory inventory;
     private Occupation occupation;
     private Armory armory;
@@ -109,7 +108,12 @@ public class Entity extends GameObject {
 		stats.mergeBlob(item.getBlob());
 	}
 
-
+	@Override
+	public String toSaveFormat() {
+		StringBuilder sb = new StringBuilder(super.toSaveFormat());
+		sb.append("," + occupation);
+		return sb.toString();
+	}
 	
 }
 

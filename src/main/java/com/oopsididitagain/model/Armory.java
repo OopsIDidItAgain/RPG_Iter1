@@ -1,6 +1,8 @@
 package com.oopsididitagain.model;
 
-public class Armory {
+import com.oopsididitagain.util.Saveable;
+
+public class Armory implements Saveable {
 	WearableItem helmet;
 	WearableItem weapon;
 	WearableItem boots;
@@ -86,6 +88,12 @@ public class Armory {
 		int bootsRank = (boots == null) ? 0 : boots.getRank();
 		int helmetRank = (helmet == null) ? 0 : helmet.getRank();
 		return armorRank + bootsRank + helmetRank;
+	}
+
+	@Override
+	public String toSaveFormat() {
+
+		return null;
 	}
 
 }

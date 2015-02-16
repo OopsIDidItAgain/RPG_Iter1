@@ -7,4 +7,13 @@ public class Sneak extends Occupation {
 		this.stats = StatBlob.SNEAK_DEFAULT;
 	}
 
+	@Override
+	public String toSaveFormat() {
+		return "Sneak";
+	}
+
+	@Override
+	public String toString() {
+		return "Sneak";
+	}
 }

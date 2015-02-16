@@ -3,11 +3,9 @@ package com.oopsididitagain.model;
 import java.awt.Image;
 import java.awt.Toolkit;
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+import com.oopsididitagain.util.Saveable;
 
-public class Decal {
+public class Decal implements Saveable {
 	public final static Decal HEART_DECAL = new Decal("/decals/heart_decal.png");
 	public final static Decal[] AREA_EFFECTS = {
 		null,
@@ -40,5 +38,11 @@ public class Decal {
 	
 	public void setImage(Image img) {
 		this.img = img;
+	}
+
+	@Override
+	public String toSaveFormat() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

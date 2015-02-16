@@ -1,6 +1,8 @@
 package com.oopsididitagain.model;
 
-public class AreaEffect {
+import com.oopsididitagain.util.Saveable;
+
+public class AreaEffect implements Saveable {
 	private int type;
 	/*
 	 * 0 = none
@@ -46,4 +48,11 @@ public class AreaEffect {
 	}
 	
 	public Decal getDecal() { return decal; }
+
+	@Override
+	public String toSaveFormat() {
+		StringBuilder sb= new StringBuilder("");
+		sb.append(type + "," + rate);
+		return sb.toString();
+	}
 }

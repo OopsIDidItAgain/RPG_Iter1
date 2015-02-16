@@ -31,4 +31,11 @@ public class OneShotItem extends Item {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public String toSaveFormat() {
+		StringBuilder sb = new StringBuilder(super.toSaveFormat() + ",OneShotItem");
+		sb.append("," + blob.toSaveFormat());
+		return sb.toString();
+	}
 }

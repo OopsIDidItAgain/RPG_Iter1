@@ -19,5 +19,10 @@ public enum Direction {
 	public int getKeyCode() {
 		return this.keyCode;
 	}
+	
+	@Override
+	public String toString() {
+		return Integer.toString(keyCode);
+	}
 }
 

@@ -2,15 +2,14 @@ package com.oopsididitagain.model;
 
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.io.Serializable;
-import java.nio.file.DirectoryIteratorException;
 
 import com.oopsididitagain.util.Direction;
+import com.oopsididitagain.util.Saveable;
 
-public abstract class GameObject implements Serializable {
-	private static final long serialVersionUID = 1745256945975212222L;
+public abstract class GameObject implements Saveable {
 	protected Position position;
 	protected Image image;
+	protected String imageName;
     protected String name;
     protected Direction facing;
     
@@ -18,6 +17,7 @@ public abstract class GameObject implements Serializable {
 	public GameObject(String name, String imageName, Position position) {
     	this.name = name;
     	this.image = Toolkit.getDefaultToolkit().createImage(getClass().getResource(imageName));
+    	this.imageName = imageName;
     	this.position = position;
     	this.facing = Direction.NORTH;
     }
@@ -61,5 +61,12 @@ public abstract class GameObject implements Serializable {
 		sb.append(name + "\n");
 		sb.append(position);
 		return sb.toString();
+    }
+    
+    @Override
+    public String toSaveFormat() {
+    	StringBuilder sb = new StringBuilder("");
+    	sb.append(position.toSaveFormat() + "," + imageName + "," + name + "," + facing);
+    	return sb.toString();
     }
 }

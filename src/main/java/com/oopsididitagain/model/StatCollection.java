@@ -1,6 +1,8 @@
 package com.oopsididitagain.model;
 
-public class StatCollection {
+import com.oopsididitagain.util.Saveable;
+
+public class StatCollection implements Saveable {
 	//Armory of Entity in order to use it's equipped weapons and armor to calculate some stats
 	Armory armory;
 
@@ -118,6 +120,11 @@ public class StatCollection {
 					"\nArmor Rating: " + armorRating.toInt());
 		
 		return sb.toString();
+	}
+
+	@Override
+	public String toSaveFormat() {
+		return blob.toSaveFormat();
 	}
 
 }

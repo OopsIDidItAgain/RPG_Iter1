@@ -3,10 +3,9 @@ package com.oopsididitagain.model;
 import java.io.Serializable;
 
 import com.oopsididitagain.util.Direction;
+import com.oopsididitagain.util.Saveable;
 
-public class Position implements Serializable {
-
-	private static final long serialVersionUID = 9024258516107330344L;
+public class Position implements Saveable {
 	private int x;
 	private int y;
 	private Direction facing;
@@ -55,6 +54,15 @@ public class Position implements Serializable {
 		sb.append(x + "\n");
 		sb.append(y + "\n");
 		sb.append(facing + "\n");
+		return sb.toString();
+	}
+	
+	@Override
+	public String toSaveFormat() {
+		StringBuilder sb = new StringBuilder("");
+		sb.append(x + ",");
+		sb.append(y + ",");
+		sb.append(facing);
 		return sb.toString();
 	}
 

@@ -3,10 +3,13 @@ package com.oopsididitagain.model;
 import java.awt.Image;
 import java.awt.Toolkit;
 
+import com.oopsididitagain.util.Saveable;
+
 public class Terrain {
 	private final boolean isMovableOnGround;
-	private final boolean isMobableInAir;
+	private final boolean isMovableInAir;
 	private final Image image;
+	private int type;
 	
 	public final static int GRASS = 0;
 	public final static int WATER = 1;
@@ -37,13 +40,14 @@ public class Terrain {
 			}
 			default: return null;
 		}
-		return new Terrain(isMovableOnGround, isMovableInAir, image);
+		return new Terrain(isMovableOnGround, isMovableInAir, image, type);
 	}
 	
-	private Terrain(boolean isMovableOnGround, boolean isMovableInAir, Image image) {
+	private Terrain(boolean isMovableOnGround, boolean isMovableInAir, Image image, int type) {
 		this.isMovableOnGround = isMovableOnGround;
-		this.isMobableInAir = isMovableInAir;
+		this.isMovableInAir = isMovableInAir;
 		this.image = image;
+		this.type = type;
 	}
 
 	public boolean isMovableOnGround() {
@@ -51,11 +55,15 @@ public class Terrain {
 	}
 
 	public boolean isMovableInAir() {
-		return isMobableInAir;
+		return isMovableInAir;
 	}
 
 	public Image getImage() {
 		return image;
+	}
+
+	public int getType() {
+		return type;
 	}
 	
 }
