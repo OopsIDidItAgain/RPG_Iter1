@@ -325,6 +325,7 @@ public class CSVTool {
 			ArrayList<Item> items = new ArrayList<Item>();
 			line = input.readLine();
 			splitLine = line.split(",");
+
 			
 			items.addAll(parseItems("AVATAR", input));
 			
@@ -375,6 +376,7 @@ public class CSVTool {
 			}
 
 			ArrayList<Item> armoryList = new ArrayList<Item>();
+
 			line = input.readLine();
 			splitLine = line.split(",");
 			armoryList.addAll(parseItems("INVENTORY_NOT_EQUIPPED", input));
@@ -384,6 +386,7 @@ public class CSVTool {
 			Inventory inv = new Inventory();
 
 			ArrayList<Item> inventoryList = new ArrayList<Item>();
+
 			line = input.readLine();
 			
 			inventoryList.addAll(parseItems("BASE_STATS_WITH_NO_OCCUPATION_NO_EQUIPMENT", input));
@@ -406,14 +409,13 @@ public class CSVTool {
 					agility, hardiness, experience, movement, lifeAmount,
 					manaAmount);
 
-			// StatCollection sc = new StatCollection(wearBlob,armory1);
-
 			for (Item i: inventoryList) {
 				inv.addItem(i);
 			}
 			for (Item i: armoryList) {
 				inv.addItem(i);
 			}
+
 			Entity av = new Entity("avatar", image, p, isFlying);
 			av.setBlob(rawBlob);
 			av.setInventory(inv);

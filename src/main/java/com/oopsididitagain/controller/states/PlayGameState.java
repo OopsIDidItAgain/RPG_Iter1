@@ -157,7 +157,7 @@ public class PlayGameState extends GameState {
 					//System.out.println("whatt");
 					String c = "carrot" + carrotid;
 					carrotid++;
-					TakeableItem i = new TakeableItem(c, "/carrot.jpg",p);
+					TakeableItem i = new TakeableItem(c, "/carrot.png",p);
 					tile.setItem(i);
 					terraFormedTiles.remove(j);
 					break;
