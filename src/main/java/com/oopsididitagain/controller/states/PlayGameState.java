@@ -103,6 +103,17 @@ public class PlayGameState extends GameState {
 	
 	public void affectAvatar() {
 		map.getTileAt(avatar.getPosition()).getAreaEffect().affect(avatar);
+		
+		// avatar steps on instant death
+		if (map.getTileAt(avatar.getPosition()).getAreaEffect().getType() == 3) { // instant death
+			try { Thread.sleep(300);  } 
+			catch(InterruptedException ex) { Thread.currentThread().interrupt(); }
+			
+			map.getTileAt(avatar.getPosition()).setEntity(null);
+			Position updatedPosition = new Position(0,0);
+			avatar.setPosition(updatedPosition);
+			map.getTileAt(updatedPosition).setEntity(avatar);
+		}
 	}
 	
 	public void toggleFlight() {

@@ -44,6 +44,6 @@ public class AreaEffect {
 	public void affect(Entity entity) {
 		entity.getStats().mergeBlob(areaBlob);
 	}
-	
+	public int getType() { return type; }
 	public Decal getDecal() { return decal; }
 }
