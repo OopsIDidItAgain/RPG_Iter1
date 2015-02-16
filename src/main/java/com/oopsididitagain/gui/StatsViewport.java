@@ -34,16 +34,12 @@ public class StatsViewport extends Viewport{
 		 g2.fill(new Rectangle2D.Double(0,540, 600, 160));
 		 
 		 // primaryStatsBox
-		 g2.setPaint(Color.yellow);
-		 g2.fill(new Rectangle2D.Double(0, 540, 150, 160));
+		 g2.setPaint(new Color(0x3498db));
+		 g2.fill(new Rectangle2D.Double(0, 540, 130, 160));
 		 
 		 // derivedStatsBox
-		 g2.setPaint(Color.green);
-		 g2.fill(new Rectangle2D.Double(150,540,150,160));
-		 
-		 // experienceBar
-		 g2.setPaint(Color.CYAN);
-		 g2.fill(new Ellipse2D.Double(305,540,138,138));
+		 g2.setPaint(new Color(0xf1c40f));
+		 g2.fill(new Rectangle2D.Double(130,540,150,160));
 		 
 		 // our guy's face bar
 		 if (avatar.getStats().getBlob().getLivesLeft() != 0)
@@ -67,7 +63,7 @@ public class StatsViewport extends Viewport{
 		        g2.drawString(line, x, y += g2.getFontMetrics().getHeight());
 		        // graphics2d doesn't handle "\n" as new lines, so we have to split it
 		 
-		 x+=150; y = 537;
+		 x+=130; y = 537;
 		 for (String line : dStats.split("\n"))
 			 g2.drawString(line, x, y+= g2.getFontMetrics().getHeight());
 		 
