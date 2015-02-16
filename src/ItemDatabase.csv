@@ -1,1 +1,8 @@
-NAME,IMAGE,X,Y,TYPE,RANK,LIVES,STR,AGIL,INTEL,HARDI,EXP,MOVEM,LIFEAMT,MANAAMT,TYPESword,sword.png,0,1,Wearable,5,0,5,0,0,0,0,0,0,0,WEAPONCape,cape.png,2,3,Wearable,2,1,2,3,4,5,6,7,8,9,ARMORPotion,potion.jpg,0,5,Takeable,,,,,,,,,,,Chainsaw,chainsaw.png,0,2,Wearable,5,0,15,0,0,0,0,-2,0,0,WEAPON
+NAME,IMAGE,X,Y,TYPE,RANK,LIVES,STR,AGIL,INTEL,HARDI,EXP,MOVEM,LIFEAMT,MANAAMT,TYPE,TARGETX,TARGETY
+Sword,sword.png,0,1,Wearable,5,0,5,0,0,0,0,0,0,0,WEAPON,,
+Cape,cape.png,2,3,Wearable,2,1,2,3,4,5,6,7,8,9,ARMOR,,
+Potion,potion.jpg,0,5,Takeable,,,,,,,,,,,,,
+Chainsaw,chainsaw.png,0,2,Wearable,5,0,15,0,0,0,0,-2,0,0,WEAPON,,
+PowBlock1,powerblock.png,4,8,AffectMapItem,,,,,,,,,,,5,8,3
+PowBlock2,powerblock.png,4,5,AffectMapItem,,,,,,,,,,,1,5,3
+Rock,rock.png,3,8,Obstacle,,,,,,,,,,,,,

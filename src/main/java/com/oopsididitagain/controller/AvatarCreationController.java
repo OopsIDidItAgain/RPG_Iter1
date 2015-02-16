@@ -1,7 +1,7 @@
 package com.oopsididitagain.controller;
 
-import com.oopsididitagain.controller.states.GameState;
 import com.oopsididitagain.controller.states.AvatarCreationGameState;
+import com.oopsididitagain.controller.states.GameState;
 import com.oopsididitagain.controller.states.PlayGameState;
 import com.oopsididitagain.io.KeyCode;
 

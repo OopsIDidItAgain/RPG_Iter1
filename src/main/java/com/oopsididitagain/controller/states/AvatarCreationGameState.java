@@ -70,17 +70,20 @@ public class AvatarCreationGameState extends GameState{
 		t[0][4].setAreaEffect(new AreaEffect(2,5)); 
 		t[0][5].setAreaEffect(new AreaEffect(3,5)); 
 		t[0][6].setAreaEffect(new AreaEffect(4,5)); 
-		t[8][4].setInteractiveItem(new AffectMapItem("PowBlock1", "/powerblock.png", new Position(8,4), t[8][3], 1));
-		t[5][4].setInteractiveItem(new AffectMapItem("PowBlock2", "/powerblock.png", new Position(5,4), t[5][5], 5));
 
 		t[3][0].setAreaEffect(new AreaEffect(1, 10)); 
 		List<Item> items = CSVTool.readItemDatabase();
 
 		map = new GameMap(t, height, width);
 		for (Item i : items) {
-			//System.out.print(i.toString());
 			Tile tile = map.getTileAt(i.getPosition());
-			tile.getItems().add(i);
+			tile.setPosition(i.getPosition());
+			if (i instanceof AffectMapItem) {
+				((AffectMapItem)i).setTile(map.getTileAt(((AffectMapItem) i).getTargetPosition()));
+				tile.setInteractiveItem((AffectMapItem)i);
+			}
+			else
+				tile.getItems().add(i);
 		}
 	}
 

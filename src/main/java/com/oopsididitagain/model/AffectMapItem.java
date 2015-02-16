@@ -6,6 +6,7 @@ public class AffectMapItem extends InteractiveItem {
 
 	private Tile tile;
 	private int affect;
+	private Position targetPosition;
 	private static final int CHANGE_TO_GRASS = 1;
 	private static final int CHANGE_TO_WATER = 2;
 	private static final int CHANGE_TO_MOUNTAIN = 3;
@@ -17,6 +18,13 @@ public class AffectMapItem extends InteractiveItem {
 		super(name, imageName, position);
 		this.tile = tile;
 		this.affect = affect;
+	}
+	
+	public AffectMapItem(String name, String imageName, Position position,
+			Position targetPosition, int affect) {
+		super(name, imageName, position);
+		this.affect = affect;
+		this.targetPosition = targetPosition;
 	}
 
 	@Override
@@ -49,7 +57,24 @@ public class AffectMapItem extends InteractiveItem {
 		arr[5] = "AffectMapItem";
 		for (String s: arr) 
 			sb.append(s + ",");
-		sb.append("," + affect);
+		sb.append(affect + ",");
+		sb.append(targetPosition.getX() + "," + targetPosition.getY());
 		return sb.toString();
+	}
+
+	public Position getTargetPosition() {
+		return targetPosition;
+	}
+
+	public void setTargetPosition(Position targetPosition) {
+		this.targetPosition = targetPosition;
+	}
+
+	public Tile getTile() {
+		return tile;
+	}
+
+	public void setTile(Tile tile) {
+		this.tile = tile;
 	}
 }

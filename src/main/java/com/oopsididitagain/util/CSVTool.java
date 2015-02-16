@@ -8,8 +8,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import com.oopsididitagain.model.AffectMapItem;
 import com.oopsididitagain.model.AreaEffect;
 import com.oopsididitagain.model.Armory;
 import com.oopsididitagain.model.Entity;
@@ -144,6 +146,13 @@ public class CSVTool {
 					break;
 				}
 				case "Interactive": {
+					break;
+				}
+				case "AffectMapItem": {
+					int affectMapType = Integer.parseInt(splitLine[15]);
+					int targetX = Integer.parseInt(splitLine[17]);
+					int targetY = Integer.parseInt(splitLine[16]);
+					item = new AffectMapItem(name, imageName, position, new Position(targetY, targetX), affectMapType);
 					break;
 				}
 				case "OneShot": {
@@ -333,7 +342,14 @@ public class CSVTool {
 
 			for (Item i : items) {
 				Tile tile1 = map.getTileAt(i.getPosition());
-				tile1.getItems().add(i);
+				if (i instanceof AffectMapItem) {
+					Tile targetTile = map.getTileAt(((AffectMapItem) i).getTargetPosition());
+					targetTile.setPosition(((AffectMapItem) i).getTargetPosition());
+					((AffectMapItem)i).setTile(map.getTileAt(((AffectMapItem) i).getTargetPosition()));
+					tile1.setInteractiveItem((AffectMapItem)i);
+				}
+				else
+					tile1.getItems().add(i);
 			}
 			
 			for (AreaEffect ae: aef) {
@@ -470,7 +486,7 @@ public class CSVTool {
 				StatBlob blob = new StatBlob(livesLeft, intellect,
 						strength, agility, hardiness, experience, movement,
 						lifeAmount, manaAmount);
-				Position pr = new Position(x, y, Direction.NORTH);
+				Position pr = new Position(y, x, Direction.NORTH);
 				OneShotItem oneShotItem = new OneShotItem(nameID, img, pr,
 						blob);
 				items.add(oneShotItem);
@@ -508,22 +524,32 @@ public class CSVTool {
 				StatBlob wearBlob = new StatBlob(livesLeft, intellect,
 						strength, agility, hardiness, experience, movement,
 						lifeAmount, manaAmount);
-				Position wP = new Position(x, y, Direction.NORTH);
+				Position wP = new Position(y, x, Direction.NORTH);
 				WearableItem wearableItem = new WearableItem(nameID, img,
 						wP, rank, wearBlob, wT);
 				items.add(wearableItem);
 				break;
 			case "ObstacleItem":
-				Position oP = new Position(x, y, Direction.NORTH);
+				Position oP = new Position(y, x, Direction.NORTH);
 				ObstacleItem obstacleItem = new ObstacleItem(nameID, img,
 						oP);
 				items.add(obstacleItem);
 				break;
 			case "Takeable":
-				Position tP = new Position(x, y, Direction.NORTH);
+				Position tP = new Position(y, x, Direction.NORTH);
 				TakeableItem takeableItem = new TakeableItem(nameID, img,
 						tP);
 				items.add(takeableItem);
+				break;
+			case "AffectMapItem":
+				Position pos = new Position(y, x, Direction.NORTH);
+				int type = Integer.parseInt(splitLine[6]);
+				Position targetTilePosition = new Position(Integer.parseInt(splitLine[8]), Integer.parseInt(splitLine[7]));
+				AffectMapItem amItem = new AffectMapItem(nameID, img,
+						pos, targetTilePosition, type);
+				items.add(amItem);
+				System.out.println(Arrays.toString(splitLine));
+				break;
 			default:
 				break;
 			}

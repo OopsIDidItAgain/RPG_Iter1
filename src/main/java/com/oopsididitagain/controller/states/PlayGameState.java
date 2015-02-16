@@ -10,8 +10,6 @@ import com.oopsididitagain.io.KeyCode;
 import com.oopsididitagain.model.Entity;
 import com.oopsididitagain.model.GameMap;
 import com.oopsididitagain.model.GameObject;
-import com.oopsididitagain.model.InteractiveItem;
-import com.oopsididitagain.model.Item;
 import com.oopsididitagain.model.Position;
 import com.oopsididitagain.model.TakeableItem;
 import com.oopsididitagain.model.Terrain;
