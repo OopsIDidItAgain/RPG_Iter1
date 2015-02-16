@@ -12,8 +12,8 @@ public class WearableItem extends TakeableItem {
 	private WearableItemType type;
 	private StatBlob blob;
 
-	public WearableItem(String name, String imageName, Position position, int rank, 
-			StatBlob blob, WearableItemType type) {
+
+	public WearableItem(String name, String imageName, Position position, int rank, StatBlob blob, WearableItemType type) {
 		super(name, imageName, position);
 		this.rank = rank;
 		this.blob = blob;
@@ -70,7 +70,8 @@ public class WearableItem extends TakeableItem {
 		for (String s: splitString) 
 			sb.append(s + ",");
 		sb.append(blob.toSaveFormat() + ",");
-		sb.append(type);
+		sb.append(type + ",");
+		sb.append(rank);
 		return sb.toString();
 	}
 	

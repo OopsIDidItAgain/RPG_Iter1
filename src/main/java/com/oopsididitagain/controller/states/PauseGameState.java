@@ -7,25 +7,26 @@ import com.oopsididitagain.gui.View;
 import com.oopsididitagain.menu.PauseMenu;
 import com.oopsididitagain.model.Entity;
 import com.oopsididitagain.model.GameMap;
+import com.oopsididitagain.util.CSVTool;
 
 public class PauseGameState extends GameState {
 
 	private static PauseGameState instance;
 	private static PauseMenu pauseMenu;
-	private static Entity avatar;
-	private static GameMap map;
+	private Entity avatar;
+	private GameMap map;
 
 	private PauseGameState() {
 		// TODO: get menu and pause game things
 		this.pauseMenu = new PauseMenu();
 	}
 
-	public static void setAvatar(Entity av) {
-		 	avatar = av;
+	public void setAvatar(Entity avatar) {
+		 	this.avatar = avatar;
 	}
 
-	public static void setMap(GameMap m) {
-		map = m;
+	public void setMap(GameMap map) {
+			this.map = map;
 	}
 
 	public PauseMenu getPauseMenu() {
@@ -62,7 +63,10 @@ public class PauseGameState extends GameState {
 		GameState state;
 		switch (option) {
 		case (1):// saveStuffz!
-
+			if(map == null){
+				//System.out.println("skd");
+			}
+			CSVTool.writeSaveGame(map, avatar);
 			state = ExitGameState.getInstance();
 			return state;
 		case (2):// exit

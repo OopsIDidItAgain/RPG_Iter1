@@ -132,8 +132,12 @@ public class Entity extends GameObject {
 
 	@Override
 	public String toSaveFormat() {
-		StringBuilder sb = new StringBuilder(super.toSaveFormat());
+		StringBuilder sb = new StringBuilder();
+		sb.append(imageName);
 		sb.append("," + occupation);
+		sb.append("," + position.getX());
+		sb.append("," + position.getY());
+		sb.append("," + isFlying +"\n");
 		return sb.toString();
 	}
 

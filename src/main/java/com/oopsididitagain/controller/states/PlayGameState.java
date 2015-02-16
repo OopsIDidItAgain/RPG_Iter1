@@ -21,9 +21,9 @@ import com.oopsididitagain.util.Direction;
 public class PlayGameState extends GameState {
 
 	private static PlayGameState instance;
-	private GameMap map;
+	private static GameMap map;
 	private List<GameObject> gameObjects;
-	private Entity avatar;
+	private static Entity avatar;
 	private List<Tile> terraFormedTiles;
 	int carrotid;
 	private final static Position ORIGIN_POSITION = new Position(0,0);
@@ -156,6 +156,7 @@ public class PlayGameState extends GameState {
 				if ((System.currentTimeMillis() - time) > 5000) {
 					//System.out.println("whatt");
 					String c = "carrot" + carrotid;
+					carrotid++;
 					TakeableItem i = new TakeableItem(c, "/carrot.jpg",p);
 					tile.setItem(i);
 					terraFormedTiles.remove(j);
@@ -186,8 +187,10 @@ public class PlayGameState extends GameState {
 
 	public GameState changeToPauseState() {
 		GameState state = PauseGameState.getInstance();
-		PauseGameState.setAvatar(avatar);
-		PauseGameState.setMap(map);
+		System.out.print(map);
+		((PauseGameState)state).setMap(map);
+		((PauseGameState)state).setAvatar(avatar);
+		
 		return state;
 		
 	}

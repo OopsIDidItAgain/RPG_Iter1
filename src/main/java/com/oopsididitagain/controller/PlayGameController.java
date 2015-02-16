@@ -47,7 +47,7 @@ public class PlayGameController extends Controller{
 				((PlayGameState)state).interact();
 				break;
 			case KeyCode.PAUSE:
-				state = PauseGameState.getInstance();
+				state = ((PlayGameState)state).changeToPauseState();
 				break;
 			case KeyCode.EXIT:
 				state = ExitGameState.getInstance();
