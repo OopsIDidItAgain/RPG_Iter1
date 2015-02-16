@@ -110,6 +110,7 @@ public class StatCollection {
 					"\nAgility: "	+(int)blob.getAgility()+
 					"\nHardiness: "	+(int)blob.getExperience()+
 					"\nMovement: "	+(int)blob.getMovement()+
+					"\nExperience: "+(int)blob.getExperience()+
 					"\nLife: "		+(int)blob.getLifeAmount()+
 									"/"+(int)getLifeCapacity()+
 					"\nMana: "		+(int)blob.getManaAmount()+
