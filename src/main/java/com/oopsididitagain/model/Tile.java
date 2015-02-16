@@ -10,6 +10,24 @@ public class Tile {
 	private Terrain terrain;
 	private AreaEffect areaEffect;
 
+	private Decal decal;
+	private Position position;
+	
+	public Decal getDecal() {
+		return decal;
+	}
+	
+
+	public Position getPosition() {
+		return position;
+	}
+
+
+	public void setPosition(Position position) {
+		this.position = position;
+	}
+
+
 	public Tile(Terrain terrain) {
 		super();
 		this.terrain = terrain;
@@ -23,6 +41,7 @@ public class Tile {
 
 	public void setTerrain(Terrain terrain) {
 		this.terrain = terrain;
+		this.terrain.setTime(System.currentTimeMillis());
 	}
 
 	public AreaEffect getAreaEffect() {
@@ -48,6 +67,9 @@ public class Tile {
 	public void setItems(List<Item> items) {
 		this.items = items;
 	}
+	public void setItem(Item item) {
+		items.add(item);
+	}
 
 	public List<Image> getImages() {
 		List<Image> images = new ArrayList<Image>();
@@ -65,11 +87,14 @@ public class Tile {
 	}
 
 	private void detectItemCollision() {
+		
 		for (int i = items.size() - 1; i >= 0; --i) {
 			Item item = items.get(i);
 			if (item instanceof TakeableItem) {
+				if(entity!=null){
 				entity.addToInventory((TakeableItem)item);
 				items.remove(i);
+				}
 			}
 			if (item instanceof OneShotItem) {
 				if (entity != null) {

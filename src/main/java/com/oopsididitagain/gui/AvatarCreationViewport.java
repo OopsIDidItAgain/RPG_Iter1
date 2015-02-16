@@ -80,8 +80,8 @@ public class AvatarCreationViewport {
 			break;
 		}
 
-		g.drawString(occupation + menuOptions.get(AvatarCreationMenu.OCCUPATION).getCurrentValue(), 100, 250);
-		g.drawString(gender + menuOptions.get(AvatarCreationMenu.GENDER).getCurrentValue(), 100, 300);
+		g.drawString(occupation + menuOptions.get(AvatarCreationMenu.OCCUPATION).displayValue(), 100, 250);
+		g.drawString(gender + menuOptions.get(AvatarCreationMenu.GENDER).displayValue(), 100, 300);
 		g.drawString(haircolor + menuOptions.get(AvatarCreationMenu.HAIRCOLOR).getCurrentValue(), 100, 350);
 		g.drawString(shirtcolor + menuOptions.get(AvatarCreationMenu.SHIRTCOLOR).getCurrentValue(), 100, 400);
 		g.drawString(confirm, 100, 450);

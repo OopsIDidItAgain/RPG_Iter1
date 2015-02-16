@@ -20,6 +20,34 @@ public class AvatarCreationMenuItem {
 	public int getCurrentValue() {
 		return currentValue;
 	}
+	
+	public String displayValue(){
+		switch(name){
+		case("Occupation"):
+			switch(currentValue){
+			case(1):return" Sneak";
+			case(2):return" Summoner";
+			case(3):return" Smasher";
+			}
+		case("Gender"):
+			switch(currentValue){
+			case(1):return" Female";
+			case(2):return" Male";
+		}
+		case("Hair Color"):
+			switch(currentValue){
+			case(1):return" Female";
+			case(2):return" Male";
+		}
+		case("Shirt Color"):
+			switch(currentValue){
+			case(0):return" Female";
+			case(1):return" Male";
+		}
+		default:
+			return"";	
+	}
+	}
 	public void setCurrentValue(int currentValue) {
 		this.currentValue = currentValue;
 	}

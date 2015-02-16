@@ -31,7 +31,7 @@ public class PlayGameController extends Controller{
 	public GameState handleInputAndUpdate(GameState state, int input) {
 		// TODO: send messages to avatar
 		((PlayGameState)state).affectAvatar();
-		
+		((PlayGameState)state).terraform_grow();
 		switch(input) {
 			case KeyCode.NORTH:
 			case KeyCode.SOUTH:
@@ -56,6 +56,10 @@ public class PlayGameController extends Controller{
 				break;
 			case KeyCode.FLY:
 				((PlayGameState)state).toggleFlight();
+				break;
+			case KeyCode.FARM:
+				((PlayGameState)state).terraform();
+				break;
 			default:
 				break;
 		}
