@@ -8,7 +8,6 @@ public class Entity extends GameObject {
     private Occupation occupation;
     private Armory armory;
     private StatCollection stats;
-    private boolean isFlying;
 
     public Entity(String name, String imageName, Position position, boolean isFlying) {
     	super (name, imageName, position);
