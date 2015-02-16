@@ -129,7 +129,6 @@ public class AvatarCreationGameState extends GameState{
 			((PlayGameState)state).setMap(map);
 			((PlayGameState)state).setAvatar(avatar);
 		}
-		
 		return state;
 	}
 	
