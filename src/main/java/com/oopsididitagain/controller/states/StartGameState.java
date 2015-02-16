@@ -62,13 +62,14 @@ public class StartGameState extends GameState {
 			break;
 		case StartMenu.LOAD_GAME:
 			File file = chooseFile();
-			GameMap m = CSVTool.makeLoadedMap(file);
-			Entity avatar = CSVTool.makeLoadedAvatar(file);
-			System.out.println(file.getAbsolutePath());
-			
-			//state = PlayGameState.getInstance();
-			((PlayGameState)state).setMap(m);
-			((PlayGameState)state).setAvatar(avatar);
+			if (file != null) {
+				GameMap m = CSVTool.makeLoadedMap(file);
+				Entity avatar = CSVTool.makeLoadedAvatar(file);
+				System.out.println(file.getAbsolutePath());
+				((PlayGameState)state).setMap(m);
+				((PlayGameState)state).setAvatar(avatar);
+				state = PlayGameState.getInstance();
+			}
 			break;
 		case StartMenu.EXIT_GAME:
 			state = ExitGameState.getInstance();
