@@ -7,6 +7,7 @@ import com.oopsididitagain.controller.Controller;
 import com.oopsididitagain.gui.View;
 import com.oopsididitagain.menu.AvatarCreationMenu;
 import com.oopsididitagain.model.AffectMapItem;
+//import com.oopsididitagain.model.AffectMapItem;
 import com.oopsididitagain.model.AreaEffect;
 import com.oopsididitagain.model.Entity;
 import com.oopsididitagain.model.GameMap;

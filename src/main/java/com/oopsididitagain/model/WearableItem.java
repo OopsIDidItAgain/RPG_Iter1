@@ -51,7 +51,9 @@ public class WearableItem extends TakeableItem {
 	public void accept(Entity visitor) {
 		visitor.visit(this);	
 	}
-
+	public void setIsEquipped(boolean b) {
+		this.equipped = b;
+	}
 
 	public WearableItemType getType() {
 		return type;

@@ -11,12 +11,20 @@ public class AreaEffect implements Saveable {
 						// denotes instant
 	private Decal decal;
 	private StatBlob areaBlob;
+	private Position position;
 
 	public AreaEffect(int type, int rate) {
 		this.type = type;
 		this.rate = rate;
 		initializeBlob(type, rate);
-
+		//position = new Postion();
+		decal = Decal.AREA_EFFECTS[type];
+	}
+	public AreaEffect(int type, int rate, Position p) {
+		this.type = type;
+		this.rate = rate;
+		initializeBlob(type, rate);
+		this.position = position;
 		decal = Decal.AREA_EFFECTS[type];
 	}
 
@@ -66,6 +74,15 @@ public class AreaEffect implements Saveable {
 
 	public void setRate(int rate) {
 		this.rate = rate;
+	}
+
+	public void setPosition(Position p) {
+		this.position = position;
+		
+	}
+
+	public Position getPosition() {
+		return position;
 	}
 
 	

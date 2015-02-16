@@ -135,6 +135,16 @@ public class Entity extends GameObject {
 		return sb.toString();
 	}
 
+	public void changeOccupation(int smasher) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setInventory(Inventory inv) {
+		this.inventory = inv;
+		
+	}
+
 	
 }
 
