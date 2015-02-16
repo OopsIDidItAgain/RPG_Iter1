@@ -60,6 +60,8 @@ public class PlayGameState extends GameState {
 	}
 
 	public void moveAvatar(int keyCode) {
+		if (avatar.shouldDie() && avatar.getStats().getBlob().getLivesLeft() == 0) return;
+		
 		int x = avatar.getPosition().getX();
 		int y = avatar.getPosition().getY();
 		Position updatedPosition = new Position(x, y);
