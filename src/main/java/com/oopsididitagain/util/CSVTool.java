@@ -329,7 +329,7 @@ public class CSVTool {
 				splitLine = line.split(",");
 			}
 
-			line = input.readLine();// skipping items
+			//line = input.readLine();// skipping items
 			// ln(line);
 			ArrayList<Item> items = new ArrayList<Item>();
 			
@@ -388,7 +388,6 @@ public class CSVTool {
 			}
 
 			ArrayList<Item> armoryList = new ArrayList<Item>();
-
 			input.readLine();
 			armoryList.addAll(parseItems("INVENTORY_NOT_EQUIPPED", input));
 
