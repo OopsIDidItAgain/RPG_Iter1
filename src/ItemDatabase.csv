@@ -6,3 +6,4 @@ Chainsaw,chainsaw.png,0,2,Wearable,5,0,15,0,0,0,0,-2,0,0,WEAPON,,
 PowBlock1,powerblock.png,4,8,AffectMapItem,,,,,,,,,,,5,8,3
 PowBlock2,powerblock.png,4,5,AffectMapItem,,,,,,,,,,,1,5,3
 Rock,rock.png,3,8,Obstacle,,,,,,,,,,,,,
+Mushroom,mushroom.jpg,1,1,OneShot,,2,0,0,0,0,0,0,0,0,,,
