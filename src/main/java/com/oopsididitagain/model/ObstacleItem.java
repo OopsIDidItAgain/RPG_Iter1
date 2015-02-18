@@ -15,8 +15,7 @@ public class ObstacleItem extends Item {
 
 	@Override
 	public void accept(InventoryViewport inventoryViewport) {
-		// TODO Auto-generated method stub
-		
+		inventoryViewport.visit(this);
 	}
 
 	@Override

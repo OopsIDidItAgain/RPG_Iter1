@@ -15,7 +15,7 @@ public class InteractiveItem extends Item {
 
 	@Override
 	public void accept(InventoryViewport inventoryViewport) {
-		// TODO Auto-generated method stub
+			inventoryViewport.visit(this);
 
 	}
 

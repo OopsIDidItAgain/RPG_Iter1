@@ -13,8 +13,11 @@ import com.oopsididitagain.menu.InventoryMenu;
 import com.oopsididitagain.menu.PauseMenu;
 import com.oopsididitagain.model.Entity;
 import com.oopsididitagain.model.GameObject;
+import com.oopsididitagain.model.InteractiveItem;
 import com.oopsididitagain.model.Inventory;
 import com.oopsididitagain.model.Item;
+import com.oopsididitagain.model.ObstacleItem;
+import com.oopsididitagain.model.OneShotItem;
 import com.oopsididitagain.model.TakeableItem;
 import com.oopsididitagain.model.WearableItem;
 
@@ -25,6 +28,7 @@ public class InventoryViewport extends Viewport{
 	private static Object[] inv;
 	private static int size;
 	static Graphics gr; 
+	private int  hi;
 
 
 	public InventoryViewport(InventoryMenu inventoryMenu, Inventory inventory) {
@@ -35,7 +39,7 @@ public class InventoryViewport extends Viewport{
 	}
 	
 	
-	private static void printMatrix(Graphics g,int bottom,int top, int option){
+	private void printMatrix(Graphics g,int bottom,int top, int option){
 		gr = g;
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setPaint(Color.red);
@@ -52,9 +56,7 @@ public class InventoryViewport extends Viewport{
         				"Press 'i' to close inventory",	
         				"Press 'i' to close inventory"};
         for (int i = 0; i < 3; i++) 
-        	g2.drawString(s[i], x, y += g2.getFontMetrics().getHeight());	 
-        
-       // Inventory inventory = avatar.getInventory();
+        	g2.drawString(s[i], x, y += g2.getFontMetrics().getHeight());	
         
         HashMap<String , Item> hash = inventory.getInventory();
 		Collection<Item>item = hash.values();
@@ -65,14 +67,9 @@ public class InventoryViewport extends Viewport{
         int h = 175;
         for(int i = 0; i!= 3; ++i){
         	for(int j = 0; j!= 4; ++j){
-        		if(count < top){
+        		if(count < top && count < size){
         			Rectangle r = new Rectangle(w,h,60,60);
-        			//System.out.println(count);
-        			if(inv[count] instanceof WearableItem){// fix this later!
-        				if(((WearableItem)inv[count]).isEquipped()){
-        					 g2.setPaint(Color.red);
-        				}
-        			}
+        			((Item)inv[count]).accept(this);//deals with displaying equipped items
         			if(count == option){
         				r.grow(10,10);
         				g2.fill(r);
@@ -95,49 +92,54 @@ public class InventoryViewport extends Viewport{
         }
 	}
 
-	public static void displayInventoryMenu(Graphics g){
+	public void displayInventoryMenu(Graphics g){
 		
 		int option = inventoryMenu.getSelectedOption();
 		size = inventory.getSize();
 
-		int opt1 = option - (option % 12);
+		int	firstItemRendered = option - (option % 12);
 		int n = 0;
 		int num = 1;
-		int opt2 = 0;
+		int LastItemRendered = 0;
 		int loop = size/11;
 		if(size%11 != 0) ++loop;
 		
 		while(n<loop){
 			if(option <= 11 * num  &&  option >= 12 * n){
 				if((size-1) < 11*num){
-					opt2= size; 
+					LastItemRendered= size; 
 					break;
 				}else{
-					opt2= 12*num; 
+					LastItemRendered= 12*num; 
 					break;
 				}
 			}
 			++num;
 			++n;
 		}
-		//System.out.println("opt1:  " + opt1);
-		//System.out.println("opt1:  " +opt2);
-		//System.out.println("size:  " +size);
-		printMatrix(g,opt1,opt2,option);
-	
-	
+		this.printMatrix(g,firstItemRendered,LastItemRendered,option);
 }
 
 
+	
+	
+	
+	public void visit(ObstacleItem obstacleItem) {
+		
+}
+	public void visit(OneShotItem oneShotItem) {
+			
+}
+	public void visit(InteractiveItem interactiveItem) {
+		
+}
 	public void visit(WearableItem wearableItem) {
 			Graphics2D g2 = (Graphics2D) gr;
 			if(wearableItem.isEquipped()){
 				 g2.setPaint(Color.red);
 			}
 	}
-
 	public void visit(TakeableItem takeableItem) {
-		// TODO Auto-generated method stub
 		
 	}
 	
