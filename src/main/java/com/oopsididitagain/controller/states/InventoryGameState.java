@@ -45,8 +45,8 @@ public class InventoryGameState extends GameState{
 	}
 
 	public void changeMenuOption(int keyCode){
-		int s = inventory.getSize();
-		inventoryMenu.changeMenuOption(keyCode,s);
+		int numItems = inventory.getSize();
+		inventoryMenu.changeMenuOption(keyCode,numItems);
 	};
 	
 	public int getMenuOption(){
@@ -64,24 +64,32 @@ public class InventoryGameState extends GameState{
 	}
 	
 	public void equip(int option){
-		HashMap<String , Item> hash = inventory.getInventory();
-		Collection<Item>item = hash.values();
-		Object [] inv = item.toArray();
-		Item i = (Item)inv[option];
-		System.out.println("hi");
-		i.accept(avatar);
+		int numOfItems = inventory.getSize();
+		if(option < numOfItems ){
+			HashMap<String , Item> hash = inventory.getInventory();
+			Collection<Item>item = hash.values();
+			Object [] inv = item.toArray();
+			Item i = (Item)inv[option];
+			System.out.println("hi");
+			i.accept(avatar);
+		}
 	}
 	public void drop(int option){
-		
-		HashMap<String , Item> hash = inventory.getInventory();
-		Collection<Item>item = hash.values();
-		Object [] inv = item.toArray();
-		Item i = (Item)inv[option];
-		
-		i.removeItem(avatar);
-		
+		int numOfItems = inventory.getSize();
+		if(numOfItems!=0){
+			HashMap<String , Item> hash = inventory.getInventory();
+			Collection<Item>item = hash.values();
+			Object [] inv = item.toArray();
+			Item i = (Item)inv[option];
+			i.removeItem(avatar);
+			int currentOption = inventoryMenu.getSelectedOption();
+			if(currentOption != 0){
+				inventoryMenu.setSelectedOption(--currentOption);	
+			}
+			inventory.deleteItem(i.getName());
+		}
 		//item.remove(i);
-		inventory.deleteItem(i.getName());		
+			
 			
 		
 			

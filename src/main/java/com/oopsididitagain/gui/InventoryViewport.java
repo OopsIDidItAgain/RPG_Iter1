@@ -67,7 +67,7 @@ public class InventoryViewport extends Viewport{
         	for(int j = 0; j!= 4; ++j){
         		if(count < top){
         			Rectangle r = new Rectangle(w,h,60,60);
-        			System.out.println(count);
+        			//System.out.println(count);
         			if(inv[count] instanceof WearableItem){// fix this later!
         				if(((WearableItem)inv[count]).isEquipped()){
         					 g2.setPaint(Color.red);
@@ -96,7 +96,10 @@ public class InventoryViewport extends Viewport{
 	}
 
 	public static void displayInventoryMenu(Graphics g){
+		
 		int option = inventoryMenu.getSelectedOption();
+		size = inventory.getSize();
+
 		int opt1 = option - (option % 12);
 		int n = 0;
 		int num = 1;
@@ -110,7 +113,7 @@ public class InventoryViewport extends Viewport{
 					opt2= size; 
 					break;
 				}else{
-					opt2= 11*num; 
+					opt2= 12*num; 
 					break;
 				}
 			}
@@ -121,6 +124,7 @@ public class InventoryViewport extends Viewport{
 		//System.out.println("opt1:  " +opt2);
 		//System.out.println("size:  " +size);
 		printMatrix(g,opt1,opt2,option);
+	
 	
 }
 
